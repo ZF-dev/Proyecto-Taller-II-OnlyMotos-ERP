@@ -15,6 +15,53 @@
 
     End Sub
 
+    Private Sub OpenChildForm(Of T As {Form, New})()
+
+        For Each child As Form In Me.MdiChildren
+
+            If TypeOf child Is T Then
+
+                child.BringToFront()
+                Exit Sub
+
+            End If
+
+        Next
+
+        Dim newForm As New T()
+        newForm.MdiParent = Me
+        newForm.Show()
+
+    End Sub
+
+    Private Sub TSMIRegisterSell_Click(sender As Object, e As EventArgs) Handles TSMIRegisterSell.Click
+        ' OpenChildForm(Of FormSellMoto)() ' Se descomentará al crear FormSellMoto
+    End Sub
+
+    Private Sub TSMISellHistory_Click(sender As Object, e As EventArgs) Handles TSMISellHistory.Click
+        ' Evento para consultar historial de ventas
+    End Sub
+
+    Private Sub TSMISeeProducts_Click(sender As Object, e As EventArgs) Handles TSMISeeProducts.Click
+        ' OpenChildForm(Of FormSeeProducts)() ' Se descomentará al crear FormSeeProducts
+    End Sub
+
+    Private Sub TSMISeeClients_Click(sender As Object, e As EventArgs) Handles TSMISeeClients.Click
+        ' Evento para ver/gestionar clientes
+    End Sub
+
+    Private Sub TSMISeeUsers_Click(sender As Object, e As EventArgs) Handles TSMISeeUsers.Click
+        ' Evento para ver/gestionar usuarios
+    End Sub
+
+    Private Sub TSMIBackup_Click(sender As Object, e As EventArgs) Handles TSMIBackup.Click
+        ' Lógica de copia de seguridad
+    End Sub
+
+    Private Sub TSMIReports_Click(sender As Object, e As EventArgs) Handles TSMIReports.Click
+        ' Lógica de generación de reportes
+    End Sub
+
     Private Sub TSMILogout_Click(sender As Object, e As EventArgs) Handles TSMILogout.Click
         Dim response As DialogResult = MessageBox.Show("¿Desea cerrar la sesión actual?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
