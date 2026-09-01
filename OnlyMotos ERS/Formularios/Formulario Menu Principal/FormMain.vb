@@ -6,7 +6,6 @@
 
         Dim loginForm As New FormLogin()
 
-        ' Evaluar si el usuario se autenticó correctamente
         If loginForm.ShowDialog() = DialogResult.OK Then
             Me.Show()
         Else
