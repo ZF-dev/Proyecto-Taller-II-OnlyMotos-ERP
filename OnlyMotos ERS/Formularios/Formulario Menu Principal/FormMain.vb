@@ -34,11 +34,11 @@
     End Sub
 
     Private Sub TSMIRegisterSell_Click(sender As Object, e As EventArgs) Handles TSMIRegisterSell.Click
-        ' OpenChildForm(Of FormSellMoto)() ' Se descomentará al crear FormSellMoto
+        OpenChildForm(Of FormSellMoto)()
     End Sub
 
     Private Sub TSMISellHistory_Click(sender As Object, e As EventArgs) Handles TSMISellHistory.Click
-        ' Evento para consultar historial de ventas
+        OpenChildForm(Of FormSellHistory)()
     End Sub
 
     Private Sub TSMISeeProducts_Click(sender As Object, e As EventArgs) Handles TSMISeeProducts.Click

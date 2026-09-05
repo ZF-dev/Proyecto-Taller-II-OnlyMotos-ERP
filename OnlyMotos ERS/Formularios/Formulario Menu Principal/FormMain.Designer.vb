@@ -82,13 +82,13 @@ Partial Class FormMain
         ' TSMIManageProducts
         ' 
         TSMIManageProducts.Name = "TSMIManageProducts"
-        TSMIManageProducts.Size = New Size(180, 22)
+        TSMIManageProducts.Size = New Size(167, 22)
         TSMIManageProducts.Text = "Gestion de Motos"
         ' 
         ' TSMISeeProducts
         ' 
         TSMISeeProducts.Name = "TSMISeeProducts"
-        TSMISeeProducts.Size = New Size(180, 22)
+        TSMISeeProducts.Size = New Size(167, 22)
         TSMISeeProducts.Text = "Ver Motos"
         ' 
         ' GestionDeClientesToolStripMenuItem
@@ -101,13 +101,13 @@ Partial Class FormMain
         ' TSMIManageClients
         ' 
         TSMIManageClients.Name = "TSMIManageClients"
-        TSMIManageClients.Size = New Size(180, 22)
+        TSMIManageClients.Size = New Size(175, 22)
         TSMIManageClients.Text = "Gestion de Clientes"
         ' 
         ' TSMISeeClients
         ' 
         TSMISeeClients.Name = "TSMISeeClients"
-        TSMISeeClients.Size = New Size(180, 22)
+        TSMISeeClients.Size = New Size(175, 22)
         TSMISeeClients.Text = "Ver Clientes"
         ' 
         ' UsuariosToolStripMenuItem
@@ -120,13 +120,13 @@ Partial Class FormMain
         ' TSMIManageUsers
         ' 
         TSMIManageUsers.Name = "TSMIManageUsers"
-        TSMIManageUsers.Size = New Size(180, 22)
+        TSMIManageUsers.Size = New Size(178, 22)
         TSMIManageUsers.Text = "Gestion de Usuarios"
         ' 
         ' TSMISeeUsers
         ' 
         TSMISeeUsers.Name = "TSMISeeUsers"
-        TSMISeeUsers.Size = New Size(180, 22)
+        TSMISeeUsers.Size = New Size(178, 22)
         TSMISeeUsers.Text = "Lista de Usuarios"
         ' 
         ' SistemaToolStripMenuItem
@@ -139,30 +139,30 @@ Partial Class FormMain
         ' TSMIBackup
         ' 
         TSMIBackup.Name = "TSMIBackup"
-        TSMIBackup.Size = New Size(180, 22)
+        TSMIBackup.Size = New Size(143, 22)
         TSMIBackup.Text = "Back Up"
         ' 
         ' TSMIReports
         ' 
         TSMIReports.Name = "TSMIReports"
-        TSMIReports.Size = New Size(180, 22)
+        TSMIReports.Size = New Size(143, 22)
         TSMIReports.Text = "Reportes"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(177, 6)
+        ToolStripMenuItem1.Size = New Size(140, 6)
         ' 
         ' TSMILogout
         ' 
         TSMILogout.Name = "TSMILogout"
-        TSMILogout.Size = New Size(180, 22)
+        TSMILogout.Size = New Size(143, 22)
         TSMILogout.Text = "Cerrar Sesion"
         ' 
         ' TSMIExit
         ' 
         TSMIExit.Name = "TSMIExit"
-        TSMIExit.Size = New Size(180, 22)
+        TSMIExit.Size = New Size(143, 22)
         TSMIExit.Text = "Salir"
         ' 
         ' FormMain
