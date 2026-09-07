@@ -63,13 +63,13 @@ Partial Class FormMain
         ' TSMIRegisterSell
         ' 
         TSMIRegisterSell.Name = "TSMIRegisterSell"
-        TSMIRegisterSell.Size = New Size(180, 22)
+        TSMIRegisterSell.Size = New Size(157, 22)
         TSMIRegisterSell.Text = "Registrar ventas"
         ' 
         ' TSMISellHistory
         ' 
         TSMISellHistory.Name = "TSMISellHistory"
-        TSMISellHistory.Size = New Size(180, 22)
+        TSMISellHistory.Size = New Size(157, 22)
         TSMISellHistory.Text = "Lista de ventas"
         ' 
         ' ProductosToolStripMenuItem
@@ -82,13 +82,13 @@ Partial Class FormMain
         ' TSMIManageProducts
         ' 
         TSMIManageProducts.Name = "TSMIManageProducts"
-        TSMIManageProducts.Size = New Size(167, 22)
+        TSMIManageProducts.Size = New Size(180, 22)
         TSMIManageProducts.Text = "Gestion de Motos"
         ' 
         ' TSMISeeProducts
         ' 
         TSMISeeProducts.Name = "TSMISeeProducts"
-        TSMISeeProducts.Size = New Size(167, 22)
+        TSMISeeProducts.Size = New Size(180, 22)
         TSMISeeProducts.Text = "Ver Motos"
         ' 
         ' GestionDeClientesToolStripMenuItem

@@ -41,8 +41,12 @@
         OpenChildForm(Of FormSellHistory)()
     End Sub
 
+    Private Sub TSMIManageProducts_Click(sender As Object, e As EventArgs) Handles TSMIManageProducts.Click
+        OpenChildForm(Of FormManageProducts)()
+    End Sub
+
     Private Sub TSMISeeProducts_Click(sender As Object, e As EventArgs) Handles TSMISeeProducts.Click
-        ' OpenChildForm(Of FormSeeProducts)() ' Se descomentará al crear FormSeeProducts
+        OpenChildForm(Of FormSeeProducts)()
     End Sub
 
     Private Sub TSMISeeClients_Click(sender As Object, e As EventArgs) Handles TSMISeeClients.Click
