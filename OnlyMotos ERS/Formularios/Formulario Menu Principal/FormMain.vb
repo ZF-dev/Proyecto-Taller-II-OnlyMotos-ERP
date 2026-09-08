@@ -49,23 +49,30 @@
         OpenChildForm(Of FormSeeProducts)()
     End Sub
 
+    Private Sub TSMIManageClients_Click(sender As Object, e As EventArgs) Handles TSMIManageClients.Click
+
+        OpenChildForm(Of FormManageClients)()
+
+    End Sub
+
     Private Sub TSMISeeClients_Click(sender As Object, e As EventArgs) Handles TSMISeeClients.Click
-        ' Evento para ver/gestionar clientes
+        OpenChildForm(Of FormSeeClients)()
     End Sub
 
     Private Sub TSMISeeUsers_Click(sender As Object, e As EventArgs) Handles TSMISeeUsers.Click
-        ' Evento para ver/gestionar usuarios
+        'OpenChildForm(Of FormSeeUsers)()
     End Sub
 
     Private Sub TSMIBackup_Click(sender As Object, e As EventArgs) Handles TSMIBackup.Click
         ' Lógica de copia de seguridad
     End Sub
 
-    Private Sub TSMIReports_Click(sender As Object, e As EventArgs) Handles TSMIReports.Click
+    Private Sub TSMIReports_Click(sender As Object, e As EventArgs)
         ' Lógica de generación de reportes
     End Sub
 
     Private Sub TSMILogout_Click(sender As Object, e As EventArgs) Handles TSMILogout.Click
+
         Dim response As DialogResult = MessageBox.Show("¿Desea cerrar la sesión actual?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If response = DialogResult.Yes Then
@@ -88,6 +95,7 @@
     End Sub
 
     Private Sub TSMIExit_Click(sender As Object, e As EventArgs) Handles TSMIExit.Click
+
         Dim response As DialogResult = MessageBox.Show("¿Está seguro de que desea salir de OnlyMotos ERS?", "Confirmar Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If response = DialogResult.Yes Then
@@ -95,6 +103,7 @@
             Application.Exit()
 
         End If
+
     End Sub
 
 End Class

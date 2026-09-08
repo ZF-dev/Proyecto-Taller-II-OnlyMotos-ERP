@@ -23,6 +23,11 @@ Partial Class FormManageProducts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GBData = New GroupBox()
+        BSelectImage = New Button()
+        TBImagePath = New TextBox()
+        PBMotoImage = New PictureBox()
+        LYear = New Label()
+        TBYear = New TextBox()
         LStockMin = New Label()
         NUDStockMin = New NumericUpDown()
         LStock = New Label()
@@ -38,7 +43,9 @@ Partial Class FormManageProducts
         TBModel = New TextBox()
         TBBrand = New TextBox()
         NumericUpDown1 = New NumericUpDown()
+        OpenFileDialog1 = New OpenFileDialog()
         GBData.SuspendLayout()
+        CType(PBMotoImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDStockMin, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDStock, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
@@ -46,6 +53,11 @@ Partial Class FormManageProducts
         ' 
         ' GBData
         ' 
+        GBData.Controls.Add(BSelectImage)
+        GBData.Controls.Add(TBImagePath)
+        GBData.Controls.Add(PBMotoImage)
+        GBData.Controls.Add(LYear)
+        GBData.Controls.Add(TBYear)
         GBData.Controls.Add(LStockMin)
         GBData.Controls.Add(NUDStockMin)
         GBData.Controls.Add(LStock)
@@ -67,10 +79,52 @@ Partial Class FormManageProducts
         GBData.TabStop = False
         GBData.Text = "Datos de la Moto"
         ' 
+        ' BSelectImage
+        ' 
+        BSelectImage.Location = New Point(35, 259)
+        BSelectImage.Name = "BSelectImage"
+        BSelectImage.Size = New Size(75, 23)
+        BSelectImage.TabIndex = 18
+        BSelectImage.Text = "Examinar"
+        BSelectImage.UseVisualStyleBackColor = True
+        ' 
+        ' TBImagePath
+        ' 
+        TBImagePath.Location = New Point(128, 259)
+        TBImagePath.Name = "TBImagePath"
+        TBImagePath.Size = New Size(235, 23)
+        TBImagePath.TabIndex = 17
+        ' 
+        ' PBMotoImage
+        ' 
+        PBMotoImage.BorderStyle = BorderStyle.FixedSingle
+        PBMotoImage.Location = New Point(444, 22)
+        PBMotoImage.Name = "PBMotoImage"
+        PBMotoImage.Size = New Size(304, 216)
+        PBMotoImage.SizeMode = PictureBoxSizeMode.Zoom
+        PBMotoImage.TabIndex = 16
+        PBMotoImage.TabStop = False
+        ' 
+        ' LYear
+        ' 
+        LYear.AutoSize = True
+        LYear.Location = New Point(35, 219)
+        LYear.Name = "LYear"
+        LYear.Size = New Size(32, 15)
+        LYear.TabIndex = 15
+        LYear.Text = "Año:"
+        ' 
+        ' TBYear
+        ' 
+        TBYear.Location = New Point(128, 216)
+        TBYear.Name = "TBYear"
+        TBYear.Size = New Size(239, 23)
+        TBYear.TabIndex = 14
+        ' 
         ' LStockMin
         ' 
         LStockMin.AutoSize = True
-        LStockMin.Location = New Point(35, 326)
+        LStockMin.Location = New Point(35, 350)
         LStockMin.Name = "LStockMin"
         LStockMin.Size = New Size(84, 15)
         LStockMin.TabIndex = 13
@@ -78,7 +132,7 @@ Partial Class FormManageProducts
         ' 
         ' NUDStockMin
         ' 
-        NUDStockMin.Location = New Point(128, 318)
+        NUDStockMin.Location = New Point(128, 348)
         NUDStockMin.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         NUDStockMin.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         NUDStockMin.Name = "NUDStockMin"
@@ -89,7 +143,7 @@ Partial Class FormManageProducts
         ' LStock
         ' 
         LStock.AutoSize = True
-        LStock.Location = New Point(35, 259)
+        LStock.Location = New Point(35, 303)
         LStock.Name = "LStock"
         LStock.Size = New Size(73, 15)
         LStock.TabIndex = 11
@@ -98,16 +152,16 @@ Partial Class FormManageProducts
         ' LPrice
         ' 
         LPrice.AutoSize = True
-        LPrice.Location = New Point(35, 190)
+        LPrice.Location = New Point(35, 175)
         LPrice.Name = "LPrice"
-        LPrice.Size = New Size(36, 15)
+        LPrice.Size = New Size(43, 15)
         LPrice.TabIndex = 10
-        LPrice.Text = "Price:"
+        LPrice.Text = "Precio:"
         ' 
         ' LCylinder
         ' 
         LCylinder.AutoSize = True
-        LCylinder.Location = New Point(35, 133)
+        LCylinder.Location = New Point(35, 127)
         LCylinder.Name = "LCylinder"
         LCylinder.Size = New Size(64, 15)
         LCylinder.TabIndex = 9
@@ -133,7 +187,7 @@ Partial Class FormManageProducts
         ' 
         ' BCancel
         ' 
-        BCancel.Location = New Point(584, 245)
+        BCancel.Location = New Point(444, 294)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(112, 58)
         BCancel.TabIndex = 6
@@ -142,7 +196,7 @@ Partial Class FormManageProducts
         ' 
         ' BSave
         ' 
-        BSave.Location = New Point(584, 127)
+        BSave.Location = New Point(636, 294)
         BSave.Name = "BSave"
         BSave.Size = New Size(112, 58)
         BSave.TabIndex = 5
@@ -151,7 +205,7 @@ Partial Class FormManageProducts
         ' 
         ' NUDStock
         ' 
-        NUDStock.Location = New Point(128, 251)
+        NUDStock.Location = New Point(128, 301)
         NUDStock.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         NUDStock.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         NUDStock.Name = "NUDStock"
@@ -161,17 +215,17 @@ Partial Class FormManageProducts
         ' 
         ' TBPrice
         ' 
-        TBPrice.Location = New Point(128, 187)
+        TBPrice.Location = New Point(128, 172)
         TBPrice.Name = "TBPrice"
-        TBPrice.Size = New Size(166, 23)
+        TBPrice.Size = New Size(235, 23)
         TBPrice.TabIndex = 3
         TBPrice.TextAlign = HorizontalAlignment.Right
         ' 
         ' TBCylinder
         ' 
-        TBCylinder.Location = New Point(128, 133)
+        TBCylinder.Location = New Point(128, 127)
         TBCylinder.Name = "TBCylinder"
-        TBCylinder.Size = New Size(100, 23)
+        TBCylinder.Size = New Size(239, 23)
         TBCylinder.TabIndex = 2
         ' 
         ' TBModel
@@ -199,6 +253,11 @@ Partial Class FormManageProducts
         NumericUpDown1.TabIndex = 12
         NumericUpDown1.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
+        ' OpenFileDialog1
+        ' 
+        OpenFileDialog1.FileName = "OpenFileDialog1"
+        OpenFileDialog1.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png"
+        ' 
         ' FormManageProducts
         ' 
         AcceptButton = BSave
@@ -215,6 +274,7 @@ Partial Class FormManageProducts
         Text = "Alta de Nueva Moto - OnlyMotos ERP"
         GBData.ResumeLayout(False)
         GBData.PerformLayout()
+        CType(PBMotoImage, ComponentModel.ISupportInitialize).EndInit()
         CType(NUDStockMin, ComponentModel.ISupportInitialize).EndInit()
         CType(NUDStock, ComponentModel.ISupportInitialize).EndInit()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
@@ -237,4 +297,10 @@ Partial Class FormManageProducts
     Friend WithEvents NUDStockMin As NumericUpDown
     Friend WithEvents LStockMin As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents PBMotoImage As PictureBox
+    Friend WithEvents LYear As Label
+    Friend WithEvents TBYear As TextBox
+    Friend WithEvents BSelectImage As Button
+    Friend WithEvents TBImagePath As TextBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

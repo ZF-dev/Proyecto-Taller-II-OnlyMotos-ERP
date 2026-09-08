@@ -8,9 +8,9 @@
     Private Sub LoadMockData()
         DGVProducts.Rows.Clear()
         ' Datos simulados (El ID representa el valor autoincremental de la BD)
-        DGVProducts.Rows.Add(1, "HONDA", "Wave 110s", "110 cc", 8, "$ 2,500,000.00")
-        DGVProducts.Rows.Add(2, "YAMAHA", "YBR 125", "125 cc", 4, "$ 3,800,000.00")
-        DGVProducts.Rows.Add(3, "MOTOMEL", "Sirius 150", "150 cc", 12, "$ 2,100,000.00")
+        DGVProducts.Rows.Add(1, "HONDA", "Wave 110s", "2010", "110 cc", 8, "$ 2,500,000.00")
+        DGVProducts.Rows.Add(2, "YAMAHA", "YBR 125", "2012", "125 cc", 4, "$ 3,800,000.00")
+        DGVProducts.Rows.Add(3, "MOTOMEL", "Sirius 150", "2015", "150 cc", 12, "$ 2,100,000.00")
     End Sub
 
     ' --- VALIDACIÓN Y ACTUALIZACIÓN EN TIEMPO REAL DEL STOCK EN LA GRILLA ---
@@ -48,7 +48,7 @@
         End If
 
         Dim rowIndex As Integer = DGVProducts.SelectedCells(0).RowIndex
-        Dim selectedModel As String = DGVProducts.Rows(rowIndex).Cells("modelo").Value.ToString()
+        Dim selectedModel As String = DGVProducts.Rows(rowIndex).Cells("Modelo").Value.ToString()
 
         Dim result As DialogResult = MessageBox.Show($"¿Está seguro de eliminar la moto '{selectedModel}'?", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 

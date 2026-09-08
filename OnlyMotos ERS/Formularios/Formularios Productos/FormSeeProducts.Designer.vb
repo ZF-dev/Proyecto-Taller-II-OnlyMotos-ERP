@@ -29,14 +29,16 @@ Partial Class FormSeeProducts
         BClearFilters = New Button()
         TBSearch = New TextBox()
         DGVProducts = New DataGridView()
+        BClose = New Button()
+        BDeleteProduct = New Button()
         IdMoto = New DataGridViewTextBoxColumn()
         Marca = New DataGridViewTextBoxColumn()
         Modelo = New DataGridViewTextBoxColumn()
+        Año = New DataGridViewTextBoxColumn()
         CC = New DataGridViewTextBoxColumn()
         Stock = New DataGridViewTextBoxColumn()
         Precio = New DataGridViewTextBoxColumn()
-        BClose = New Button()
-        BDeleteProduct = New Button()
+        Imagen = New DataGridViewImageColumn()
         GBFilters.SuspendLayout()
         CType(DGVProducts, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -101,46 +103,11 @@ Partial Class FormSeeProducts
         DGVProducts.AllowUserToAddRows = False
         DGVProducts.AllowUserToDeleteRows = False
         DGVProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DGVProducts.Columns.AddRange(New DataGridViewColumn() {IdMoto, Marca, Modelo, CC, Stock, Precio})
-        DGVProducts.Location = New Point(69, 194)
+        DGVProducts.Columns.AddRange(New DataGridViewColumn() {IdMoto, Marca, Modelo, Año, CC, Stock, Precio, Imagen})
+        DGVProducts.Location = New Point(12, 194)
         DGVProducts.Name = "DGVProducts"
-        DGVProducts.Size = New Size(643, 244)
+        DGVProducts.Size = New Size(837, 244)
         DGVProducts.TabIndex = 4
-        ' 
-        ' IdMoto
-        ' 
-        IdMoto.HeaderText = "Id Moto"
-        IdMoto.Name = "IdMoto"
-        IdMoto.ReadOnly = True
-        ' 
-        ' Marca
-        ' 
-        Marca.HeaderText = "Marca"
-        Marca.Name = "Marca"
-        Marca.ReadOnly = True
-        ' 
-        ' Modelo
-        ' 
-        Modelo.HeaderText = "Modelo"
-        Modelo.Name = "Modelo"
-        Modelo.ReadOnly = True
-        ' 
-        ' CC
-        ' 
-        CC.HeaderText = "Cilindrada"
-        CC.Name = "CC"
-        CC.ReadOnly = True
-        ' 
-        ' Stock
-        ' 
-        Stock.HeaderText = "Stock"
-        Stock.Name = "Stock"
-        ' 
-        ' Precio
-        ' 
-        Precio.HeaderText = "Precio"
-        Precio.Name = "Precio"
-        Precio.ReadOnly = True
         ' 
         ' BClose
         ' 
@@ -160,11 +127,60 @@ Partial Class FormSeeProducts
         BDeleteProduct.Text = "Eliminar Moto"
         BDeleteProduct.UseVisualStyleBackColor = True
         ' 
+        ' IdMoto
+        ' 
+        IdMoto.HeaderText = "Id Moto"
+        IdMoto.Name = "IdMoto"
+        IdMoto.ReadOnly = True
+        ' 
+        ' Marca
+        ' 
+        Marca.HeaderText = "Marca"
+        Marca.Name = "Marca"
+        Marca.ReadOnly = True
+        ' 
+        ' Modelo
+        ' 
+        Modelo.HeaderText = "Modelo"
+        Modelo.Name = "Modelo"
+        Modelo.ReadOnly = True
+        ' 
+        ' Año
+        ' 
+        Año.HeaderText = "Año"
+        Año.Name = "Año"
+        Año.ReadOnly = True
+        ' 
+        ' CC
+        ' 
+        CC.HeaderText = "Cilindrada"
+        CC.Name = "CC"
+        CC.ReadOnly = True
+        ' 
+        ' Stock
+        ' 
+        Stock.HeaderText = "Stock"
+        Stock.Name = "Stock"
+        ' 
+        ' Precio
+        ' 
+        Precio.HeaderText = "Precio"
+        Precio.Name = "Precio"
+        Precio.ReadOnly = True
+        ' 
+        ' Imagen
+        ' 
+        Imagen.HeaderText = "Vista"
+        Imagen.Image = My.Resources.Resources.OnlyMotos_Logo
+        Imagen.ImageLayout = DataGridViewImageCellLayout.Zoom
+        Imagen.Name = "Imagen"
+        Imagen.ReadOnly = True
+        ' 
         ' FormSeeProducts
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(861, 450)
         Controls.Add(BDeleteProduct)
         Controls.Add(BClose)
         Controls.Add(DGVProducts)
@@ -192,7 +208,9 @@ Partial Class FormSeeProducts
     Friend WithEvents IdMoto As DataGridViewTextBoxColumn
     Friend WithEvents Marca As DataGridViewTextBoxColumn
     Friend WithEvents Modelo As DataGridViewTextBoxColumn
+    Friend WithEvents Año As DataGridViewTextBoxColumn
     Friend WithEvents CC As DataGridViewTextBoxColumn
     Friend WithEvents Stock As DataGridViewTextBoxColumn
     Friend WithEvents Precio As DataGridViewTextBoxColumn
+    Friend WithEvents Imagen As DataGridViewImageColumn
 End Class
