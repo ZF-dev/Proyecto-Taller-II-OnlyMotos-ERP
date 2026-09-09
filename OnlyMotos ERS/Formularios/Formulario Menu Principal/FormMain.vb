@@ -59,16 +59,22 @@
         OpenChildForm(Of FormSeeClients)()
     End Sub
 
-    Private Sub TSMISeeUsers_Click(sender As Object, e As EventArgs) Handles TSMISeeUsers.Click
-        'OpenChildForm(Of FormSeeUsers)()
+    Private Sub TSMIManageUsers_Click(sender As Object, e As EventArgs) Handles TSMIManageUsers.Click
+        OpenChildForm(Of FormManageUsers)()
     End Sub
+
+    Private Sub TSMISeeUsers_Click(sender As Object, e As EventArgs) Handles TSMISeeUsers.Click
+        OpenChildForm(Of FormSeeUsers)()
+    End Sub
+
+
 
     Private Sub TSMIBackup_Click(sender As Object, e As EventArgs) Handles TSMIBackup.Click
         ' Lógica de copia de seguridad
     End Sub
 
-    Private Sub TSMIReports_Click(sender As Object, e As EventArgs)
-        ' Lógica de generación de reportes
+    Private Sub TSMIReports_Click(sender As Object, e As EventArgs) Handles TSMIReports.Click
+        OpenChildForm(Of FormReports)()
     End Sub
 
     Private Sub TSMILogout_Click(sender As Object, e As EventArgs) Handles TSMILogout.Click

@@ -1,0 +1,195 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormReports
+    Inherits System.Windows.Forms.Form
+
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        BReportSales = New Button()
+        GBCurrentSession = New GroupBox()
+        LEnd = New Label()
+        LStart = New Label()
+        DTPEnd = New DateTimePicker()
+        DTPStart = New DateTimePicker()
+        BReportSalesRange = New Button()
+        BReportUsers = New Button()
+        BReportFinancial = New Button()
+        BReportSalesUser = New Button()
+        BSimulateSeller = New Button()
+        BSimulateAdmin = New Button()
+        BSimulateSupervisor = New Button()
+        GBCurrentSession.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' BReportSales
+        ' 
+        BReportSales.Location = New Point(20, 115)
+        BReportSales.Name = "BReportSales"
+        BReportSales.Size = New Size(112, 43)
+        BReportSales.TabIndex = 0
+        BReportSales.Text = " Ventas"
+        BReportSales.UseVisualStyleBackColor = True
+        ' 
+        ' GBCurrentSession
+        ' 
+        GBCurrentSession.Controls.Add(LEnd)
+        GBCurrentSession.Controls.Add(LStart)
+        GBCurrentSession.Controls.Add(DTPEnd)
+        GBCurrentSession.Controls.Add(DTPStart)
+        GBCurrentSession.Controls.Add(BReportSalesRange)
+        GBCurrentSession.Controls.Add(BReportUsers)
+        GBCurrentSession.Controls.Add(BReportFinancial)
+        GBCurrentSession.Controls.Add(BReportSalesUser)
+        GBCurrentSession.Controls.Add(BReportSales)
+        GBCurrentSession.Location = New Point(12, 12)
+        GBCurrentSession.Name = "GBCurrentSession"
+        GBCurrentSession.Size = New Size(376, 273)
+        GBCurrentSession.TabIndex = 1
+        GBCurrentSession.TabStop = False
+        GBCurrentSession.Text = "GroupBox1"
+        ' 
+        ' LEnd
+        ' 
+        LEnd.AutoSize = True
+        LEnd.Location = New Point(202, 42)
+        LEnd.Name = "LEnd"
+        LEnd.Size = New Size(51, 15)
+        LEnd.TabIndex = 8
+        LEnd.Text = "Mes Fin:"
+        ' 
+        ' LStart
+        ' 
+        LStart.AutoSize = True
+        LStart.Location = New Point(6, 42)
+        LStart.Name = "LStart"
+        LStart.Size = New Size(64, 15)
+        LStart.TabIndex = 7
+        LStart.Text = "Mes inicio:"
+        ' 
+        ' DTPEnd
+        ' 
+        DTPEnd.Format = DateTimePickerFormat.Short
+        DTPEnd.Location = New Point(259, 36)
+        DTPEnd.Name = "DTPEnd"
+        DTPEnd.Size = New Size(102, 23)
+        DTPEnd.TabIndex = 6
+        ' 
+        ' DTPStart
+        ' 
+        DTPStart.Format = DateTimePickerFormat.Short
+        DTPStart.Location = New Point(76, 36)
+        DTPStart.Name = "DTPStart"
+        DTPStart.Size = New Size(102, 23)
+        DTPStart.TabIndex = 5
+        ' 
+        ' BReportSalesRange
+        ' 
+        BReportSalesRange.Location = New Point(212, 115)
+        BReportSalesRange.Name = "BReportSalesRange"
+        BReportSalesRange.Size = New Size(112, 43)
+        BReportSalesRange.TabIndex = 4
+        BReportSalesRange.Text = "Ventas en Rango"
+        BReportSalesRange.UseVisualStyleBackColor = True
+        ' 
+        ' BReportUsers
+        ' 
+        BReportUsers.Location = New Point(94, 115)
+        BReportUsers.Name = "BReportUsers"
+        BReportUsers.Size = New Size(112, 43)
+        BReportUsers.TabIndex = 3
+        BReportUsers.Text = "Usuarios"
+        BReportUsers.UseVisualStyleBackColor = True
+        ' 
+        ' BReportFinancial
+        ' 
+        BReportFinancial.Location = New Point(20, 115)
+        BReportFinancial.Name = "BReportFinancial"
+        BReportFinancial.Size = New Size(112, 43)
+        BReportFinancial.TabIndex = 2
+        BReportFinancial.Text = "Ganancias"
+        BReportFinancial.UseVisualStyleBackColor = True
+        ' 
+        ' BReportSalesUser
+        ' 
+        BReportSalesUser.Location = New Point(212, 115)
+        BReportSalesUser.Name = "BReportSalesUser"
+        BReportSalesUser.Size = New Size(112, 43)
+        BReportSalesUser.TabIndex = 1
+        BReportSalesUser.Text = "Ventas por Usuario"
+        BReportSalesUser.UseVisualStyleBackColor = True
+        ' 
+        ' BSimulateSeller
+        ' 
+        BSimulateSeller.Location = New Point(423, 54)
+        BSimulateSeller.Name = "BSimulateSeller"
+        BSimulateSeller.Size = New Size(75, 23)
+        BSimulateSeller.TabIndex = 2
+        BSimulateSeller.Text = "Vendedor"
+        BSimulateSeller.UseVisualStyleBackColor = True
+        ' 
+        ' BSimulateAdmin
+        ' 
+        BSimulateAdmin.Location = New Point(423, 216)
+        BSimulateAdmin.Name = "BSimulateAdmin"
+        BSimulateAdmin.Size = New Size(75, 23)
+        BSimulateAdmin.TabIndex = 3
+        BSimulateAdmin.Text = "Admin"
+        BSimulateAdmin.UseVisualStyleBackColor = True
+        ' 
+        ' BSimulateSupervisor
+        ' 
+        BSimulateSupervisor.Location = New Point(423, 137)
+        BSimulateSupervisor.Name = "BSimulateSupervisor"
+        BSimulateSupervisor.Size = New Size(75, 23)
+        BSimulateSupervisor.TabIndex = 4
+        BSimulateSupervisor.Text = "Supervisor"
+        BSimulateSupervisor.UseVisualStyleBackColor = True
+        ' 
+        ' FormReports
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(533, 302)
+        Controls.Add(BSimulateSupervisor)
+        Controls.Add(BSimulateAdmin)
+        Controls.Add(BSimulateSeller)
+        Controls.Add(GBCurrentSession)
+        Name = "FormReports"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Reportes y Estadísticas - OnlyMotos ERP"
+        GBCurrentSession.ResumeLayout(False)
+        GBCurrentSession.PerformLayout()
+        ResumeLayout(False)
+    End Sub
+
+    Friend WithEvents BReportSales As Button
+    Friend WithEvents GBCurrentSession As GroupBox
+    Friend WithEvents BReportUsers As Button
+    Friend WithEvents BReportFinancial As Button
+    Friend WithEvents BReportSalesUser As Button
+    Friend WithEvents BReportSalesRange As Button
+    Friend WithEvents LEnd As Label
+    Friend WithEvents LStart As Label
+    Friend WithEvents DTPEnd As DateTimePicker
+    Friend WithEvents DTPStart As DateTimePicker
+    Friend WithEvents BSimulateSeller As Button
+    Friend WithEvents BSimulateAdmin As Button
+    Friend WithEvents BSimulateSupervisor As Button
+End Class
