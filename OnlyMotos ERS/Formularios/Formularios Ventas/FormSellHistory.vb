@@ -36,6 +36,14 @@
         End If
     End Sub
 
+    Private Sub TBSearchClient_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBSearchClient.KeyPress
+        ' Permite únicamente dígitos numéricos y la tecla Backspace
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         ' Aquí irá la consulta filtrada a la base de datos
         MessageBox.Show("Filtro aplicado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)

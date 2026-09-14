@@ -164,11 +164,14 @@ Partial Class FormSeeClients
         ' 
         BAddClient.Font = New Font("Segoe UI", 9F)
         BAddClient.ForeColor = SystemColors.ControlText
+        BAddClient.Image = My.Resources.Resources.Icono_insertar_Usuario_Cliente_chiquito
+        BAddClient.ImageAlign = ContentAlignment.BottomCenter
         BAddClient.Location = New Point(243, 50)
         BAddClient.Name = "BAddClient"
         BAddClient.Size = New Size(94, 58)
         BAddClient.TabIndex = 9
         BAddClient.Text = "Nuevo Cliente"
+        BAddClient.TextAlign = ContentAlignment.TopCenter
         BAddClient.UseVisualStyleBackColor = True
         ' 
         ' BDeleteClient
@@ -186,6 +189,8 @@ Partial Class FormSeeClients
         ' 
         BClose.Font = New Font("Segoe UI", 9F)
         BClose.ForeColor = SystemColors.ControlText
+        BClose.Image = My.Resources.Resources.Icono_Cancelar_Chiquito
+        BClose.ImageAlign = ContentAlignment.MiddleRight
         BClose.Location = New Point(6, 50)
         BClose.Name = "BClose"
         BClose.Size = New Size(94, 58)

@@ -64,6 +64,8 @@ Partial Class FormSellHistory
         GBFilters.Controls.Add(TBSearchClient)
         GBFilters.Controls.Add(DTPToDate)
         GBFilters.Controls.Add(DTPFromDate)
+        GBFilters.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
         GBFilters.Size = New Size(893, 164)
@@ -76,7 +78,7 @@ Partial Class FormSellHistory
         LToDate.AutoSize = True
         LToDate.Location = New Point(268, 30)
         LToDate.Name = "LToDate"
-        LToDate.Size = New Size(77, 15)
+        LToDate.Size = New Size(79, 15)
         LToDate.TabIndex = 7
         LToDate.Text = "Fecha  Hasta:"
         ' 
@@ -85,21 +87,23 @@ Partial Class FormSellHistory
         LSearchClient.AutoSize = True
         LSearchClient.Location = New Point(6, 107)
         LSearchClient.Name = "LSearchClient"
-        LSearchClient.Size = New Size(84, 15)
+        LSearchClient.Size = New Size(94, 15)
         LSearchClient.TabIndex = 6
-        LSearchClient.Text = "Bucar por DNI:"
+        LSearchClient.Text = "Buscar por DNI:"
         ' 
         ' LFromDate
         ' 
         LFromDate.AutoSize = True
         LFromDate.Location = New Point(6, 30)
         LFromDate.Name = "LFromDate"
-        LFromDate.Size = New Size(76, 15)
+        LFromDate.Size = New Size(80, 15)
         LFromDate.TabIndex = 5
         LFromDate.Text = "Fecha Desde:"
         ' 
         ' BClearFilters
         ' 
+        BClearFilters.Font = New Font("Segoe UI", 9F)
+        BClearFilters.ForeColor = SystemColors.ControlText
         BClearFilters.Location = New Point(749, 24)
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(103, 55)
@@ -109,6 +113,8 @@ Partial Class FormSellHistory
         ' 
         ' BSearch
         ' 
+        BSearch.Font = New Font("Segoe UI", 9F)
+        BSearch.ForeColor = SystemColors.ControlText
         BSearch.Location = New Point(749, 99)
         BSearch.Name = "BSearch"
         BSearch.Size = New Size(103, 48)
@@ -118,7 +124,7 @@ Partial Class FormSellHistory
         ' 
         ' TBSearchClient
         ' 
-        TBSearchClient.Location = New Point(95, 99)
+        TBSearchClient.Location = New Point(106, 104)
         TBSearchClient.Name = "TBSearchClient"
         TBSearchClient.Size = New Size(166, 23)
         TBSearchClient.TabIndex = 2
@@ -190,6 +196,8 @@ Partial Class FormSellHistory
         ' 
         GBHeaderSells.Controls.Add(BAnnullSell)
         GBHeaderSells.Controls.Add(DGVSellHeaders)
+        GBHeaderSells.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBHeaderSells.ForeColor = SystemColors.ControlLightLight
         GBHeaderSells.Location = New Point(12, 196)
         GBHeaderSells.Name = "GBHeaderSells"
         GBHeaderSells.Size = New Size(893, 187)
@@ -199,6 +207,8 @@ Partial Class FormSellHistory
         ' 
         ' BAnnullSell
         ' 
+        BAnnullSell.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BAnnullSell.ForeColor = SystemColors.ControlText
         BAnnullSell.Location = New Point(784, 80)
         BAnnullSell.Name = "BAnnullSell"
         BAnnullSell.Size = New Size(103, 48)
@@ -209,6 +219,8 @@ Partial Class FormSellHistory
         ' GBDetailSells
         ' 
         GBDetailSells.Controls.Add(DGVSellDetails)
+        GBDetailSells.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBDetailSells.ForeColor = SystemColors.ControlLightLight
         GBDetailSells.Location = New Point(12, 412)
         GBDetailSells.Name = "GBDetailSells"
         GBDetailSells.Size = New Size(893, 187)
@@ -262,10 +274,12 @@ Partial Class FormSellHistory
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(934, 611)
         Controls.Add(GBDetailSells)
         Controls.Add(GBHeaderSells)
         Controls.Add(GBFilters)
+        ForeColor = SystemColors.ControlText
         Name = "FormSellHistory"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Historial de Ventas - OnlyMotos ERP"

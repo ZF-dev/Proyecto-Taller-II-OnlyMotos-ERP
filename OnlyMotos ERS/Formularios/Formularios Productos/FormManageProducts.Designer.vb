@@ -194,6 +194,7 @@ Partial Class FormManageProducts
         ' 
         BCancel.Font = New Font("Segoe UI", 9F)
         BCancel.ForeColor = SystemColors.ControlText
+        BCancel.ImageAlign = ContentAlignment.MiddleRight
         BCancel.Location = New Point(444, 294)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(112, 58)

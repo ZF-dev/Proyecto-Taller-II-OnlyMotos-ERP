@@ -1,6 +1,6 @@
 ﻿Public Class FormSeeUsers
     Private Sub FormSeeUsers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        LoadMockData()
     End Sub
 
     Private Sub LoadMockData()

@@ -64,6 +64,7 @@ Partial Class FormManageUsers
         GBUserData.Controls.Add(LEmail)
         GBUserData.Controls.Add(LTelefono)
         GBUserData.Controls.Add(LNombre)
+        GBUserData.ForeColor = SystemColors.ControlLightLight
         GBUserData.Location = New Point(12, 12)
         GBUserData.Name = "GBUserData"
         GBUserData.Size = New Size(304, 426)
@@ -94,7 +95,7 @@ Partial Class FormManageUsers
         Label1.AutoSize = True
         Label1.Location = New Point(6, 244)
         Label1.Name = "Label1"
-        Label1.Size = New Size(27, 15)
+        Label1.Size = New Size(28, 15)
         Label1.TabIndex = 8
         Label1.Text = "Rol:"
         ' 
@@ -103,7 +104,7 @@ Partial Class FormManageUsers
         LPassword.AutoSize = True
         LPassword.Location = New Point(6, 198)
         LPassword.Name = "LPassword"
-        LPassword.Size = New Size(70, 15)
+        LPassword.Size = New Size(72, 15)
         LPassword.TabIndex = 14
         LPassword.Text = "Contraseña:"
         ' 
@@ -119,12 +120,14 @@ Partial Class FormManageUsers
         LUser.AutoSize = True
         LUser.Location = New Point(6, 153)
         LUser.Name = "LUser"
-        LUser.Size = New Size(50, 15)
+        LUser.Size = New Size(52, 15)
         LUser.TabIndex = 12
         LUser.Text = "Usuario:"
         ' 
         ' BCancel
         ' 
+        BCancel.Font = New Font("Segoe UI", 9F)
+        BCancel.ForeColor = SystemColors.ControlText
         BCancel.Location = New Point(32, 379)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(75, 23)
@@ -134,6 +137,8 @@ Partial Class FormManageUsers
         ' 
         ' BSave
         ' 
+        BSave.Font = New Font("Segoe UI", 9F)
+        BSave.ForeColor = SystemColors.ControlText
         BSave.Location = New Point(186, 379)
         BSave.Name = "BSave"
         BSave.Size = New Size(75, 23)
@@ -181,7 +186,7 @@ Partial Class FormManageUsers
         LDNI.AutoSize = True
         LDNI.Location = New Point(6, 108)
         LDNI.Name = "LDNI"
-        LDNI.Size = New Size(30, 15)
+        LDNI.Size = New Size(32, 15)
         LDNI.TabIndex = 4
         LDNI.Text = "DNI:"
         ' 
@@ -190,7 +195,7 @@ Partial Class FormManageUsers
         LApellido.AutoSize = True
         LApellido.Location = New Point(6, 71)
         LApellido.Name = "LApellido"
-        LApellido.Size = New Size(54, 15)
+        LApellido.Size = New Size(55, 15)
         LApellido.TabIndex = 3
         LApellido.Text = "Apellido:"
         ' 
@@ -208,7 +213,7 @@ Partial Class FormManageUsers
         LTelefono.AutoSize = True
         LTelefono.Location = New Point(6, 324)
         LTelefono.Name = "LTelefono"
-        LTelefono.Size = New Size(56, 15)
+        LTelefono.Size = New Size(59, 15)
         LTelefono.TabIndex = 1
         LTelefono.Text = "Telefono:"
         ' 
@@ -217,7 +222,7 @@ Partial Class FormManageUsers
         LNombre.AutoSize = True
         LNombre.Location = New Point(6, 34)
         LNombre.Name = "LNombre"
-        LNombre.Size = New Size(54, 15)
+        LNombre.Size = New Size(56, 15)
         LNombre.TabIndex = 0
         LNombre.Text = "Nombre:"
         ' 
@@ -226,9 +231,12 @@ Partial Class FormManageUsers
         AcceptButton = BSave
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         CancelButton = BCancel
         ClientSize = New Size(330, 450)
         Controls.Add(GBUserData)
+        Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ForeColor = SystemColors.ControlLightLight
         Name = "FormManageUsers"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Alta de Nuevo Usuario - OnlyMotos ERP"

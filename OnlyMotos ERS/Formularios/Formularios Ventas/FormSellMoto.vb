@@ -6,10 +6,36 @@
     Private Sub LoadInitialData()
 
         TBTotal.Text = "$ 0.00"
+
+
+    End Sub
+
+    Private Sub TBDni_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBDni.KeyPress
+        ' Permite únicamente dígitos numéricos y la tecla Backspace
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TBUnitPrice_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBUnitPrice.KeyPress
+        ' Permite únicamente dígitos numéricos y la tecla Backspace
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+
+            e.Handled = True
+
+        End If
+
     End Sub
 
     Private Sub BAddProduct_Click(sender As Object, e As EventArgs) Handles BAddProduct.Click
         ' Lógica preliminar para agregar ítems a la grilla
+        If String.IsNullOrWhiteSpace(CBMoto.Text) OrElse String.IsNullOrWhiteSpace(TBUnitPrice.Text) OrElse String.IsNullOrWhiteSpace(CBClient.Text) Then
+
+            MessageBox.Show("Por favor, complete todos los campos del producto.", "Campos Requeridos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+
+        End If
+
         CalculateTotal()
     End Sub
 

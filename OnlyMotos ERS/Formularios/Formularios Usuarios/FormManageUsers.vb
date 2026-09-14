@@ -1,17 +1,7 @@
-﻿Imports System.Text.RegularExpressions
-
-Public Class FormManageUsers
+﻿Public Class FormManageUsers
     Private Sub FormManageUsers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
-
-    Private Function IsValidEmail(email As String) As Boolean
-        If String.IsNullOrWhiteSpace(email) Then Return False
-
-        ' Patrón estándar de expresión regular para direcciones de e-mail (DESPUES DEbO PONERLO EN LA CARPETA NEGOCIO)
-        Dim pattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
-        Return Regex.IsMatch(email.Trim(), pattern)
-    End Function
 
     Private Sub TBDni_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBDNI.KeyPress
         If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
@@ -21,6 +11,20 @@ Public Class FormManageUsers
 
     Private Sub TBPhone_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBPhone.KeyPress
         If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TBName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBName.KeyPress
+        ' Permitir solo letras, espacios y teclas de control (retroceso, etc.)
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsWhiteSpace(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TBLastName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBLastName.KeyPress
+        ' Permitir solo letras, espacios y teclas de control (retroceso, etc.)
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsWhiteSpace(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub

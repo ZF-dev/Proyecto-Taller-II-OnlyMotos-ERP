@@ -30,6 +30,8 @@ Partial Class FormSellMoto
         LDate = New Label()
         DTPDate = New DateTimePicker()
         GBClient = New GroupBox()
+        TBDni = New TextBox()
+        LDni = New Label()
         BAddClient = New Button()
         CBClient = New ComboBox()
         LClient = New Label()
@@ -53,8 +55,6 @@ Partial Class FormSellMoto
         TBTotal = New TextBox()
         BCancel = New Button()
         LTotal = New Label()
-        LDni = New Label()
-        TBDni = New TextBox()
         GBHeader.SuspendLayout()
         GBClient.SuspendLayout()
         GroupBox1.SuspendLayout()
@@ -71,6 +71,8 @@ Partial Class FormSellMoto
         GBHeader.Controls.Add(CBTicketType)
         GBHeader.Controls.Add(LDate)
         GBHeader.Controls.Add(DTPDate)
+        GBHeader.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBHeader.ForeColor = SystemColors.ControlLightLight
         GBHeader.Location = New Point(12, 12)
         GBHeader.Name = "GBHeader"
         GBHeader.Size = New Size(327, 123)
@@ -91,7 +93,7 @@ Partial Class FormSellMoto
         LUser.AutoSize = True
         LUser.Location = New Point(6, 86)
         LUser.Name = "LUser"
-        LUser.Size = New Size(50, 15)
+        LUser.Size = New Size(52, 15)
         LUser.TabIndex = 4
         LUser.Text = "Usuario:"
         ' 
@@ -100,7 +102,7 @@ Partial Class FormSellMoto
         LTicketType.AutoSize = True
         LTicketType.Location = New Point(8, 55)
         LTicketType.Name = "LTicketType"
-        LTicketType.Size = New Size(90, 15)
+        LTicketType.Size = New Size(94, 15)
         LTicketType.TabIndex = 3
         LTicketType.Text = "Tipo de factura:"
         ' 
@@ -118,7 +120,7 @@ Partial Class FormSellMoto
         LDate.AutoSize = True
         LDate.Location = New Point(8, 22)
         LDate.Name = "LDate"
-        LDate.Size = New Size(101, 15)
+        LDate.Size = New Size(106, 15)
         LDate.TabIndex = 1
         LDate.Text = "Fecha de la Venta:"
         ' 
@@ -127,7 +129,7 @@ Partial Class FormSellMoto
         DTPDate.Format = DateTimePickerFormat.Short
         DTPDate.Location = New Point(112, 16)
         DTPDate.Name = "DTPDate"
-        DTPDate.Size = New Size(78, 23)
+        DTPDate.Size = New Size(107, 23)
         DTPDate.TabIndex = 0
         ' 
         ' GBClient
@@ -137,6 +139,8 @@ Partial Class FormSellMoto
         GBClient.Controls.Add(BAddClient)
         GBClient.Controls.Add(CBClient)
         GBClient.Controls.Add(LClient)
+        GBClient.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBClient.ForeColor = SystemColors.ControlLightLight
         GBClient.Location = New Point(381, 12)
         GBClient.Name = "GBClient"
         GBClient.Size = New Size(441, 123)
@@ -144,13 +148,33 @@ Partial Class FormSellMoto
         GBClient.TabStop = False
         GBClient.Text = "2-Datos del Cliente"
         ' 
+        ' TBDni
+        ' 
+        TBDni.Location = New Point(61, 51)
+        TBDni.Name = "TBDni"
+        TBDni.Size = New Size(260, 23)
+        TBDni.TabIndex = 5
+        ' 
+        ' LDni
+        ' 
+        LDni.AutoSize = True
+        LDni.Location = New Point(8, 55)
+        LDni.Name = "LDni"
+        LDni.Size = New Size(32, 15)
+        LDni.TabIndex = 4
+        LDni.Text = "DNI:"
+        ' 
         ' BAddClient
         ' 
+        BAddClient.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BAddClient.ForeColor = SystemColors.ControlText
+        BAddClient.Image = My.Resources.Resources.Icono_insertar_Usuario_Cliente_chiquito
         BAddClient.Location = New Point(185, 79)
         BAddClient.Name = "BAddClient"
         BAddClient.Size = New Size(78, 38)
         BAddClient.TabIndex = 3
         BAddClient.Text = "Nuevo Cliente"
+        BAddClient.TextImageRelation = TextImageRelation.TextBeforeImage
         BAddClient.UseVisualStyleBackColor = True
         ' 
         ' CBClient
@@ -169,7 +193,7 @@ Partial Class FormSellMoto
         LClient.AutoSize = True
         LClient.Location = New Point(8, 22)
         LClient.Name = "LClient"
-        LClient.Size = New Size(47, 15)
+        LClient.Size = New Size(49, 15)
         LClient.TabIndex = 1
         LClient.Text = "Cliente:"
         ' 
@@ -182,6 +206,8 @@ Partial Class FormSellMoto
         GroupBox1.Controls.Add(Label1)
         GroupBox1.Controls.Add(CBMoto)
         GroupBox1.Controls.Add(LMoto)
+        GroupBox1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GroupBox1.ForeColor = SystemColors.ControlLightLight
         GroupBox1.Location = New Point(12, 160)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Size = New Size(327, 123)
@@ -191,6 +217,8 @@ Partial Class FormSellMoto
         ' 
         ' BAddProduct
         ' 
+        BAddProduct.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BAddProduct.ForeColor = SystemColors.ControlText
         BAddProduct.Location = New Point(228, 79)
         BAddProduct.Name = "BAddProduct"
         BAddProduct.Size = New Size(93, 38)
@@ -212,7 +240,7 @@ Partial Class FormSellMoto
         LQuantity.AutoSize = True
         LQuantity.Location = New Point(8, 85)
         LQuantity.Name = "LQuantity"
-        LQuantity.Size = New Size(59, 15)
+        LQuantity.Size = New Size(61, 15)
         LQuantity.TabIndex = 6
         LQuantity.Text = "Unidades:"
         ' 
@@ -229,7 +257,7 @@ Partial Class FormSellMoto
         Label1.AutoSize = True
         Label1.Location = New Point(8, 54)
         Label1.Name = "Label1"
-        Label1.Size = New Size(43, 15)
+        Label1.Size = New Size(45, 15)
         Label1.TabIndex = 4
         Label1.Text = "Precio:"
         ' 
@@ -249,7 +277,7 @@ Partial Class FormSellMoto
         LMoto.AutoSize = True
         LMoto.Location = New Point(8, 22)
         LMoto.Name = "LMoto"
-        LMoto.Size = New Size(39, 15)
+        LMoto.Size = New Size(40, 15)
         LMoto.TabIndex = 1
         LMoto.Text = "Moto:"
         ' 
@@ -295,6 +323,8 @@ Partial Class FormSellMoto
         GroupBox2.Controls.Add(TBTotal)
         GroupBox2.Controls.Add(BCancel)
         GroupBox2.Controls.Add(LTotal)
+        GroupBox2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GroupBox2.ForeColor = SystemColors.ControlLightLight
         GroupBox2.Location = New Point(12, 348)
         GroupBox2.Name = "GroupBox2"
         GroupBox2.Size = New Size(810, 123)
@@ -304,6 +334,8 @@ Partial Class FormSellMoto
         ' 
         ' BSaveSell
         ' 
+        BSaveSell.Font = New Font("Segoe UI", 9F)
+        BSaveSell.ForeColor = SystemColors.ControlText
         BSaveSell.Location = New Point(386, 36)
         BSaveSell.Name = "BSaveSell"
         BSaveSell.Size = New Size(88, 51)
@@ -313,6 +345,8 @@ Partial Class FormSellMoto
         ' 
         ' BRemoveProduct
         ' 
+        BRemoveProduct.Font = New Font("Segoe UI", 9F)
+        BRemoveProduct.ForeColor = SystemColors.ControlText
         BRemoveProduct.Location = New Point(539, 36)
         BRemoveProduct.Name = "BRemoveProduct"
         BRemoveProduct.Size = New Size(93, 51)
@@ -331,6 +365,8 @@ Partial Class FormSellMoto
         ' 
         ' BCancel
         ' 
+        BCancel.Font = New Font("Segoe UI", 9F)
+        BCancel.ForeColor = SystemColors.ControlText
         BCancel.Location = New Point(690, 36)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(97, 51)
@@ -343,30 +379,15 @@ Partial Class FormSellMoto
         LTotal.AutoSize = True
         LTotal.Location = New Point(11, 54)
         LTotal.Name = "LTotal"
-        LTotal.Size = New Size(36, 15)
+        LTotal.Size = New Size(37, 15)
         LTotal.TabIndex = 1
         LTotal.Text = "Total:"
-        ' 
-        ' LDni
-        ' 
-        LDni.AutoSize = True
-        LDni.Location = New Point(8, 55)
-        LDni.Name = "LDni"
-        LDni.Size = New Size(30, 15)
-        LDni.TabIndex = 4
-        LDni.Text = "DNI:"
-        ' 
-        ' TBDni
-        ' 
-        TBDni.Location = New Point(61, 51)
-        TBDni.Name = "TBDni"
-        TBDni.Size = New Size(260, 23)
-        TBDni.TabIndex = 5
         ' 
         ' FormSellMoto
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(834, 561)
         Controls.Add(GroupBox2)
         Controls.Add(DGVDetails)
