@@ -197,7 +197,7 @@ Partial Class FormSellHistory
         GBHeaderSells.Controls.Add(BAnnullSell)
         GBHeaderSells.Controls.Add(DGVSellHeaders)
         GBHeaderSells.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        GBHeaderSells.ForeColor = SystemColors.ControlLightLight
+        GBHeaderSells.ForeColor = SystemColors.ControlText
         GBHeaderSells.Location = New Point(12, 196)
         GBHeaderSells.Name = "GBHeaderSells"
         GBHeaderSells.Size = New Size(893, 187)
@@ -220,7 +220,7 @@ Partial Class FormSellHistory
         ' 
         GBDetailSells.Controls.Add(DGVSellDetails)
         GBDetailSells.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        GBDetailSells.ForeColor = SystemColors.ControlLightLight
+        GBDetailSells.ForeColor = SystemColors.ControlText
         GBDetailSells.Location = New Point(12, 412)
         GBDetailSells.Name = "GBDetailSells"
         GBDetailSells.Size = New Size(893, 187)

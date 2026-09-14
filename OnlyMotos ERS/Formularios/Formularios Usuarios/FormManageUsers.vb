@@ -63,7 +63,7 @@
             TBEmail.Focus()
             Exit Sub
 
-        ElseIf Not IsValidEmail(TBEmail.Text) Then
+        ElseIf Not ValidadorEmail.IsValidEmail(TBEmail.Text) Then
 
             MessageBox.Show("El correo electrónico ingresado no tiene un formato válido (ejemplo: usuario@dominio.com).", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             TBEmail.Focus()

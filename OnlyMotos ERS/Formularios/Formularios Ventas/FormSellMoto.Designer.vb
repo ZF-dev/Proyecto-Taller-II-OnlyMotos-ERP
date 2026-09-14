@@ -126,6 +126,7 @@ Partial Class FormSellMoto
         ' 
         ' DTPDate
         ' 
+        DTPDate.Enabled = False
         DTPDate.Format = DateTimePickerFormat.Short
         DTPDate.Location = New Point(112, 16)
         DTPDate.Name = "DTPDate"
