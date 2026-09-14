@@ -50,6 +50,8 @@ Partial Class FormSeeClients
         GBFilters.Controls.Add(TBSearch)
         GBFilters.Controls.Add(LSearch)
         GBFilters.Controls.Add(BSearch)
+        GBFilters.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
         GBFilters.Size = New Size(357, 158)
@@ -59,6 +61,8 @@ Partial Class FormSeeClients
         ' 
         ' BClearFilters
         ' 
+        BClearFilters.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BClearFilters.ForeColor = SystemColors.ControlText
         BClearFilters.Location = New Point(43, 116)
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(75, 23)
@@ -78,12 +82,14 @@ Partial Class FormSeeClients
         LSearch.AutoSize = True
         LSearch.Location = New Point(20, 57)
         LSearch.Name = "LSearch"
-        LSearch.Size = New Size(30, 15)
+        LSearch.Size = New Size(32, 15)
         LSearch.TabIndex = 2
         LSearch.Text = "DNI:"
         ' 
         ' BSearch
         ' 
+        BSearch.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BSearch.ForeColor = SystemColors.ControlText
         BSearch.Location = New Point(230, 116)
         BSearch.Name = "BSearch"
         BSearch.Size = New Size(75, 23)
@@ -145,6 +151,8 @@ Partial Class FormSeeClients
         GBActions.Controls.Add(BAddClient)
         GBActions.Controls.Add(BDeleteClient)
         GBActions.Controls.Add(BClose)
+        GBActions.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBActions.ForeColor = SystemColors.ControlLightLight
         GBActions.Location = New Point(445, 12)
         GBActions.Name = "GBActions"
         GBActions.Size = New Size(343, 158)
@@ -154,6 +162,8 @@ Partial Class FormSeeClients
         ' 
         ' BAddClient
         ' 
+        BAddClient.Font = New Font("Segoe UI", 9F)
+        BAddClient.ForeColor = SystemColors.ControlText
         BAddClient.Location = New Point(243, 50)
         BAddClient.Name = "BAddClient"
         BAddClient.Size = New Size(94, 58)
@@ -163,6 +173,8 @@ Partial Class FormSeeClients
         ' 
         ' BDeleteClient
         ' 
+        BDeleteClient.Font = New Font("Segoe UI", 9F)
+        BDeleteClient.ForeColor = SystemColors.ControlText
         BDeleteClient.Location = New Point(121, 50)
         BDeleteClient.Name = "BDeleteClient"
         BDeleteClient.Size = New Size(102, 58)
@@ -172,6 +184,8 @@ Partial Class FormSeeClients
         ' 
         ' BClose
         ' 
+        BClose.Font = New Font("Segoe UI", 9F)
+        BClose.ForeColor = SystemColors.ControlText
         BClose.Location = New Point(6, 50)
         BClose.Name = "BClose"
         BClose.Size = New Size(94, 58)
@@ -183,10 +197,12 @@ Partial Class FormSeeClients
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(800, 450)
         Controls.Add(GBActions)
         Controls.Add(DGVClients)
         Controls.Add(GBFilters)
+        ForeColor = SystemColors.ControlText
         Name = "FormSeeClients"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Lista de Clientes - OnlyMotos ERP"

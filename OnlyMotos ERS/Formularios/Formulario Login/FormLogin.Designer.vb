@@ -92,7 +92,7 @@ Partial Class FormLogin
         ' PBLogo
         ' 
         PBLogo.BackColor = Color.Transparent
-        PBLogo.Image = My.Resources.Resources.OnlyMotos_Logo
+        PBLogo.Image = My.Resources.Resources.OnlyMotos_Logo_nuevo
         PBLogo.Location = New Point(138, 3)
         PBLogo.Name = "PBLogo"
         PBLogo.Size = New Size(160, 113)
@@ -105,7 +105,7 @@ Partial Class FormLogin
         AcceptButton = BLogin
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(250), CByte(0), CByte(0))
+        BackColor = Color.MidnightBlue
         CancelButton = BCancel
         ClientSize = New Size(434, 311)
         Controls.Add(PBLogo)

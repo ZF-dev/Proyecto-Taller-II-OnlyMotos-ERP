@@ -57,8 +57,10 @@ Partial Class FormMain
         ' VentasToolStripMenuItem
         ' 
         VentasToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {TSMIRegisterSell, TSMISellHistory})
+        VentasToolStripMenuItem.Image = My.Resources.Resources.Icono_ventas_Chiquito
+        VentasToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft
         VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        VentasToolStripMenuItem.Size = New Size(53, 20)
+        VentasToolStripMenuItem.Size = New Size(69, 20)
         VentasToolStripMenuItem.Text = "Ventas"
         ' 
         ' TSMIRegisterSell
@@ -76,71 +78,78 @@ Partial Class FormMain
         ' ProductosToolStripMenuItem
         ' 
         ProductosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {TSMIManageProducts, TSMISeeProducts})
+        ProductosToolStripMenuItem.Image = My.Resources.Resources.Icono_Productos_Chiquito
+        ProductosToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft
         ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
-        ProductosToolStripMenuItem.Size = New Size(73, 20)
+        ProductosToolStripMenuItem.Size = New Size(89, 20)
         ProductosToolStripMenuItem.Text = "Productos"
         ' 
         ' TSMIManageProducts
         ' 
         TSMIManageProducts.Name = "TSMIManageProducts"
-        TSMIManageProducts.Size = New Size(180, 22)
+        TSMIManageProducts.Size = New Size(148, 22)
         TSMIManageProducts.Text = "Agregar Moto"
         ' 
         ' TSMISeeProducts
         ' 
         TSMISeeProducts.Name = "TSMISeeProducts"
-        TSMISeeProducts.Size = New Size(180, 22)
+        TSMISeeProducts.Size = New Size(148, 22)
         TSMISeeProducts.Text = "Ver Motos"
         ' 
         ' GestionDeClientesToolStripMenuItem
         ' 
         GestionDeClientesToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {TSMIManageClients, TSMISeeClients})
+        GestionDeClientesToolStripMenuItem.Image = My.Resources.Resources.Icono_Clientes_Chiquito
         GestionDeClientesToolStripMenuItem.Name = "GestionDeClientesToolStripMenuItem"
-        GestionDeClientesToolStripMenuItem.Size = New Size(61, 20)
+        GestionDeClientesToolStripMenuItem.Size = New Size(77, 20)
         GestionDeClientesToolStripMenuItem.Text = "Clientes"
         ' 
         ' TSMIManageClients
         ' 
         TSMIManageClients.Name = "TSMIManageClients"
-        TSMIManageClients.Size = New Size(180, 22)
+        TSMIManageClients.Size = New Size(149, 22)
         TSMIManageClients.Text = "Nuevo Cliente"
         ' 
         ' TSMISeeClients
         ' 
         TSMISeeClients.Name = "TSMISeeClients"
-        TSMISeeClients.Size = New Size(180, 22)
+        TSMISeeClients.Size = New Size(149, 22)
         TSMISeeClients.Text = "Ver Clientes"
         ' 
         ' UsuariosToolStripMenuItem
         ' 
         UsuariosToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {TSMIManageUsers, TSMISeeUsers})
+        UsuariosToolStripMenuItem.Image = My.Resources.Resources.Icono_usuarios_Chiquito
         UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem"
-        UsuariosToolStripMenuItem.Size = New Size(64, 20)
+        UsuariosToolStripMenuItem.Size = New Size(80, 20)
         UsuariosToolStripMenuItem.Text = "Usuarios"
         ' 
         ' TSMIManageUsers
         ' 
         TSMIManageUsers.Name = "TSMIManageUsers"
-        TSMIManageUsers.Size = New Size(180, 22)
+        TSMIManageUsers.Size = New Size(162, 22)
         TSMIManageUsers.Text = "Alta de Usuarios"
         ' 
         ' TSMISeeUsers
         ' 
         TSMISeeUsers.Name = "TSMISeeUsers"
-        TSMISeeUsers.Size = New Size(180, 22)
+        TSMISeeUsers.Size = New Size(162, 22)
         TSMISeeUsers.Text = "Lista de Usuarios"
         ' 
         ' TSMIReports
         ' 
+        TSMIReports.Image = My.Resources.Resources.Icono_Reportes_Chiquito
         TSMIReports.Name = "TSMIReports"
-        TSMIReports.Size = New Size(65, 20)
+        TSMIReports.Size = New Size(81, 20)
         TSMIReports.Text = "Reportes"
         ' 
         ' SistemaToolStripMenuItem
         ' 
         SistemaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {TSMIBackup, TSMIRestore, ToolStripMenuItem1, TSMILogout, TSMIExit})
+        SistemaToolStripMenuItem.Image = My.Resources.Resources.Icono_Sistema_Chiquito
+        SistemaToolStripMenuItem.ImageAlign = ContentAlignment.BottomLeft
         SistemaToolStripMenuItem.Name = "SistemaToolStripMenuItem"
-        SistemaToolStripMenuItem.Size = New Size(60, 20)
+        SistemaToolStripMenuItem.Size = New Size(76, 20)
         SistemaToolStripMenuItem.Text = "Sistema"
         ' 
         ' TSMIBackup
@@ -176,6 +185,7 @@ Partial Class FormMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(800, 450)
         Controls.Add(MenuStrip1)
         IsMdiContainer = True

@@ -53,6 +53,7 @@ Partial Class FormManageProducts
         ' 
         ' GBData
         ' 
+        GBData.BackColor = Color.MidnightBlue
         GBData.Controls.Add(BSelectImage)
         GBData.Controls.Add(TBImagePath)
         GBData.Controls.Add(PBMotoImage)
@@ -72,6 +73,8 @@ Partial Class FormManageProducts
         GBData.Controls.Add(TBCylinder)
         GBData.Controls.Add(TBModel)
         GBData.Controls.Add(TBBrand)
+        GBData.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBData.ForeColor = SystemColors.ControlLightLight
         GBData.Location = New Point(0, 12)
         GBData.Name = "GBData"
         GBData.Size = New Size(800, 374)
@@ -81,6 +84,8 @@ Partial Class FormManageProducts
         ' 
         ' BSelectImage
         ' 
+        BSelectImage.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BSelectImage.ForeColor = SystemColors.ControlText
         BSelectImage.Location = New Point(35, 259)
         BSelectImage.Name = "BSelectImage"
         BSelectImage.Size = New Size(75, 23)
@@ -126,7 +131,7 @@ Partial Class FormManageProducts
         LStockMin.AutoSize = True
         LStockMin.Location = New Point(35, 350)
         LStockMin.Name = "LStockMin"
-        LStockMin.Size = New Size(84, 15)
+        LStockMin.Size = New Size(87, 15)
         LStockMin.TabIndex = 13
         LStockMin.Text = "Stock Minimo:"
         ' 
@@ -145,7 +150,7 @@ Partial Class FormManageProducts
         LStock.AutoSize = True
         LStock.Location = New Point(35, 303)
         LStock.Name = "LStock"
-        LStock.Size = New Size(73, 15)
+        LStock.Size = New Size(77, 15)
         LStock.TabIndex = 11
         LStock.Text = "Stock Inicial:"
         ' 
@@ -154,7 +159,7 @@ Partial Class FormManageProducts
         LPrice.AutoSize = True
         LPrice.Location = New Point(35, 175)
         LPrice.Name = "LPrice"
-        LPrice.Size = New Size(43, 15)
+        LPrice.Size = New Size(45, 15)
         LPrice.TabIndex = 10
         LPrice.Text = "Precio:"
         ' 
@@ -172,7 +177,7 @@ Partial Class FormManageProducts
         LModel.AutoSize = True
         LModel.Location = New Point(35, 81)
         LModel.Name = "LModel"
-        LModel.Size = New Size(51, 15)
+        LModel.Size = New Size(52, 15)
         LModel.TabIndex = 8
         LModel.Text = "Modelo:"
         ' 
@@ -181,12 +186,14 @@ Partial Class FormManageProducts
         LBrand.AutoSize = True
         LBrand.Location = New Point(35, 40)
         LBrand.Name = "LBrand"
-        LBrand.Size = New Size(43, 15)
+        LBrand.Size = New Size(44, 15)
         LBrand.TabIndex = 7
         LBrand.Text = "Marca:"
         ' 
         ' BCancel
         ' 
+        BCancel.Font = New Font("Segoe UI", 9F)
+        BCancel.ForeColor = SystemColors.ControlText
         BCancel.Location = New Point(444, 294)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(112, 58)
@@ -196,6 +203,8 @@ Partial Class FormManageProducts
         ' 
         ' BSave
         ' 
+        BSave.Font = New Font("Segoe UI", 9F)
+        BSave.ForeColor = SystemColors.ControlText
         BSave.Location = New Point(636, 294)
         BSave.Name = "BSave"
         BSave.Size = New Size(112, 58)
@@ -263,6 +272,7 @@ Partial Class FormManageProducts
         AcceptButton = BSave
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         CancelButton = BCancel
         ClientSize = New Size(800, 387)
         Controls.Add(GBData)

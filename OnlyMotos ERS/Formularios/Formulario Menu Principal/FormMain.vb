@@ -67,10 +67,12 @@
         OpenChildForm(Of FormSeeUsers)()
     End Sub
 
-
+    Private Sub TSMIRestore_Click(sender As Object, e As EventArgs) Handles TSMIRestore.Click
+        OpenChildForm(Of FormRestore)()
+    End Sub
 
     Private Sub TSMIBackup_Click(sender As Object, e As EventArgs) Handles TSMIBackup.Click
-        ' Lógica de copia de seguridad
+        OpenChildForm(Of FormBackUp)()
     End Sub
 
     Private Sub TSMIReports_Click(sender As Object, e As EventArgs) Handles TSMIReports.Click

@@ -52,6 +52,8 @@ Partial Class FormManageClients
         GBData.Controls.Add(LEmail)
         GBData.Controls.Add(LTelefono)
         GBData.Controls.Add(LNombre)
+        GBData.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBData.ForeColor = SystemColors.ControlLightLight
         GBData.Location = New Point(12, 12)
         GBData.Name = "GBData"
         GBData.Size = New Size(304, 290)
@@ -61,6 +63,7 @@ Partial Class FormManageClients
         ' 
         ' BCancel
         ' 
+        BCancel.ForeColor = SystemColors.ControlText
         BCancel.Location = New Point(32, 258)
         BCancel.Name = "BCancel"
         BCancel.Size = New Size(75, 23)
@@ -70,6 +73,7 @@ Partial Class FormManageClients
         ' 
         ' BSave
         ' 
+        BSave.ForeColor = SystemColors.ControlText
         BSave.Location = New Point(186, 258)
         BSave.Name = "BSave"
         BSave.Size = New Size(75, 23)
@@ -117,7 +121,7 @@ Partial Class FormManageClients
         LDNI.AutoSize = True
         LDNI.Location = New Point(6, 108)
         LDNI.Name = "LDNI"
-        LDNI.Size = New Size(30, 15)
+        LDNI.Size = New Size(32, 15)
         LDNI.TabIndex = 4
         LDNI.Text = "DNI:"
         ' 
@@ -126,7 +130,7 @@ Partial Class FormManageClients
         LApellido.AutoSize = True
         LApellido.Location = New Point(6, 71)
         LApellido.Name = "LApellido"
-        LApellido.Size = New Size(54, 15)
+        LApellido.Size = New Size(55, 15)
         LApellido.TabIndex = 3
         LApellido.Text = "Apellido:"
         ' 
@@ -144,7 +148,7 @@ Partial Class FormManageClients
         LTelefono.AutoSize = True
         LTelefono.Location = New Point(6, 186)
         LTelefono.Name = "LTelefono"
-        LTelefono.Size = New Size(56, 15)
+        LTelefono.Size = New Size(59, 15)
         LTelefono.TabIndex = 1
         LTelefono.Text = "Telefono:"
         ' 
@@ -153,7 +157,7 @@ Partial Class FormManageClients
         LNombre.AutoSize = True
         LNombre.Location = New Point(6, 34)
         LNombre.Name = "LNombre"
-        LNombre.Size = New Size(54, 15)
+        LNombre.Size = New Size(56, 15)
         LNombre.TabIndex = 0
         LNombre.Text = "Nombre:"
         ' 
@@ -161,6 +165,7 @@ Partial Class FormManageClients
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(325, 320)
         Controls.Add(GBData)
         Name = "FormManageClients"

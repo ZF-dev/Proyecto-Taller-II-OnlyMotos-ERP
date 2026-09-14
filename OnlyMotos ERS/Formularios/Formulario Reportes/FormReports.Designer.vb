@@ -40,6 +40,8 @@ Partial Class FormReports
         ' 
         ' BReportSales
         ' 
+        BReportSales.Font = New Font("Segoe UI", 9F)
+        BReportSales.ForeColor = SystemColors.ControlText
         BReportSales.Location = New Point(20, 115)
         BReportSales.Name = "BReportSales"
         BReportSales.Size = New Size(112, 43)
@@ -58,6 +60,8 @@ Partial Class FormReports
         GBCurrentSession.Controls.Add(BReportFinancial)
         GBCurrentSession.Controls.Add(BReportSalesUser)
         GBCurrentSession.Controls.Add(BReportSales)
+        GBCurrentSession.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBCurrentSession.ForeColor = SystemColors.ControlLightLight
         GBCurrentSession.Location = New Point(12, 12)
         GBCurrentSession.Name = "GBCurrentSession"
         GBCurrentSession.Size = New Size(376, 273)
@@ -70,7 +74,7 @@ Partial Class FormReports
         LEnd.AutoSize = True
         LEnd.Location = New Point(202, 42)
         LEnd.Name = "LEnd"
-        LEnd.Size = New Size(51, 15)
+        LEnd.Size = New Size(52, 15)
         LEnd.TabIndex = 8
         LEnd.Text = "Mes Fin:"
         ' 
@@ -79,7 +83,7 @@ Partial Class FormReports
         LStart.AutoSize = True
         LStart.Location = New Point(6, 42)
         LStart.Name = "LStart"
-        LStart.Size = New Size(64, 15)
+        LStart.Size = New Size(65, 15)
         LStart.TabIndex = 7
         LStart.Text = "Mes inicio:"
         ' 
@@ -101,6 +105,8 @@ Partial Class FormReports
         ' 
         ' BReportSalesRange
         ' 
+        BReportSalesRange.Font = New Font("Segoe UI", 9F)
+        BReportSalesRange.ForeColor = SystemColors.ControlText
         BReportSalesRange.Location = New Point(212, 115)
         BReportSalesRange.Name = "BReportSalesRange"
         BReportSalesRange.Size = New Size(112, 43)
@@ -110,6 +116,8 @@ Partial Class FormReports
         ' 
         ' BReportUsers
         ' 
+        BReportUsers.Font = New Font("Segoe UI", 9F)
+        BReportUsers.ForeColor = SystemColors.ControlText
         BReportUsers.Location = New Point(94, 115)
         BReportUsers.Name = "BReportUsers"
         BReportUsers.Size = New Size(112, 43)
@@ -119,6 +127,8 @@ Partial Class FormReports
         ' 
         ' BReportFinancial
         ' 
+        BReportFinancial.Font = New Font("Segoe UI", 9F)
+        BReportFinancial.ForeColor = SystemColors.ControlText
         BReportFinancial.Location = New Point(20, 115)
         BReportFinancial.Name = "BReportFinancial"
         BReportFinancial.Size = New Size(112, 43)
@@ -128,6 +138,8 @@ Partial Class FormReports
         ' 
         ' BReportSalesUser
         ' 
+        BReportSalesUser.Font = New Font("Segoe UI", 9F)
+        BReportSalesUser.ForeColor = SystemColors.ControlText
         BReportSalesUser.Location = New Point(212, 115)
         BReportSalesUser.Name = "BReportSalesUser"
         BReportSalesUser.Size = New Size(112, 43)
@@ -166,6 +178,7 @@ Partial Class FormReports
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.MidnightBlue
         ClientSize = New Size(533, 302)
         Controls.Add(BSimulateSupervisor)
         Controls.Add(BSimulateAdmin)
