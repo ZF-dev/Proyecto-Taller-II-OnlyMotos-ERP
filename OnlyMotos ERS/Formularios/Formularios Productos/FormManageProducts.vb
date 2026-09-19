@@ -10,6 +10,7 @@ Public Class FormManageProducts
         TBModel.Clear()
         TBCylinder.Clear()
         TBPrice.Clear()
+        TBYear.Clear()
         NUDStock.Value = 1
         NUDStockMin.Value = 1
         TBBrand.Focus()
@@ -78,4 +79,5 @@ Public Class FormManageProducts
 
 
     End Sub
+
 End Class

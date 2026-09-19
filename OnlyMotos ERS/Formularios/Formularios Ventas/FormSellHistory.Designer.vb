@@ -23,6 +23,7 @@ Partial Class FormSellHistory
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GBFilters = New GroupBox()
+        BClose = New Button()
         LToDate = New Label()
         LSearchClient = New Label()
         LFromDate = New Label()
@@ -56,6 +57,7 @@ Partial Class FormSellHistory
         ' 
         ' GBFilters
         ' 
+        GBFilters.Controls.Add(BClose)
         GBFilters.Controls.Add(LToDate)
         GBFilters.Controls.Add(LSearchClient)
         GBFilters.Controls.Add(LFromDate)
@@ -72,6 +74,18 @@ Partial Class FormSellHistory
         GBFilters.TabIndex = 0
         GBFilters.TabStop = False
         GBFilters.Text = "Filtros de Busqueda"
+        ' 
+        ' BClose
+        ' 
+        BClose.Font = New Font("Segoe UI", 9F)
+        BClose.ForeColor = SystemColors.ControlText
+        BClose.Location = New Point(616, 63)
+        BClose.Name = "BClose"
+        BClose.Size = New Size(103, 48)
+        BClose.TabIndex = 8
+        BClose.Text = "Cerrar"
+        BClose.UseVisualStyleBackColor = True
+        BClose.Visible = False
         ' 
         ' LToDate
         ' 
@@ -132,17 +146,17 @@ Partial Class FormSellHistory
         ' DTPToDate
         ' 
         DTPToDate.Format = DateTimePickerFormat.Short
-        DTPToDate.Location = New Point(95, 24)
+        DTPToDate.Location = New Point(362, 24)
         DTPToDate.Name = "DTPToDate"
-        DTPToDate.Size = New Size(100, 23)
+        DTPToDate.Size = New Size(113, 23)
         DTPToDate.TabIndex = 1
         ' 
         ' DTPFromDate
         ' 
         DTPFromDate.Format = DateTimePickerFormat.Short
-        DTPFromDate.Location = New Point(370, 24)
+        DTPFromDate.Location = New Point(106, 24)
         DTPFromDate.Name = "DTPFromDate"
-        DTPFromDate.Size = New Size(100, 23)
+        DTPFromDate.Size = New Size(107, 23)
         DTPFromDate.TabIndex = 0
         ' 
         ' DGVSellHeaders
@@ -272,9 +286,11 @@ Partial Class FormSellHistory
         ' 
         ' FormSellHistory
         ' 
+        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
+        CancelButton = BClose
         ClientSize = New Size(934, 611)
         Controls.Add(GBDetailSells)
         Controls.Add(GBHeaderSells)
@@ -317,4 +333,5 @@ Partial Class FormSellHistory
     Friend WithEvents Cantidad As DataGridViewTextBoxColumn
     Friend WithEvents Subtotal As DataGridViewTextBoxColumn
     Friend WithEvents BAnnullSell As Button
+    Friend WithEvents BClose As Button
 End Class

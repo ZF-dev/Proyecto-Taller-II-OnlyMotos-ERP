@@ -77,9 +77,9 @@ Partial Class FormManageUsers
         CBProfile.DropDownStyle = ComboBoxStyle.DropDownList
         CBProfile.FormattingEnabled = True
         CBProfile.Items.AddRange(New Object() {"Vendedor", "Supervisor", "Administrador"})
-        CBProfile.Location = New Point(68, 244)
+        CBProfile.Location = New Point(82, 244)
         CBProfile.Name = "CBProfile"
-        CBProfile.Size = New Size(222, 23)
+        CBProfile.Size = New Size(208, 23)
         CBProfile.TabIndex = 16
         ' 
         ' TBPassword
@@ -110,9 +110,9 @@ Partial Class FormManageUsers
         ' 
         ' TBUser
         ' 
-        TBUser.Location = New Point(68, 153)
+        TBUser.Location = New Point(82, 153)
         TBUser.Name = "TBUser"
-        TBUser.Size = New Size(222, 23)
+        TBUser.Size = New Size(208, 23)
         TBUser.TabIndex = 13
         ' 
         ' LUser
@@ -148,37 +148,37 @@ Partial Class FormManageUsers
         ' 
         ' TBPhone
         ' 
-        TBPhone.Location = New Point(68, 321)
+        TBPhone.Location = New Point(82, 321)
         TBPhone.Name = "TBPhone"
-        TBPhone.Size = New Size(222, 23)
+        TBPhone.Size = New Size(208, 23)
         TBPhone.TabIndex = 9
         ' 
         ' TBEmail
         ' 
-        TBEmail.Location = New Point(68, 285)
+        TBEmail.Location = New Point(82, 285)
         TBEmail.Name = "TBEmail"
-        TBEmail.Size = New Size(222, 23)
+        TBEmail.Size = New Size(208, 23)
         TBEmail.TabIndex = 8
         ' 
         ' TBDNI
         ' 
-        TBDNI.Location = New Point(68, 108)
+        TBDNI.Location = New Point(82, 108)
         TBDNI.Name = "TBDNI"
-        TBDNI.Size = New Size(222, 23)
+        TBDNI.Size = New Size(208, 23)
         TBDNI.TabIndex = 7
         ' 
         ' TBLastName
         ' 
-        TBLastName.Location = New Point(68, 68)
+        TBLastName.Location = New Point(82, 68)
         TBLastName.Name = "TBLastName"
-        TBLastName.Size = New Size(222, 23)
+        TBLastName.Size = New Size(208, 23)
         TBLastName.TabIndex = 6
         ' 
         ' TBName
         ' 
-        TBName.Location = New Point(68, 31)
+        TBName.Location = New Point(82, 31)
         TBName.Name = "TBName"
-        TBName.Size = New Size(222, 23)
+        TBName.Size = New Size(208, 23)
         TBName.TabIndex = 5
         ' 
         ' LDNI

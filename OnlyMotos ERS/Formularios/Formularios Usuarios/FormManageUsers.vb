@@ -49,10 +49,30 @@
 
         End If
 
+        ' Validar formato del DNI
+        If Not ValidadorDNI.IsValidDNI(TBDNI.Text) Then
+
+            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBDNI.Focus()
+            TBDNI.SelectAll()
+            Exit Sub
+
+        End If
+
         If String.IsNullOrWhiteSpace(TBUser.Text) OrElse String.IsNullOrWhiteSpace(TBPassword.Text) Then
 
             MessageBox.Show("Debe ingresar un nombre de usuario y una contraseña.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             TBUser.Focus()
+            Exit Sub
+
+        End If
+
+        ' Validar que la contraseña cumpla el requisito de 8 caracteres que pidio el profe
+        If Not ValidadorContraseña.IsValidPassword(TBPassword.Text) Then
+
+            MessageBox.Show("La contraseña debe tener al menos 8 caracteres.", "Contraseña inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBPassword.Focus()
+            TBPassword.SelectAll()
             Exit Sub
 
         End If

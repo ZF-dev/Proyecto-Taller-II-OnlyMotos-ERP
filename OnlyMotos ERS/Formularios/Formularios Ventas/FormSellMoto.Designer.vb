@@ -36,6 +36,8 @@ Partial Class FormSellMoto
         CBClient = New ComboBox()
         LClient = New Label()
         GroupBox1 = New GroupBox()
+        NUDStock = New NumericUpDown()
+        LStock = New Label()
         BAddProduct = New Button()
         NUDQuantity = New NumericUpDown()
         LQuantity = New Label()
@@ -58,6 +60,7 @@ Partial Class FormSellMoto
         GBHeader.SuspendLayout()
         GBClient.SuspendLayout()
         GroupBox1.SuspendLayout()
+        CType(NUDStock, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDQuantity, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVDetails, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox2.SuspendLayout()
@@ -110,9 +113,9 @@ Partial Class FormSellMoto
         ' 
         CBTicketType.FormattingEnabled = True
         CBTicketType.Items.AddRange(New Object() {"Factura A", "Factura B", "Factura C", "Factura D"})
-        CBTicketType.Location = New Point(115, 55)
+        CBTicketType.Location = New Point(112, 55)
         CBTicketType.Name = "CBTicketType"
-        CBTicketType.Size = New Size(66, 23)
+        CBTicketType.Size = New Size(107, 23)
         CBTicketType.TabIndex = 2
         ' 
         ' LDate
@@ -155,6 +158,7 @@ Partial Class FormSellMoto
         TBDni.Name = "TBDni"
         TBDni.Size = New Size(260, 23)
         TBDni.TabIndex = 5
+        TBDni.Visible = False
         ' 
         ' LDni
         ' 
@@ -164,13 +168,14 @@ Partial Class FormSellMoto
         LDni.Size = New Size(32, 15)
         LDni.TabIndex = 4
         LDni.Text = "DNI:"
+        LDni.Visible = False
         ' 
         ' BAddClient
         ' 
         BAddClient.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         BAddClient.ForeColor = SystemColors.ControlText
         BAddClient.Image = My.Resources.Resources.Icono_insertar_Usuario_Cliente_chiquito
-        BAddClient.Location = New Point(185, 79)
+        BAddClient.Location = New Point(185, 63)
         BAddClient.Name = "BAddClient"
         BAddClient.Size = New Size(78, 38)
         BAddClient.TabIndex = 3
@@ -186,7 +191,7 @@ Partial Class FormSellMoto
         CBClient.FormattingEnabled = True
         CBClient.Location = New Point(61, 16)
         CBClient.Name = "CBClient"
-        CBClient.Size = New Size(260, 23)
+        CBClient.Size = New Size(374, 23)
         CBClient.TabIndex = 2
         ' 
         ' LClient
@@ -200,6 +205,8 @@ Partial Class FormSellMoto
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(NUDStock)
+        GroupBox1.Controls.Add(LStock)
         GroupBox1.Controls.Add(BAddProduct)
         GroupBox1.Controls.Add(NUDQuantity)
         GroupBox1.Controls.Add(LQuantity)
@@ -215,6 +222,25 @@ Partial Class FormSellMoto
         GroupBox1.TabIndex = 7
         GroupBox1.TabStop = False
         GroupBox1.Text = "3-Seleccionar Moto:"
+        ' 
+        ' NUDStock
+        ' 
+        NUDStock.Location = New Point(176, 83)
+        NUDStock.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        NUDStock.Name = "NUDStock"
+        NUDStock.ReadOnly = True
+        NUDStock.Size = New Size(38, 23)
+        NUDStock.TabIndex = 10
+        NUDStock.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        ' 
+        ' LStock
+        ' 
+        LStock.AutoSize = True
+        LStock.Location = New Point(128, 85)
+        LStock.Name = "LStock"
+        LStock.Size = New Size(42, 15)
+        LStock.TabIndex = 9
+        LStock.Text = "Stock:"
         ' 
         ' BAddProduct
         ' 
@@ -404,6 +430,7 @@ Partial Class FormSellMoto
         GBClient.PerformLayout()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        CType(NUDStock, ComponentModel.ISupportInitialize).EndInit()
         CType(NUDQuantity, ComponentModel.ISupportInitialize).EndInit()
         CType(DGVDetails, ComponentModel.ISupportInitialize).EndInit()
         GroupBox2.ResumeLayout(False)
@@ -445,4 +472,6 @@ Partial Class FormSellMoto
     Friend WithEvents BRemoveProduct As Button
     Friend WithEvents TBDni As TextBox
     Friend WithEvents LDni As Label
+    Friend WithEvents NUDStock As NumericUpDown
+    Friend WithEvents LStock As Label
 End Class

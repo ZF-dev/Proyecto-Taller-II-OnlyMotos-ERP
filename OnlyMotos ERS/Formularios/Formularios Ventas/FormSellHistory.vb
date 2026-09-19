@@ -45,14 +45,26 @@
 
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        ' Validar campo DNI del cliente antes de aplicar filtro
+        If String.IsNullOrWhiteSpace(TBSearchClient.Text) Then
+            MessageBox.Show("Ingrese un número de DNI para filtrar las ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBSearchClient.Focus()
+            Exit Sub
+        End If
+
+        If Not ValidadorDNI.IsValidDNI(TBSearchClient.Text) Then
+            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBSearchClient.Focus()
+            TBSearchClient.SelectAll()
+            Exit Sub
+        End If
+
         ' Aquí irá la consulta filtrada a la base de datos
-        MessageBox.Show("Filtro aplicado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show($"Filtrando ventas por DNI del cliente: {TBSearchClient.Text}", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click
         TBSearchClient.Clear()
-        DTPFromDate.Value = DateTime.Now.AddMonths(-1)
-        DTPToDate.Value = DateTime.Now
         LoadMockData()
     End Sub
 
@@ -65,4 +77,7 @@
         End If
     End Sub
 
+    Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click
+        Me.Close()
+    End Sub
 End Class

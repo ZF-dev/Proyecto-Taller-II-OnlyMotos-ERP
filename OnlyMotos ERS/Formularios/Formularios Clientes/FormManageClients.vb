@@ -53,6 +53,16 @@
 
         End If
 
+        ' Validar formato del DNI
+        If Not ValidadorDNI.IsValidDNI(TBDNI.Text) Then
+
+            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBDNI.Focus()
+            TBDNI.SelectAll()
+            Exit Sub
+
+        End If
+
         If String.IsNullOrWhiteSpace(TBName.Text) Then
 
             MessageBox.Show("Por favor, ingrese el Nombre del cliente.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -85,11 +95,12 @@
 
         End If
 
-        ' Validar formato mínimo de Email (si se ingresó algo)
-        If Not String.IsNullOrWhiteSpace(TBEmail.Text) AndAlso Not TBEmail.Text.Contains("@") Then
+        ' Validar formato de Email usando ValidadorEmail (si se ingresó algo)
+        If Not String.IsNullOrWhiteSpace(TBEmail.Text) AndAlso Not ValidadorEmail.IsValidEmail(TBEmail.Text) Then
 
-            MessageBox.Show("Por favor, ingrese una dirección de correo electrónico válida.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Por favor, ingrese una dirección de correo electrónico válida (ejemplo: usuario@dominio.com).", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             TBEmail.Focus()
+            TBEmail.SelectAll()
             Exit Sub
 
         End If

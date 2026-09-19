@@ -200,9 +200,11 @@ Partial Class FormSeeClients
         ' 
         ' FormSeeClients
         ' 
+        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
+        CancelButton = BClose
         ClientSize = New Size(800, 450)
         Controls.Add(GBActions)
         Controls.Add(DGVClients)

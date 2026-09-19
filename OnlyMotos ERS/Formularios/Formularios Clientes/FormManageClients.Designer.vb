@@ -163,9 +163,11 @@ Partial Class FormManageClients
         ' 
         ' FormManageClients
         ' 
+        AcceptButton = BSave
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
+        CancelButton = BCancel
         ClientSize = New Size(325, 320)
         Controls.Add(GBData)
         Name = "FormManageClients"

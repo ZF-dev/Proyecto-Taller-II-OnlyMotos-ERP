@@ -44,9 +44,18 @@
         If String.IsNullOrWhiteSpace(TBSearch.Text) Then
 
             MessageBox.Show("Ingrese un número de DNI para filtrar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBSearch.Focus()
             Exit Sub
 
         End If
+
+        If Not ValidadorDNI.IsValidDNI(TBSearch.Text) Then
+            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBSearch.Focus()
+            TBSearch.SelectAll()
+            Exit Sub
+        End If
+
 
         MessageBox.Show($"Filtrando cliente por DNI: {TBSearch.Text}", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
 

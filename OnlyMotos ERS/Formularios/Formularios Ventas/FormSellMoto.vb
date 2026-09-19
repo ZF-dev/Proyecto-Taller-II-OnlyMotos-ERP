@@ -73,4 +73,11 @@
         Me.Close()
     End Sub
 
+    Private Sub BAddClient_Click(sender As Object, e As EventArgs) Handles BAddClient.Click
+        Dim manageClientForm As New FormManageClients()
+        If manageClientForm.ShowDialog() = DialogResult.OK Then
+            MessageBox.Show("Cliente dado de alta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' MÁS ADELANTE: Reconsultar BD
+        End If
+    End Sub
 End Class

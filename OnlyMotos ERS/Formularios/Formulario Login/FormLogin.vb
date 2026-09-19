@@ -7,6 +7,14 @@
 
         End If
 
+        If Not ValidadorContraseña.IsValidPassword(TBPassword.Text) Then
+            MessageBox.Show("La contraseña ingresada no es válida. Debe contener minimo 8 caracteres.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBPassword.Focus()
+            TBPassword.SelectAll()
+            Exit Sub
+        End If
+
+
         Me.DialogResult = DialogResult.OK
         Me.Close()
 

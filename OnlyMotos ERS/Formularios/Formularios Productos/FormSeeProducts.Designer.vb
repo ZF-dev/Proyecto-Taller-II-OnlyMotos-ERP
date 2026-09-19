@@ -77,7 +77,7 @@ Partial Class FormSeeProducts
         GBFilters.Controls.Add(TBSearch)
         GBFilters.Controls.Add(LSearch)
         GBFilters.Controls.Add(BSearch)
-        GBFilters.ForeColor = SystemColors.ControlLight
+        GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
         GBFilters.Size = New Size(357, 158)
@@ -98,9 +98,9 @@ Partial Class FormSeeProducts
         ' 
         ' TBSearch
         ' 
-        TBSearch.Location = New Point(89, 54)
+        TBSearch.Location = New Point(78, 54)
         TBSearch.Name = "TBSearch"
-        TBSearch.Size = New Size(262, 23)
+        TBSearch.Size = New Size(273, 23)
         TBSearch.TabIndex = 0
         ' 
         ' DGVProducts
@@ -167,9 +167,9 @@ Partial Class FormSeeProducts
         ' 
         BClose.Font = New Font("Segoe UI", 9F)
         BClose.ForeColor = SystemColors.ControlText
-        BClose.Location = New Point(545, 57)
+        BClose.Location = New Point(538, 57)
         BClose.Name = "BClose"
-        BClose.Size = New Size(94, 58)
+        BClose.Size = New Size(101, 58)
         BClose.TabIndex = 5
         BClose.Text = "Cerrar"
         BClose.UseVisualStyleBackColor = True
@@ -178,18 +178,23 @@ Partial Class FormSeeProducts
         ' 
         BDeleteProduct.Font = New Font("Segoe UI", 9F)
         BDeleteProduct.ForeColor = SystemColors.ControlText
-        BDeleteProduct.Location = New Point(686, 57)
+        BDeleteProduct.Image = My.Resources.Resources.Icono_Cancelar_Chiquito
+        BDeleteProduct.ImageAlign = ContentAlignment.MiddleRight
+        BDeleteProduct.Location = New Point(680, 57)
         BDeleteProduct.Name = "BDeleteProduct"
-        BDeleteProduct.Size = New Size(102, 58)
+        BDeleteProduct.Size = New Size(112, 58)
         BDeleteProduct.TabIndex = 6
         BDeleteProduct.Text = "Eliminar Moto"
+        BDeleteProduct.TextAlign = ContentAlignment.MiddleLeft
         BDeleteProduct.UseVisualStyleBackColor = True
         ' 
         ' FormSeeProducts
         ' 
+        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
+        CancelButton = BClose
         ClientSize = New Size(861, 450)
         Controls.Add(BDeleteProduct)
         Controls.Add(BClose)
@@ -197,7 +202,7 @@ Partial Class FormSeeProducts
         Controls.Add(GBFilters)
         Controls.Add(Label1)
         Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ForeColor = SystemColors.ControlLightLight
+        ForeColor = SystemColors.ControlText
         Name = "FormSeeProducts"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Catálogo de Motos - OnlyMotos ERP"
