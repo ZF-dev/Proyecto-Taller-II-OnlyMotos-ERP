@@ -1,17 +1,91 @@
 ﻿Public Class FormMain
 
+    ' Variables para guardar los datos del usuario logueado en toda la sesión
+    Private rolActual As String
+    Private nombreUsuarioActual As String
+
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        CargarSesion()
+
+    End Sub
+
+    Private Sub CargarSesion()
         ' Ocultar FormMain mientras se valida el Login
         Me.Hide()
 
         Dim loginForm As New FormLogin()
 
         If loginForm.ShowDialog() = DialogResult.OK Then
-            Me.Show()
-        Else
-            Application.Exit()
-        End If
 
+            rolActual = loginForm.RolObtenido
+            nombreUsuarioActual = loginForm.NombreObtenido
+            ConfigurarPermisosPorRol()
+            Me.Show()
+
+        Else
+
+            Application.Exit()
+
+        End If
+    End Sub
+
+    Private Sub ConfigurarPermisosPorRol()
+
+        Me.Text = "OnlyMotos ERP - Usuario: " & nombreUsuarioActual & " [" & rolActual & "]"
+
+        If rolActual = "Vendedor" Then
+
+            TSMIBackup.Enabled = False
+            TSMIBackup.Visible = False
+            TSMIRestore.Enabled = False
+            TSMIRestore.Visible = False
+            UsuariosToolStripMenuItem.Enabled = False
+            UsuariosToolStripMenuItem.Visible = False
+            TSMIManageProducts.Enabled = False
+            TSMIManageProducts.Visible = False
+            ProductosToolStripMenuItem.Enabled = True
+            ProductosToolStripMenuItem.Visible = True
+            GestionDeClientesToolStripMenuItem.Enabled = True
+            GestionDeClientesToolStripMenuItem.Visible = True
+            VentasToolStripMenuItem.Enabled = True
+            VentasToolStripMenuItem.Visible = True
+
+
+        ElseIf rolActual = "Supervisor" Then
+
+            TSMIBackup.Enabled = False
+            TSMIBackup.Visible = False
+            TSMIRestore.Enabled = False
+            TSMIRestore.Visible = False
+            GestionDeClientesToolStripMenuItem.Enabled = False
+            GestionDeClientesToolStripMenuItem.Visible = False
+            VentasToolStripMenuItem.Enabled = False
+            VentasToolStripMenuItem.Visible = False
+            UsuariosToolStripMenuItem.Enabled = False
+            UsuariosToolStripMenuItem.Visible = False
+            ProductosToolStripMenuItem.Enabled = True
+            ProductosToolStripMenuItem.Visible = True
+            TSMIManageProducts.Enabled = True
+            TSMIManageProducts.Visible = True
+
+        Else
+
+            TSMIBackup.Enabled = True
+            TSMIBackup.Visible = True
+            ProductosToolStripMenuItem.Enabled = False
+            ProductosToolStripMenuItem.Visible = False
+            VentasToolStripMenuItem.Enabled = False
+            VentasToolStripMenuItem.Visible = False
+            GestionDeClientesToolStripMenuItem.Enabled = False
+            GestionDeClientesToolStripMenuItem.Visible = False
+            TSMIManageProducts.Enabled = True
+            TSMIManageProducts.Visible = True
+            UsuariosToolStripMenuItem.Enabled = True
+            UsuariosToolStripMenuItem.Visible = True
+
+        End If
+        ' Si es Administrador, tiene acceso total, no hace falta tocar nada.
     End Sub
 
     Private Sub OpenChildForm(Of T As {Form, New})()
@@ -84,19 +158,8 @@
         Dim response As DialogResult = MessageBox.Show("¿Desea cerrar la sesión actual?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If response = DialogResult.Yes Then
-            Me.Hide()
 
-            Dim loginForm As New FormLogin()
-
-            If loginForm.ShowDialog() = DialogResult.OK Then
-
-                Me.Show()
-
-            Else
-
-                Application.Exit()
-
-            End If
+            CargarSesion()
 
         End If
 
