@@ -75,6 +75,8 @@
 
             TSMIBackup.Enabled = True
             TSMIBackup.Visible = True
+            TSMIRestore.Enabled = True
+            TSMIRestore.Visible = True
             ProductosToolStripMenuItem.Enabled = False
             ProductosToolStripMenuItem.Visible = False
             VentasToolStripMenuItem.Enabled = False
@@ -160,6 +162,31 @@
         Dim response As DialogResult = MessageBox.Show("¿Desea cerrar la sesión actual?", "Cerrar Sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If response = DialogResult.Yes Then
+
+            Dim formsParaCerrar As New List(Of Form)
+
+            ' Recorremos todas las ventanas abiertas en la aplicación
+            For Each frm As Form In Application.OpenForms
+
+                ' Filtramos para NO cerrar el FormPrincipal (Me) 
+                If frm IsNot Me Then
+
+                    formsParaCerrar.Add(frm)
+
+                End If
+
+            Next
+
+            ' Cerramos todos los subformularios hijos (Reportes, Gestión de Usuarios, etc.)
+            For Each frm As Form In formsParaCerrar
+
+                frm.Close()
+
+            Next
+
+            ' Limpiamos las variables de sesión por seguridad
+            CurrentUserRole = String.Empty
+
 
             CargarSesion()
 
