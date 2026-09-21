@@ -27,7 +27,12 @@ Partial Class FormSeeUsers
         BDeleteUser = New Button()
         BClose = New Button()
         DGVUsers = New DataGridView()
-        IdCliente = New DataGridViewTextBoxColumn()
+        GBFilters = New GroupBox()
+        BClearFilters = New Button()
+        TBSearch = New TextBox()
+        LSearch = New Label()
+        BSearch = New Button()
+        IdUsuario = New DataGridViewTextBoxColumn()
         Nombre = New DataGridViewTextBoxColumn()
         Apellido = New DataGridViewTextBoxColumn()
         DNI = New DataGridViewTextBoxColumn()
@@ -36,11 +41,6 @@ Partial Class FormSeeUsers
         Email = New DataGridViewTextBoxColumn()
         Telefono = New DataGridViewTextBoxColumn()
         Estado = New DataGridViewTextBoxColumn()
-        GBFilters = New GroupBox()
-        BClearFilters = New Button()
-        TBSearch = New TextBox()
-        LSearch = New Label()
-        BSearch = New Button()
         GBActions.SuspendLayout()
         CType(DGVUsers, ComponentModel.ISupportInitialize).BeginInit()
         GBFilters.SuspendLayout()
@@ -103,61 +103,11 @@ Partial Class FormSeeUsers
         DGVUsers.AllowUserToAddRows = False
         DGVUsers.AllowUserToDeleteRows = False
         DGVUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DGVUsers.Columns.AddRange(New DataGridViewColumn() {IdCliente, Nombre, Apellido, DNI, Usuario, Perfil, Email, Telefono, Estado})
+        DGVUsers.Columns.AddRange(New DataGridViewColumn() {IdUsuario, Nombre, Apellido, DNI, Usuario, Perfil, Email, Telefono, Estado})
         DGVUsers.Location = New Point(12, 194)
         DGVUsers.Name = "DGVUsers"
         DGVUsers.Size = New Size(843, 244)
         DGVUsers.TabIndex = 8
-        ' 
-        ' IdCliente
-        ' 
-        IdCliente.HeaderText = "ID"
-        IdCliente.Name = "IdCliente"
-        IdCliente.ReadOnly = True
-        ' 
-        ' Nombre
-        ' 
-        Nombre.HeaderText = "Nombre"
-        Nombre.Name = "Nombre"
-        ' 
-        ' Apellido
-        ' 
-        Apellido.HeaderText = "Apellido"
-        Apellido.Name = "Apellido"
-        ' 
-        ' DNI
-        ' 
-        DNI.HeaderText = "DNI"
-        DNI.Name = "DNI"
-        DNI.ReadOnly = True
-        ' 
-        ' Usuario
-        ' 
-        Usuario.HeaderText = "Usuario"
-        Usuario.Name = "Usuario"
-        Usuario.ReadOnly = True
-        ' 
-        ' Perfil
-        ' 
-        Perfil.HeaderText = "Rol"
-        Perfil.Name = "Perfil"
-        Perfil.ReadOnly = True
-        ' 
-        ' Email
-        ' 
-        Email.HeaderText = "Email"
-        Email.Name = "Email"
-        ' 
-        ' Telefono
-        ' 
-        Telefono.HeaderText = "Telefono"
-        Telefono.Name = "Telefono"
-        ' 
-        ' Estado
-        ' 
-        Estado.HeaderText = "Estado"
-        Estado.Name = "Estado"
-        Estado.ReadOnly = True
         ' 
         ' GBFilters
         ' 
@@ -212,6 +162,65 @@ Partial Class FormSeeUsers
         BSearch.Text = "Buscar"
         BSearch.UseVisualStyleBackColor = True
         ' 
+        ' IdUsuario
+        ' 
+        IdUsuario.DataPropertyName = "id_usuario"
+        IdUsuario.HeaderText = "ID"
+        IdUsuario.Name = "IdUsuario"
+        IdUsuario.ReadOnly = True
+        ' 
+        ' Nombre
+        ' 
+        Nombre.DataPropertyName = "nombre"
+        Nombre.HeaderText = "Nombre"
+        Nombre.Name = "Nombre"
+        ' 
+        ' Apellido
+        ' 
+        Apellido.DataPropertyName = "apellido"
+        Apellido.HeaderText = "Apellido"
+        Apellido.Name = "Apellido"
+        ' 
+        ' DNI
+        ' 
+        DNI.DataPropertyName = "dni"
+        DNI.HeaderText = "DNI"
+        DNI.Name = "DNI"
+        DNI.ReadOnly = True
+        ' 
+        ' Usuario
+        ' 
+        Usuario.DataPropertyName = "usuario"
+        Usuario.HeaderText = "Usuario"
+        Usuario.Name = "Usuario"
+        Usuario.ReadOnly = True
+        ' 
+        ' Perfil
+        ' 
+        Perfil.DataPropertyName = "nombre_tipo"
+        Perfil.HeaderText = "Rol"
+        Perfil.Name = "Perfil"
+        Perfil.ReadOnly = True
+        ' 
+        ' Email
+        ' 
+        Email.DataPropertyName = "email"
+        Email.HeaderText = "Email"
+        Email.Name = "Email"
+        ' 
+        ' Telefono
+        ' 
+        Telefono.DataPropertyName = "telefono"
+        Telefono.HeaderText = "Telefono"
+        Telefono.Name = "Telefono"
+        ' 
+        ' Estado
+        ' 
+        Estado.DataPropertyName = "estado"
+        Estado.HeaderText = "Estado"
+        Estado.Name = "Estado"
+        Estado.ReadOnly = True
+        ' 
         ' FormSeeUsers
         ' 
         AcceptButton = BSearch
@@ -242,7 +251,7 @@ Partial Class FormSeeUsers
     Friend WithEvents TBSearch As TextBox
     Friend WithEvents LSearch As Label
     Friend WithEvents BSearch As Button
-    Friend WithEvents IdCliente As DataGridViewTextBoxColumn
+    Friend WithEvents IdUsuario As DataGridViewTextBoxColumn
     Friend WithEvents Nombre As DataGridViewTextBoxColumn
     Friend WithEvents Apellido As DataGridViewTextBoxColumn
     Friend WithEvents DNI As DataGridViewTextBoxColumn

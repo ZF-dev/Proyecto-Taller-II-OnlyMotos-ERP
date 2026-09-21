@@ -155,30 +155,30 @@ Partial Class FormMain
         ' TSMIBackup
         ' 
         TSMIBackup.Name = "TSMIBackup"
-        TSMIBackup.Size = New Size(180, 22)
+        TSMIBackup.Size = New Size(143, 22)
         TSMIBackup.Text = "Back Up"
         ' 
         ' TSMIRestore
         ' 
         TSMIRestore.Name = "TSMIRestore"
-        TSMIRestore.Size = New Size(180, 22)
+        TSMIRestore.Size = New Size(143, 22)
         TSMIRestore.Text = "Restore"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(177, 6)
+        ToolStripMenuItem1.Size = New Size(140, 6)
         ' 
         ' TSMILogout
         ' 
         TSMILogout.Name = "TSMILogout"
-        TSMILogout.Size = New Size(180, 22)
+        TSMILogout.Size = New Size(143, 22)
         TSMILogout.Text = "Cerrar Sesion"
         ' 
         ' TSMIExit
         ' 
         TSMIExit.Name = "TSMIExit"
-        TSMIExit.Size = New Size(180, 22)
+        TSMIExit.Size = New Size(143, 22)
         TSMIExit.Text = "Salir"
         ' 
         ' FormMain

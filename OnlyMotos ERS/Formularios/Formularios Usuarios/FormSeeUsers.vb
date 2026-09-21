@@ -1,13 +1,23 @@
 ﻿Public Class FormSeeUsers
     Private Sub FormSeeUsers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadMockData()
+        CargarUsuariosGrid()
     End Sub
 
-    Private Sub LoadMockData()
-        DGVUsers.Rows.Clear()
-        DGVUsers.Rows.Add(1, "Carlos", "Gómez", "35123456", "admin", "admin@onlymotos.com", "Administrador", "3794001122", "Activo")
-        DGVUsers.Rows.Add(2, "Juan", "Pérez", "38987654", "jperez", "jperez@onlymotos.com", "Vendedor", "3794334455", "Activo")
-        DGVUsers.Rows.Add(3, "María", "Rodríguez", "29555666", "mrodriguez", "mrodriguez@onlymotos.com", "Supervisor", "3794667788", "Inactivo")
+    Private Sub CargarUsuariosGrid()
+
+        Try
+
+            Dim negocio As New UsuarioNegocio()
+
+            ' Asignamos directamente la DataTable devuelta por el negocio al DataGridView
+            DGVUsers.DataSource = negocio.ObtenerListaUsuarios()
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar la lista de usuarios: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
     End Sub
 
     ' --- RESTRICCIÓN DE BÚSQUEDA: SOLO NÚMEROS (DNI) ---
@@ -27,66 +37,141 @@
         Dim columnName As String = DGVUsers.Columns(e.ColumnIndex).Name
 
         ' Validar y procesar cambios solo en los campos permitidos
-        If columnName = "nombre" OrElse columnName = "apellido" OrElse columnName = "email" OrElse columnName = "telefono" Then
-            Dim idUsuario As Integer = Convert.ToInt32(DGVUsers.Rows(e.RowIndex).Cells("id_usuario").Value)
-            Dim nuevoValor As String = DGVUsers.Rows(e.RowIndex).Cells(columnName).Value.ToString()
+        If columnName = "Nombre" OrElse columnName = "Apellido" OrElse columnName = "Email" OrElse columnName = "Telefono" Then
 
-            ' MÁS ADELANTE EN BD: UPDATE Usuarios SET [columnName] = @nuevoValor WHERE id_usuario = @idUsuario
-            Console.WriteLine($"Actualizando campo '{columnName}' = '{nuevoValor}' para el Usuario ID {idUsuario}")
+            Try
+
+                Dim idUsuario As Integer = Convert.ToInt32(DGVUsers.Rows(e.RowIndex).Cells("IdUsuario").Value)
+                Dim celdaValor = DGVUsers.Rows(e.RowIndex).Cells(columnName).Value
+                Dim nuevoValor As String = If(celdaValor Is Nothing, String.Empty, celdaValor.ToString())
+
+                Dim negocio As New UsuarioNegocio()
+                Dim exito As Boolean = negocio.ModificarCampoUsuario(idUsuario, columnName, nuevoValor)
+
+                If exito Then
+
+                    CargarUsuariosGrid()  ' Refresca la grilla para reflejar los cambios desde el servidor
+
+                End If
+
+            Catch ex As Exception
+
+                MessageBox.Show("Error al intentar actualizar la celda: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            End Try
+
         End If
+
     End Sub
 
     ' --- BÚSQUEDA Y FILTRADO ---
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         If String.IsNullOrWhiteSpace(TBSearch.Text) Then
+
             MessageBox.Show("Ingrese un número de DNI para filtrar los usuarios.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             TBSearch.Focus()
             Exit Sub
+
         End If
 
         If Not ValidadorDNI.IsValidDNI(TBSearch.Text) Then
+
             MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             TBSearch.Focus()
             TBSearch.SelectAll()
             Exit Sub
+
         End If
 
-        MessageBox.Show($"Filtrando usuario por DNI: {TBSearch.Text}", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+
+            Dim negocio As New UsuarioNegocio()
+            Dim resultado As DataTable = negocio.ObtenerUsuarioPorDni(TBSearch.Text.Trim())
+
+            ' Verificamos si la búsqueda arrojó resultados
+            If resultado.Rows.Count > 0 Then
+
+                DGVUsers.DataSource = resultado
+
+            Else
+
+                MessageBox.Show("DNI no registrado en el sistema.", "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                TBSearch.Focus()
+                TBSearch.SelectAll()
+
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al buscar el usuario: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
     End Sub
 
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click
+
         TBSearch.Clear()
-        LoadMockData()
+        CargarUsuariosGrid()
+        TBSearch.Focus()
+
     End Sub
 
     ' --- ACCIONES DEL MÓDULO (GBActions) ---
 
     Private Sub BAddUser_Click(sender As Object, e As EventArgs) Handles BAddUser.Click
+
         Dim manageUserForm As New FormManageUsers()
+
         If manageUserForm.ShowDialog() = DialogResult.OK Then
-            MessageBox.Show("Usuario dado de alta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ' MÁS ADELANTE: Reconsultar BD
-            LoadMockData()
+
+            CargarUsuariosGrid()
+
         End If
+
     End Sub
 
     Private Sub BDeleteUser_Click(sender As Object, e As EventArgs) Handles BDeleteUser.Click
+
         If DGVUsers.SelectedCells.Count = 0 Then
+
             MessageBox.Show("Seleccione un usuario de la lista para dar de baja.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
+
         End If
 
         Dim rowIndex As Integer = DGVUsers.SelectedCells(0).RowIndex
+
+        Dim idUsuario As Integer = Convert.ToInt32(DGVUsers.Rows(rowIndex).Cells("IdUsuario").Value)
         Dim userName As String = DGVUsers.Rows(rowIndex).Cells("usuario").Value.ToString()
 
-        Dim result As DialogResult = MessageBox.Show($"¿Está seguro de eliminar/dar de baja al usuario '{userName}'?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim result As DialogResult = MessageBox.Show($"¿Está seguro de dar de baja al usuario '{userName}'?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If result = DialogResult.Yes Then
-            DGVUsers.Rows(rowIndex).Cells("estado").Value = "Inactivo"
-            ' MÁS ADELANTE EN BD: UPDATE Usuarios SET eliminado = 1 WHERE id_usuario = @idUsuario
-            MessageBox.Show($"El usuario '{userName}' ha sido marcado como Inactivo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Try
+
+                Dim negocio As New UsuarioNegocio()
+                Dim exito As Boolean = negocio.CambiarEstadoInactivo(idUsuario)
+
+                If exito Then
+
+                    MessageBox.Show($"El usuario '{userName}' ha sido marcado como Inactivo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    ' Recargamos la grilla para ver los cambios reflejados desde el servidor
+                    CargarUsuariosGrid()
+
+                End If
+
+            Catch ex As Exception
+
+                MessageBox.Show("Error al procesar la baja: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            End Try
+
         End If
+
     End Sub
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click

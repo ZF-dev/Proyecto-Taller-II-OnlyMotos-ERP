@@ -1,5 +1,29 @@
 ﻿Public Class FormManageUsers
+
     Private Sub FormManageUsers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        CargarComboTipos()
+
+    End Sub
+
+    Private Sub CargarComboTipos()
+
+        Try
+
+            Dim negocio As New UsuarioNegocio()
+
+            CBProfile.DataSource = negocio.ObtenerTiposUsuario()
+            CBProfile.DisplayMember = "nombre_tipo" ' Lo que se muestra visualmente
+            CBProfile.ValueMember = "id_tipo"     ' El ID numérico que guardaremos en la BD
+
+            ' Opcional: Para que no empiece con ninguna selección forzada por defecto
+            CBProfile.SelectedIndex = -1
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar los tipos de usuario: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
 
     End Sub
 
@@ -100,10 +124,35 @@
 
         End If
 
-        MessageBox.Show($"Usuario '{TBUser.Text}' registrado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            ' Capturamos los datos de los controles visuales
+            Dim idTipo As Integer = Convert.ToInt32(CBProfile.SelectedValue)
+            Dim dni As String = TBDNI.Text.Trim()
+            Dim usuario As String = TBUser.Text.Trim()
+            Dim pass As String = TBPassword.Text.Trim()
+            Dim nombre As String = TBName.Text.Trim()
+            Dim apellido As String = TBLastName.Text.Trim()
+            Dim email As String = TBEmail.Text.Trim()
+            Dim telefono As String = TBPhone.Text.Trim()
 
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+
+            Dim negocio As New UsuarioNegocio()
+
+            Dim exito As Boolean = negocio.RegistrarNuevoUsuario(idTipo, dni, usuario, pass, nombre, apellido, email, telefono)
+
+            If exito Then
+
+                MessageBox.Show($"Usuario '{TBUser.Text}' registrado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.DialogResult = DialogResult.OK
+                Me.Close()
+
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al procesar el registro: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
 
     End Sub
 
