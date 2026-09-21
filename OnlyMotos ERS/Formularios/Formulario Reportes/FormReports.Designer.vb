@@ -32,9 +32,6 @@ Partial Class FormReports
         BReportUsers = New Button()
         BReportFinancial = New Button()
         BReportSalesUser = New Button()
-        BSimulateSeller = New Button()
-        BSimulateAdmin = New Button()
-        BSimulateSupervisor = New Button()
         GBCurrentSession.SuspendLayout()
         SuspendLayout()
         ' 
@@ -67,7 +64,7 @@ Partial Class FormReports
         GBCurrentSession.Size = New Size(376, 273)
         GBCurrentSession.TabIndex = 1
         GBCurrentSession.TabStop = False
-        GBCurrentSession.Text = "GroupBox1"
+        GBCurrentSession.Text = "Reportes:"
         ' 
         ' LEnd
         ' 
@@ -118,11 +115,11 @@ Partial Class FormReports
         ' 
         BReportUsers.Font = New Font("Segoe UI", 9F)
         BReportUsers.ForeColor = SystemColors.ControlText
-        BReportUsers.Location = New Point(94, 115)
+        BReportUsers.Location = New Point(124, 115)
         BReportUsers.Name = "BReportUsers"
         BReportUsers.Size = New Size(112, 43)
         BReportUsers.TabIndex = 3
-        BReportUsers.Text = "Usuarios"
+        BReportUsers.Text = "Auditoria de Usuarios"
         BReportUsers.UseVisualStyleBackColor = True
         ' 
         ' BReportFinancial
@@ -147,42 +144,12 @@ Partial Class FormReports
         BReportSalesUser.Text = "Ventas por Usuario"
         BReportSalesUser.UseVisualStyleBackColor = True
         ' 
-        ' BSimulateSeller
-        ' 
-        BSimulateSeller.Location = New Point(423, 54)
-        BSimulateSeller.Name = "BSimulateSeller"
-        BSimulateSeller.Size = New Size(75, 23)
-        BSimulateSeller.TabIndex = 2
-        BSimulateSeller.Text = "Vendedor"
-        BSimulateSeller.UseVisualStyleBackColor = True
-        ' 
-        ' BSimulateAdmin
-        ' 
-        BSimulateAdmin.Location = New Point(423, 216)
-        BSimulateAdmin.Name = "BSimulateAdmin"
-        BSimulateAdmin.Size = New Size(75, 23)
-        BSimulateAdmin.TabIndex = 3
-        BSimulateAdmin.Text = "Admin"
-        BSimulateAdmin.UseVisualStyleBackColor = True
-        ' 
-        ' BSimulateSupervisor
-        ' 
-        BSimulateSupervisor.Location = New Point(423, 137)
-        BSimulateSupervisor.Name = "BSimulateSupervisor"
-        BSimulateSupervisor.Size = New Size(75, 23)
-        BSimulateSupervisor.TabIndex = 4
-        BSimulateSupervisor.Text = "Supervisor"
-        BSimulateSupervisor.UseVisualStyleBackColor = True
-        ' 
         ' FormReports
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
-        ClientSize = New Size(533, 302)
-        Controls.Add(BSimulateSupervisor)
-        Controls.Add(BSimulateAdmin)
-        Controls.Add(BSimulateSeller)
+        ClientSize = New Size(401, 302)
         Controls.Add(GBCurrentSession)
         Name = "FormReports"
         StartPosition = FormStartPosition.CenterScreen
@@ -202,7 +169,4 @@ Partial Class FormReports
     Friend WithEvents LStart As Label
     Friend WithEvents DTPEnd As DateTimePicker
     Friend WithEvents DTPStart As DateTimePicker
-    Friend WithEvents BSimulateSeller As Button
-    Friend WithEvents BSimulateAdmin As Button
-    Friend WithEvents BSimulateSupervisor As Button
 End Class

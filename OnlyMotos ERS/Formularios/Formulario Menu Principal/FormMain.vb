@@ -34,6 +34,8 @@
 
         Me.Text = "OnlyMotos ERP - Usuario: " & nombreUsuarioActual & " [" & rolActual & "]"
 
+        CurrentUserRole = rolActual
+
         If rolActual = "Vendedor" Then
 
             TSMIBackup.Enabled = False

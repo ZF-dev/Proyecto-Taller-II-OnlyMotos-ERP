@@ -7,9 +7,6 @@
 
     Private Sub ApplyRolePermissions()
 
-        ' Mostrar el usuario y rol actual en la interfaz
-        GBCurrentSession.Text = $"Usuario: {CurrentUserName} | Rol: {CurrentUserRole}"
-
         Select Case CurrentUserRole
             Case "Administrador"
                 ' El administrador tiene acceso total a todos los reportes
@@ -59,21 +56,10 @@
 
     End Sub
 
-    ' --- BOTONES PARA SIMULAR CAMBIO DE ROL EN TIEMPO REAL (TESTING) ---
-
-    Private Sub BSimulateAdmin_Click(sender As Object, e As EventArgs) Handles BSimulateAdmin.Click
-        CurrentUserRole = "Administrador"
-        ApplyRolePermissions()
-    End Sub
-
-    Private Sub BSimulateSeller_Click(sender As Object, e As EventArgs) Handles BSimulateSeller.Click
-        CurrentUserRole = "Vendedor"
-        ApplyRolePermissions()
-    End Sub
-
-    Private Sub BSimulateSupervisor_Click(sender As Object, e As EventArgs) Handles BSimulateSupervisor.Click
-        CurrentUserRole = "Supervisor"
-        ApplyRolePermissions()
+    Private Sub BReportUsers_Click(sender As Object, e As EventArgs) Handles BReportUsers.Click
+        ' Qué muestra: Un listado consolidado de todos los usuarios del sistema,
+        ' diferenciando entre activos e inactivos (los que sufrieron baja lógica)
+        ' y agrupados por su tipo de perfil (Administrador, Supervisor, Vendedor).
     End Sub
 
     ' --- EVENTOS DE LOS REPORTES ---
