@@ -3,6 +3,18 @@
         CargarUsuariosGrid()
     End Sub
 
+    ' --- Funciones auxiliares de validación local ---
+    Private Function IsAlphaSpace(value As String) As Boolean
+        If String.IsNullOrWhiteSpace(value) Then Return False
+        For Each ch As Char In value
+            If Not Char.IsLetter(ch) AndAlso Not Char.IsWhiteSpace(ch) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
+
     Private Sub CargarUsuariosGrid()
 
         Try
@@ -44,6 +56,32 @@
                 Dim idUsuario As Integer = Convert.ToInt32(DGVUsers.Rows(e.RowIndex).Cells("IdUsuario").Value)
                 Dim celdaValor = DGVUsers.Rows(e.RowIndex).Cells(columnName).Value
                 Dim nuevoValor As String = If(celdaValor Is Nothing, String.Empty, celdaValor.ToString())
+
+                Select Case columnName
+                    Case "Nombre", "Apellido"
+                        ' Validar que solo contenga letras y espacios (sin números)
+                        If String.IsNullOrWhiteSpace(nuevoValor) OrElse Not IsAlphaSpace(nuevoValor) Then
+                            MessageBox.Show($"El campo {columnName} solo debe contener letras y espacios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            CargarUsuariosGrid() ' Revierte el cambio visual
+                            Exit Sub
+                        End If
+
+                    Case "Email"
+                        ' Validar estructura de email usando el validador central
+                        If String.IsNullOrWhiteSpace(nuevoValor) OrElse Not ValidadorEmail.IsValidEmail(nuevoValor) Then
+                            MessageBox.Show("El formato del correo electrónico no es válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            CargarUsuariosGrid()
+                            Exit Sub
+                        End If
+
+                    Case "Telefono"
+                        ' Validar que sean solo números (puedes ajustar si usas guiones o espacios)
+                        If Not String.IsNullOrEmpty(nuevoValor) AndAlso Not IsNumeric(nuevoValor) Then
+                            MessageBox.Show("El teléfono solo debe contener números.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            CargarUsuariosGrid()
+                            Exit Sub
+                        End If
+                End Select
 
                 Dim negocio As New UsuarioNegocio()
                 Dim exito As Boolean = negocio.ModificarCampoUsuario(idUsuario, columnName, nuevoValor)

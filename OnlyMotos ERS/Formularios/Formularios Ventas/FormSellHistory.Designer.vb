@@ -122,7 +122,7 @@ Partial Class FormSellHistory
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(103, 55)
         BClearFilters.TabIndex = 4
-        BClearFilters.Text = "Buscar/Filtrar"
+        BClearFilters.Text = "Limpiar Filtros"
         BClearFilters.UseVisualStyleBackColor = True
         ' 
         ' BSearch
@@ -133,7 +133,7 @@ Partial Class FormSellHistory
         BSearch.Name = "BSearch"
         BSearch.Size = New Size(103, 48)
         BSearch.TabIndex = 3
-        BSearch.Text = "Limpiar Filtros"
+        BSearch.Text = "Buscar/Filtrar"
         BSearch.UseVisualStyleBackColor = True
         ' 
         ' TBSearchClient

@@ -59,6 +59,12 @@
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        If String.IsNullOrWhiteSpace(TBSearch.Text) Then
+            MessageBox.Show("Ingrese un Modelo valido para la búsqueda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            TBSearch.Focus()
+            Exit Sub
+        End If
+
         MessageBox.Show("Filtro de búsqueda aplicado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
