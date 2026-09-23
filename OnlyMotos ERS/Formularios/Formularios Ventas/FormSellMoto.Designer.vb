@@ -412,9 +412,11 @@ Partial Class FormSellMoto
         ' 
         ' FormSellMoto
         ' 
+        AcceptButton = BSaveSell
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
+        CancelButton = BCancel
         ClientSize = New Size(834, 561)
         Controls.Add(GroupBox2)
         Controls.Add(DGVDetails)

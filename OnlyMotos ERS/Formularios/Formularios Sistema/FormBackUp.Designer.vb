@@ -96,7 +96,7 @@ Partial Class FormBackUp
         Controls.Add(TBBackupPath)
         Controls.Add(LDescription)
         Name = "FormBackUp"
-        StartPosition = FormStartPosition.CenterParent
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Respaldo de Base de Datos - OnlyMotos ERP"
         ResumeLayout(False)
         PerformLayout()

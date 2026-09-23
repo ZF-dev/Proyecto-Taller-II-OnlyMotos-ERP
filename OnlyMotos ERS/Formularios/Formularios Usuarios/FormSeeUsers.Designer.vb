@@ -27,11 +27,6 @@ Partial Class FormSeeUsers
         BDeleteUser = New Button()
         BClose = New Button()
         DGVUsers = New DataGridView()
-        GBFilters = New GroupBox()
-        BClearFilters = New Button()
-        TBSearch = New TextBox()
-        LSearch = New Label()
-        BSearch = New Button()
         IdUsuario = New DataGridViewTextBoxColumn()
         Nombre = New DataGridViewTextBoxColumn()
         Apellido = New DataGridViewTextBoxColumn()
@@ -41,6 +36,11 @@ Partial Class FormSeeUsers
         Email = New DataGridViewTextBoxColumn()
         Telefono = New DataGridViewTextBoxColumn()
         Estado = New DataGridViewTextBoxColumn()
+        GBFilters = New GroupBox()
+        BClearFilters = New Button()
+        TBSearch = New TextBox()
+        LSearch = New Label()
+        BSearch = New Button()
         GBActions.SuspendLayout()
         CType(DGVUsers, ComponentModel.ISupportInitialize).BeginInit()
         GBFilters.SuspendLayout()
@@ -109,59 +109,6 @@ Partial Class FormSeeUsers
         DGVUsers.Size = New Size(843, 244)
         DGVUsers.TabIndex = 8
         ' 
-        ' GBFilters
-        ' 
-        GBFilters.Controls.Add(BClearFilters)
-        GBFilters.Controls.Add(TBSearch)
-        GBFilters.Controls.Add(LSearch)
-        GBFilters.Controls.Add(BSearch)
-        GBFilters.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        GBFilters.ForeColor = SystemColors.ControlLightLight
-        GBFilters.Location = New Point(12, 12)
-        GBFilters.Name = "GBFilters"
-        GBFilters.Size = New Size(357, 158)
-        GBFilters.TabIndex = 7
-        GBFilters.TabStop = False
-        GBFilters.Text = "Filtro"
-        ' 
-        ' BClearFilters
-        ' 
-        BClearFilters.Font = New Font("Segoe UI", 9F)
-        BClearFilters.ForeColor = SystemColors.ControlText
-        BClearFilters.Location = New Point(43, 116)
-        BClearFilters.Name = "BClearFilters"
-        BClearFilters.Size = New Size(75, 23)
-        BClearFilters.TabIndex = 4
-        BClearFilters.Text = "Limpiar Filtros"
-        BClearFilters.UseVisualStyleBackColor = True
-        ' 
-        ' TBSearch
-        ' 
-        TBSearch.Location = New Point(56, 54)
-        TBSearch.Name = "TBSearch"
-        TBSearch.Size = New Size(295, 23)
-        TBSearch.TabIndex = 0
-        ' 
-        ' LSearch
-        ' 
-        LSearch.AutoSize = True
-        LSearch.Location = New Point(20, 57)
-        LSearch.Name = "LSearch"
-        LSearch.Size = New Size(32, 15)
-        LSearch.TabIndex = 2
-        LSearch.Text = "DNI:"
-        ' 
-        ' BSearch
-        ' 
-        BSearch.Font = New Font("Segoe UI", 9F)
-        BSearch.ForeColor = SystemColors.ControlText
-        BSearch.Location = New Point(230, 116)
-        BSearch.Name = "BSearch"
-        BSearch.Size = New Size(75, 23)
-        BSearch.TabIndex = 1
-        BSearch.Text = "Buscar"
-        BSearch.UseVisualStyleBackColor = True
-        ' 
         ' IdUsuario
         ' 
         IdUsuario.DataPropertyName = "id_usuario"
@@ -221,6 +168,59 @@ Partial Class FormSeeUsers
         Estado.Name = "Estado"
         Estado.ReadOnly = True
         ' 
+        ' GBFilters
+        ' 
+        GBFilters.Controls.Add(BClearFilters)
+        GBFilters.Controls.Add(TBSearch)
+        GBFilters.Controls.Add(LSearch)
+        GBFilters.Controls.Add(BSearch)
+        GBFilters.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GBFilters.ForeColor = SystemColors.ControlLightLight
+        GBFilters.Location = New Point(12, 12)
+        GBFilters.Name = "GBFilters"
+        GBFilters.Size = New Size(357, 158)
+        GBFilters.TabIndex = 7
+        GBFilters.TabStop = False
+        GBFilters.Text = "Filtro"
+        ' 
+        ' BClearFilters
+        ' 
+        BClearFilters.Font = New Font("Segoe UI", 9F)
+        BClearFilters.ForeColor = SystemColors.ControlText
+        BClearFilters.Location = New Point(43, 116)
+        BClearFilters.Name = "BClearFilters"
+        BClearFilters.Size = New Size(75, 23)
+        BClearFilters.TabIndex = 4
+        BClearFilters.Text = "Limpiar Filtros"
+        BClearFilters.UseVisualStyleBackColor = True
+        ' 
+        ' TBSearch
+        ' 
+        TBSearch.Location = New Point(56, 54)
+        TBSearch.Name = "TBSearch"
+        TBSearch.Size = New Size(295, 23)
+        TBSearch.TabIndex = 0
+        ' 
+        ' LSearch
+        ' 
+        LSearch.AutoSize = True
+        LSearch.Location = New Point(20, 57)
+        LSearch.Name = "LSearch"
+        LSearch.Size = New Size(32, 15)
+        LSearch.TabIndex = 2
+        LSearch.Text = "DNI:"
+        ' 
+        ' BSearch
+        ' 
+        BSearch.Font = New Font("Segoe UI", 9F)
+        BSearch.ForeColor = SystemColors.ControlText
+        BSearch.Location = New Point(230, 116)
+        BSearch.Name = "BSearch"
+        BSearch.Size = New Size(75, 23)
+        BSearch.TabIndex = 1
+        BSearch.Text = "Buscar"
+        BSearch.UseVisualStyleBackColor = True
+        ' 
         ' FormSeeUsers
         ' 
         AcceptButton = BSearch
@@ -233,6 +233,7 @@ Partial Class FormSeeUsers
         Controls.Add(DGVUsers)
         Controls.Add(GBFilters)
         Name = "FormSeeUsers"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Lista de Usuarios"
         GBActions.ResumeLayout(False)
         CType(DGVUsers, ComponentModel.ISupportInitialize).EndInit()
