@@ -32,6 +32,22 @@
 
     End Sub
 
+    Private Sub CargarUsuariosInactivosGrid()
+
+        Try
+            Dim negocio As New UsuarioNegocio()
+
+            ' Asegúrate de que este nombre coincida con tu capa de negocio/datos (ej: ListarUsuariosInactivos)
+            DGVUsers.DataSource = negocio.ObtenerListaUsuariosInactivos()
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar la lista de usuarios inactivos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+
     ' --- RESTRICCIÓN DE BÚSQUEDA: SOLO NÚMEROS (DNI) ---
 
     Private Sub TBSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBSearch.KeyPress
@@ -151,7 +167,11 @@
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click
 
         TBSearch.Clear()
-        CargarUsuariosGrid()
+        If RBActive.Checked Then
+            CargarUsuariosGrid()
+        Else
+            CargarUsuariosInactivosGrid()
+        End If
         TBSearch.Focus()
 
     End Sub
@@ -216,4 +236,65 @@
         Me.Close()
     End Sub
 
+    Private Sub RBInactive_CheckedChanged(sender As Object, e As EventArgs) Handles RBInactive.CheckedChanged
+        If RBInactive.Checked Then
+
+            CargarUsuariosInactivosGrid()
+
+            BActiveUser.Visible = True
+            BDeleteUser.Visible = False
+
+        End If
+    End Sub
+
+    Private Sub RBActive_CheckedChanged(sender As Object, e As EventArgs) Handles RBActive.CheckedChanged
+        If RBActive.Checked Then
+
+            CargarUsuariosGrid()
+            BActiveUser.Visible = False
+            BDeleteUser.Visible = True
+
+        End If
+
+    End Sub
+
+    Private Sub BActiveUser_Click(sender As Object, e As EventArgs) Handles BActiveUser.Click
+        If DGVUsers.SelectedCells.Count = 0 Then
+
+            MessageBox.Show("Seleccione un usuario de la lista para Reactivar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+
+        End If
+
+        Dim rowIndex As Integer = DGVUsers.SelectedCells(0).RowIndex
+
+        Dim idUsuario As Integer = Convert.ToInt32(DGVUsers.Rows(rowIndex).Cells("IdUsuario").Value)
+        Dim userName As String = DGVUsers.Rows(rowIndex).Cells("usuario").Value.ToString()
+
+        Dim result As DialogResult = MessageBox.Show($"¿Está seguro de Reactivar al usuario '{userName}'?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If result = DialogResult.Yes Then
+
+            Try
+
+                Dim negocio As New UsuarioNegocio()
+                Dim exito As Boolean = negocio.CambiarEstadoActivo(idUsuario)
+
+                If exito Then
+
+                    MessageBox.Show($"El usuario '{userName}' ha sido marcado como Activo nuevamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    ' Recargamos la grilla para ver los cambios reflejados desde el servidor
+                    CargarUsuariosInactivosGrid()
+
+                End If
+
+            Catch ex As Exception
+
+                MessageBox.Show("Error al procesar la baja: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            End Try
+
+        End If
+    End Sub
 End Class

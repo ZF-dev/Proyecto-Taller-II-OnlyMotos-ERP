@@ -41,9 +41,9 @@ Partial Class FormManageProducts
         TBPrice = New TextBox()
         TBCylinder = New TextBox()
         TBModel = New TextBox()
-        TBBrand = New TextBox()
         NumericUpDown1 = New NumericUpDown()
         OpenFileDialog1 = New OpenFileDialog()
+        CBBrand = New ComboBox()
         GBData.SuspendLayout()
         CType(PBMotoImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDStockMin, ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +54,7 @@ Partial Class FormManageProducts
         ' GBData
         ' 
         GBData.BackColor = Color.MidnightBlue
+        GBData.Controls.Add(CBBrand)
         GBData.Controls.Add(BSelectImage)
         GBData.Controls.Add(TBImagePath)
         GBData.Controls.Add(PBMotoImage)
@@ -72,7 +73,6 @@ Partial Class FormManageProducts
         GBData.Controls.Add(TBPrice)
         GBData.Controls.Add(TBCylinder)
         GBData.Controls.Add(TBModel)
-        GBData.Controls.Add(TBBrand)
         GBData.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         GBData.ForeColor = SystemColors.ControlLightLight
         GBData.Location = New Point(0, 12)
@@ -229,7 +229,6 @@ Partial Class FormManageProducts
         TBPrice.Name = "TBPrice"
         TBPrice.Size = New Size(235, 23)
         TBPrice.TabIndex = 3
-        TBPrice.TextAlign = HorizontalAlignment.Right
         ' 
         ' TBCylinder
         ' 
@@ -245,14 +244,6 @@ Partial Class FormManageProducts
         TBModel.Size = New Size(239, 23)
         TBModel.TabIndex = 1
         ' 
-        ' TBBrand
-        ' 
-        TBBrand.CharacterCasing = CharacterCasing.Upper
-        TBBrand.Location = New Point(128, 37)
-        TBBrand.Name = "TBBrand"
-        TBBrand.Size = New Size(239, 23)
-        TBBrand.TabIndex = 0
-        ' 
         ' NumericUpDown1
         ' 
         NumericUpDown1.Location = New Point(128, 341)
@@ -267,6 +258,14 @@ Partial Class FormManageProducts
         ' 
         OpenFileDialog1.FileName = "OpenFileDialog1"
         OpenFileDialog1.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png"
+        ' 
+        ' CBBrand
+        ' 
+        CBBrand.FormattingEnabled = True
+        CBBrand.Location = New Point(128, 37)
+        CBBrand.Name = "CBBrand"
+        CBBrand.Size = New Size(239, 23)
+        CBBrand.TabIndex = 19
         ' 
         ' FormManageProducts
         ' 
@@ -293,7 +292,6 @@ Partial Class FormManageProducts
     End Sub
 
     Friend WithEvents GBData As GroupBox
-    Friend WithEvents TBBrand As TextBox
     Friend WithEvents LStock As Label
     Friend WithEvents LPrice As Label
     Friend WithEvents LCylinder As Label
@@ -314,4 +312,5 @@ Partial Class FormManageProducts
     Friend WithEvents BSelectImage As Button
     Friend WithEvents TBImagePath As TextBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents CBBrand As ComboBox
 End Class

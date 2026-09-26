@@ -9,6 +9,13 @@
 
     End Function
 
+    Public Function ObtenerListaUsuariosInactivos() As DataTable
+
+        ' Aquí podrías agregar reglas de negocio en el futuro si hiciera falta
+        Return datosUsuario.ListarUsuariosInactivos()
+
+    End Function
+
     Public Function RegistrarNuevoUsuario(idTipo As Integer, dni As String, usuario As String, pass As String, nombre As String, apellido As String, email As String, telefono As String) As Boolean
 
         Return datosUsuario.RegistrarUsuario(idTipo, dni, usuario, pass, nombre, apellido, email, telefono)
@@ -24,6 +31,12 @@
     Public Function CambiarEstadoInactivo(idUsuario As Integer) As Boolean
 
         Return datosUsuario.DarBajaUsuario(idUsuario)
+
+    End Function
+
+    Public Function CambiarEstadoActivo(idUsuario As Integer) As Boolean
+
+        Return datosUsuario.ReactivarUsuario(idUsuario)
 
     End Function
 

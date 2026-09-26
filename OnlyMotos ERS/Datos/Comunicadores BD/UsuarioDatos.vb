@@ -44,6 +44,26 @@ Public Class UsuarioDatos
 
     End Function
 
+    Public Function ListarUsuariosInactivos() As DataTable
+
+        Dim dt As New DataTable()
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_ListarUsuariosInactivos", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+                Dim adaptador As New SqlDataAdapter(comando)
+                adaptador.Fill(dt)
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
     Public Function RegistrarUsuario(idTipo As Integer, dni As String, usuario As String, pass As String, nombre As String, apellido As String, email As String, telefono As String) As Boolean
 
         Try
@@ -132,6 +152,34 @@ Public Class UsuarioDatos
         Catch ex As Exception
 
             MessageBox.Show("Error al dar de baja en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+
+        End Try
+
+    End Function
+
+    Public Function ReactivarUsuario(idUsuario As Integer) As Boolean
+
+        Try
+
+            Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+                Using comando As New SqlCommand("sp_ReactivarUsuario", conexion)
+
+                    comando.CommandType = CommandType.StoredProcedure
+                    comando.Parameters.AddWithValue("@id_usuario", idUsuario)
+
+                    conexion.Open()
+                    comando.ExecuteNonQuery()
+                    Return True
+
+                End Using
+
+            End Using
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al reactivar usuario en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
 
         End Try

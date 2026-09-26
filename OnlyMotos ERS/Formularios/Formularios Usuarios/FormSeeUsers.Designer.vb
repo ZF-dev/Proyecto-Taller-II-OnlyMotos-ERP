@@ -23,6 +23,7 @@ Partial Class FormSeeUsers
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GBActions = New GroupBox()
+        BActiveUser = New Button()
         BAddUser = New Button()
         BDeleteUser = New Button()
         BClose = New Button()
@@ -41,6 +42,8 @@ Partial Class FormSeeUsers
         TBSearch = New TextBox()
         LSearch = New Label()
         BSearch = New Button()
+        RBActive = New RadioButton()
+        RBInactive = New RadioButton()
         GBActions.SuspendLayout()
         CType(DGVUsers, ComponentModel.ISupportInitialize).BeginInit()
         GBFilters.SuspendLayout()
@@ -48,6 +51,7 @@ Partial Class FormSeeUsers
         ' 
         ' GBActions
         ' 
+        GBActions.Controls.Add(BActiveUser)
         GBActions.Controls.Add(BAddUser)
         GBActions.Controls.Add(BDeleteUser)
         GBActions.Controls.Add(BClose)
@@ -55,10 +59,21 @@ Partial Class FormSeeUsers
         GBActions.ForeColor = SystemColors.ControlLightLight
         GBActions.Location = New Point(460, 12)
         GBActions.Name = "GBActions"
-        GBActions.Size = New Size(395, 158)
+        GBActions.Size = New Size(395, 146)
         GBActions.TabIndex = 9
         GBActions.TabStop = False
         GBActions.Text = "Acciones"
+        ' 
+        ' BActiveUser
+        ' 
+        BActiveUser.Font = New Font("Segoe UI", 9F)
+        BActiveUser.ForeColor = SystemColors.ControlText
+        BActiveUser.Location = New Point(156, 50)
+        BActiveUser.Name = "BActiveUser"
+        BActiveUser.Size = New Size(102, 58)
+        BActiveUser.TabIndex = 12
+        BActiveUser.Text = "Reactivar Usuario"
+        BActiveUser.UseVisualStyleBackColor = True
         ' 
         ' BAddUser
         ' 
@@ -178,7 +193,7 @@ Partial Class FormSeeUsers
         GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
-        GBFilters.Size = New Size(357, 158)
+        GBFilters.Size = New Size(357, 146)
         GBFilters.TabIndex = 7
         GBFilters.TabStop = False
         GBFilters.Text = "Filtro"
@@ -221,6 +236,30 @@ Partial Class FormSeeUsers
         BSearch.Text = "Buscar"
         BSearch.UseVisualStyleBackColor = True
         ' 
+        ' RBActive
+        ' 
+        RBActive.AutoSize = True
+        RBActive.Checked = True
+        RBActive.ForeColor = SystemColors.ControlLightLight
+        RBActive.Location = New Point(344, 169)
+        RBActive.Name = "RBActive"
+        RBActive.Size = New Size(64, 19)
+        RBActive.TabIndex = 10
+        RBActive.TabStop = True
+        RBActive.Text = "Activos"
+        RBActive.UseVisualStyleBackColor = True
+        ' 
+        ' RBInactive
+        ' 
+        RBInactive.AutoSize = True
+        RBInactive.ForeColor = SystemColors.ControlLightLight
+        RBInactive.Location = New Point(424, 169)
+        RBInactive.Name = "RBInactive"
+        RBInactive.Size = New Size(72, 19)
+        RBInactive.TabIndex = 11
+        RBInactive.Text = "Inactivos"
+        RBInactive.UseVisualStyleBackColor = True
+        ' 
         ' FormSeeUsers
         ' 
         AcceptButton = BSearch
@@ -229,6 +268,8 @@ Partial Class FormSeeUsers
         BackColor = Color.MidnightBlue
         CancelButton = BClose
         ClientSize = New Size(867, 450)
+        Controls.Add(RBInactive)
+        Controls.Add(RBActive)
         Controls.Add(GBActions)
         Controls.Add(DGVUsers)
         Controls.Add(GBFilters)
@@ -240,6 +281,7 @@ Partial Class FormSeeUsers
         GBFilters.ResumeLayout(False)
         GBFilters.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents GBActions As GroupBox
@@ -261,4 +303,7 @@ Partial Class FormSeeUsers
     Friend WithEvents Email As DataGridViewTextBoxColumn
     Friend WithEvents Telefono As DataGridViewTextBoxColumn
     Friend WithEvents Estado As DataGridViewTextBoxColumn
+    Friend WithEvents RBActive As RadioButton
+    Friend WithEvents RBInactive As RadioButton
+    Friend WithEvents BActiveUser As Button
 End Class

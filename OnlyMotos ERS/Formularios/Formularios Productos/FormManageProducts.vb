@@ -6,14 +6,12 @@ Public Class FormManageProducts
     End Sub
 
     Private Sub ClearForm()
-        TBBrand.Clear()
         TBModel.Clear()
         TBCylinder.Clear()
         TBPrice.Clear()
         TBYear.Clear()
         NUDStock.Value = 1
         NUDStockMin.Value = 1
-        TBBrand.Focus()
     End Sub
 
     Private Sub BSelectImage_Click(sender As Object, e As EventArgs) Handles BSelectImage.Click
@@ -28,9 +26,9 @@ Public Class FormManageProducts
         Dim cylinder As Integer
         Dim year As Integer
 
-        If String.IsNullOrWhiteSpace(TBBrand.Text) OrElse String.IsNullOrWhiteSpace(TBModel.Text) Then
+        If String.IsNullOrWhiteSpace(CBBrand.Text) OrElse String.IsNullOrWhiteSpace(TBModel.Text) Then
             MessageBox.Show("Por favor complete la marca y el modelo.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBBrand.Focus()
+            CBBrand.Focus()
             Exit Sub
         End If
 
