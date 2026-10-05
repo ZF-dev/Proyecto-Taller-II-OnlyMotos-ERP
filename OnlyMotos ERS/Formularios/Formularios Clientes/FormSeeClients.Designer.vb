@@ -39,6 +39,9 @@ Partial Class FormSeeClients
         BAddClient = New Button()
         BDeleteClient = New Button()
         BClose = New Button()
+        RBInactive = New RadioButton()
+        RBActive = New RadioButton()
+        BActiveClient = New Button()
         GBFilters.SuspendLayout()
         CType(DGVClients, ComponentModel.ISupportInitialize).BeginInit()
         GBActions.SuspendLayout()
@@ -54,7 +57,7 @@ Partial Class FormSeeClients
         GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
-        GBFilters.Size = New Size(357, 158)
+        GBFilters.Size = New Size(357, 151)
         GBFilters.TabIndex = 4
         GBFilters.TabStop = False
         GBFilters.Text = "Filtro"
@@ -110,44 +113,52 @@ Partial Class FormSeeClients
         ' 
         ' IdCliente
         ' 
+        IdCliente.DataPropertyName = "id_cliente"
         IdCliente.HeaderText = "ID"
         IdCliente.Name = "IdCliente"
         IdCliente.ReadOnly = True
         ' 
         ' Nombre
         ' 
+        Nombre.DataPropertyName = "nombre"
         Nombre.HeaderText = "Nombre"
         Nombre.Name = "Nombre"
         ' 
         ' Apellido
         ' 
+        Apellido.DataPropertyName = "apellido"
         Apellido.HeaderText = "Apellido"
         Apellido.Name = "Apellido"
         ' 
         ' DNI
         ' 
+        DNI.DataPropertyName = "dni"
         DNI.HeaderText = "DNI"
         DNI.Name = "DNI"
         DNI.ReadOnly = True
         ' 
         ' Email
         ' 
+        Email.DataPropertyName = "email"
         Email.HeaderText = "Email"
         Email.Name = "Email"
         ' 
         ' Telefono
         ' 
+        Telefono.DataPropertyName = "telefono"
         Telefono.HeaderText = "Telefono"
         Telefono.Name = "Telefono"
         ' 
         ' Estado
         ' 
+        Estado.DataPropertyName = "estado"
         Estado.HeaderText = "Estado"
         Estado.Name = "Estado"
         Estado.ReadOnly = True
         ' 
         ' GBActions
         ' 
+        GBActions.Controls.Add(BActiveClient)
         GBActions.Controls.Add(BAddClient)
         GBActions.Controls.Add(BDeleteClient)
         GBActions.Controls.Add(BClose)
@@ -155,7 +166,7 @@ Partial Class FormSeeClients
         GBActions.ForeColor = SystemColors.ControlLightLight
         GBActions.Location = New Point(445, 12)
         GBActions.Name = "GBActions"
-        GBActions.Size = New Size(343, 158)
+        GBActions.Size = New Size(343, 151)
         GBActions.TabIndex = 6
         GBActions.TabStop = False
         GBActions.Text = "Acciones"
@@ -198,6 +209,41 @@ Partial Class FormSeeClients
         BClose.Text = "Cerrar"
         BClose.UseVisualStyleBackColor = True
         ' 
+        ' RBInactive
+        ' 
+        RBInactive.AutoSize = True
+        RBInactive.ForeColor = SystemColors.ControlLightLight
+        RBInactive.Location = New Point(407, 169)
+        RBInactive.Name = "RBInactive"
+        RBInactive.Size = New Size(72, 19)
+        RBInactive.TabIndex = 13
+        RBInactive.Text = "Inactivos"
+        RBInactive.UseVisualStyleBackColor = True
+        ' 
+        ' RBActive
+        ' 
+        RBActive.AutoSize = True
+        RBActive.Checked = True
+        RBActive.ForeColor = SystemColors.ControlLightLight
+        RBActive.Location = New Point(327, 169)
+        RBActive.Name = "RBActive"
+        RBActive.Size = New Size(64, 19)
+        RBActive.TabIndex = 12
+        RBActive.TabStop = True
+        RBActive.Text = "Activos"
+        RBActive.UseVisualStyleBackColor = True
+        ' 
+        ' BActiveClient
+        ' 
+        BActiveClient.Font = New Font("Segoe UI", 9F)
+        BActiveClient.ForeColor = SystemColors.ControlText
+        BActiveClient.Location = New Point(121, 50)
+        BActiveClient.Name = "BActiveClient"
+        BActiveClient.Size = New Size(102, 58)
+        BActiveClient.TabIndex = 13
+        BActiveClient.Text = "Reactivar Cliente"
+        BActiveClient.UseVisualStyleBackColor = True
+        ' 
         ' FormSeeClients
         ' 
         AcceptButton = BSearch
@@ -206,6 +252,8 @@ Partial Class FormSeeClients
         BackColor = Color.MidnightBlue
         CancelButton = BClose
         ClientSize = New Size(800, 450)
+        Controls.Add(RBInactive)
+        Controls.Add(RBActive)
         Controls.Add(GBActions)
         Controls.Add(DGVClients)
         Controls.Add(GBFilters)
@@ -218,6 +266,7 @@ Partial Class FormSeeClients
         CType(DGVClients, ComponentModel.ISupportInitialize).EndInit()
         GBActions.ResumeLayout(False)
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents GBFilters As GroupBox
@@ -226,6 +275,10 @@ Partial Class FormSeeClients
     Friend WithEvents LSearch As Label
     Friend WithEvents BSearch As Button
     Friend WithEvents DGVClients As DataGridView
+    Friend WithEvents GBActions As GroupBox
+    Friend WithEvents BAddClient As Button
+    Friend WithEvents BDeleteClient As Button
+    Friend WithEvents BClose As Button
     Friend WithEvents IdCliente As DataGridViewTextBoxColumn
     Friend WithEvents Nombre As DataGridViewTextBoxColumn
     Friend WithEvents Apellido As DataGridViewTextBoxColumn
@@ -233,8 +286,7 @@ Partial Class FormSeeClients
     Friend WithEvents Email As DataGridViewTextBoxColumn
     Friend WithEvents Telefono As DataGridViewTextBoxColumn
     Friend WithEvents Estado As DataGridViewTextBoxColumn
-    Friend WithEvents GBActions As GroupBox
-    Friend WithEvents BAddClient As Button
-    Friend WithEvents BDeleteClient As Button
-    Friend WithEvents BClose As Button
+    Friend WithEvents RBInactive As RadioButton
+    Friend WithEvents RBActive As RadioButton
+    Friend WithEvents BActiveClient As Button
 End Class

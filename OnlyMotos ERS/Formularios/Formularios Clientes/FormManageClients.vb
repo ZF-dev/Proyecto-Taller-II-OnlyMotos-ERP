@@ -105,18 +105,23 @@
 
         End If
 
-        ' 2. Captura de datos
-        Dim dni As String = TBDNI.Text.Trim()
-        Dim nombre As String = TBName.Text.Trim()
-        Dim apellido As String = TBLastName.Text.Trim()
-        Dim telefono As String = TBPhone.Text.Trim()
-        Dim email As String = TBEmail.Text.Trim()
+        Try
 
-        ' MÁS ADELANTE EN BD: INSERT INTO Clientes (dni, nombre_apellido, telefono, email, estado) VALUES (...)
-        Console.WriteLine($"Nuevo cliente a registrar: DNI {dni} - {nombre} {apellido}")
+            Dim negocio As New ClienteNegocio()
 
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+            negocio.RegistrarCliente(TBName.Text, TBLastName.Text, TBDNI.Text, TBEmail.Text, TBPhone.Text)
+
+            MessageBox.Show("¡Cliente registrado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al registrar cliente: " & ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+        End Try
+
 
     End Sub
 
