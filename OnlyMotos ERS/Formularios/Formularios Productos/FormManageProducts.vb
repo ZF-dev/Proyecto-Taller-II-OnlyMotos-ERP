@@ -1,13 +1,10 @@
-﻿Imports System.Security.Cryptography
-
-Public Class FormManageProducts
+﻿Public Class FormManageProducts
     Private Sub FormManageProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ClearForm()
     End Sub
 
     Private Sub ClearForm()
         TBModel.Clear()
-        TBCylinder.Clear()
         TBPrice.Clear()
         TBYear.Clear()
         NUDStock.Value = 1
@@ -23,7 +20,6 @@ Public Class FormManageProducts
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
 
         Dim price As Decimal
-        Dim cylinder As Integer
         Dim year As Integer
 
         If String.IsNullOrWhiteSpace(CBBrand.Text) OrElse String.IsNullOrWhiteSpace(TBModel.Text) Then
@@ -38,9 +34,9 @@ Public Class FormManageProducts
             Exit Sub
         End If
 
-        If String.IsNullOrWhiteSpace(TBCylinder.Text) OrElse Not Integer.TryParse(TBCylinder.Text, cylinder) OrElse cylinder <= 0 Then
+        If String.IsNullOrWhiteSpace(CBCylinder.Text) Then
             MessageBox.Show("Ingrese una cilindrada válida mayor a cero.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBCylinder.Focus()
+            CBCylinder.Focus()
             Exit Sub
         End If
 

@@ -1,16 +1,21 @@
 ﻿Public Class FormSeeProducts
     Private Sub FormSeeProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        LoadMockData()
+        CargarMotosGrid()
 
     End Sub
 
-    Private Sub LoadMockData()
-        DGVProducts.Rows.Clear()
-        ' Datos simulados (El ID representa el valor autoincremental de la BD)
-        DGVProducts.Rows.Add(1, "HONDA", "Wave 110s", "2010", "110 cc", 8, "$ 2,500,000.00")
-        DGVProducts.Rows.Add(2, "YAMAHA", "YBR 125", "2012", "125 cc", 4, "$ 3,800,000.00")
-        DGVProducts.Rows.Add(3, "MOTOMEL", "Sirius 150", "2015", "150 cc", 12, "$ 2,100,000.00")
+    Private Sub CargarMotosGrid()
+
+        Try
+            Dim negocio As New ProductoNegocio()
+            DGVProducts.DataSource = negocio.ObtenerMotos()
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar el catálogo de motos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
     End Sub
 
     ' --- VALIDACIÓN Y ACTUALIZACIÓN EN TIEMPO REAL DEL STOCK EN LA GRILLA ---
@@ -70,7 +75,7 @@
 
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click
         TBSearch.Clear()
-        LoadMockData()
+        CargarMotosGrid()
     End Sub
 
     Private Sub BClose_Click(sender As Object, e As EventArgs) Handles BClose.Click

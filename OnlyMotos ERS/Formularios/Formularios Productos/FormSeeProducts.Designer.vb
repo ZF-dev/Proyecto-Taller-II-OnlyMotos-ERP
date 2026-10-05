@@ -29,6 +29,8 @@ Partial Class FormSeeProducts
         BClearFilters = New Button()
         TBSearch = New TextBox()
         DGVProducts = New DataGridView()
+        BClose = New Button()
+        BDeleteProduct = New Button()
         IdMoto = New DataGridViewTextBoxColumn()
         Marca = New DataGridViewTextBoxColumn()
         Modelo = New DataGridViewTextBoxColumn()
@@ -37,8 +39,6 @@ Partial Class FormSeeProducts
         Stock = New DataGridViewTextBoxColumn()
         Precio = New DataGridViewTextBoxColumn()
         Imagen = New DataGridViewImageColumn()
-        BClose = New Button()
-        BDeleteProduct = New Button()
         GBFilters.SuspendLayout()
         CType(DGVProducts, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -114,55 +114,6 @@ Partial Class FormSeeProducts
         DGVProducts.Size = New Size(837, 244)
         DGVProducts.TabIndex = 4
         ' 
-        ' IdMoto
-        ' 
-        IdMoto.HeaderText = "Id Moto"
-        IdMoto.Name = "IdMoto"
-        IdMoto.ReadOnly = True
-        ' 
-        ' Marca
-        ' 
-        Marca.HeaderText = "Marca"
-        Marca.Name = "Marca"
-        Marca.ReadOnly = True
-        ' 
-        ' Modelo
-        ' 
-        Modelo.HeaderText = "Modelo"
-        Modelo.Name = "Modelo"
-        Modelo.ReadOnly = True
-        ' 
-        ' Año
-        ' 
-        Año.HeaderText = "Año"
-        Año.Name = "Año"
-        Año.ReadOnly = True
-        ' 
-        ' CC
-        ' 
-        CC.HeaderText = "Cilindrada"
-        CC.Name = "CC"
-        CC.ReadOnly = True
-        ' 
-        ' Stock
-        ' 
-        Stock.HeaderText = "Stock"
-        Stock.Name = "Stock"
-        ' 
-        ' Precio
-        ' 
-        Precio.HeaderText = "Precio"
-        Precio.Name = "Precio"
-        Precio.ReadOnly = True
-        ' 
-        ' Imagen
-        ' 
-        Imagen.HeaderText = "Vista"
-        Imagen.Image = My.Resources.Resources.OnlyMotos_Logo
-        Imagen.ImageLayout = DataGridViewImageCellLayout.Zoom
-        Imagen.Name = "Imagen"
-        Imagen.ReadOnly = True
-        ' 
         ' BClose
         ' 
         BClose.Font = New Font("Segoe UI", 9F)
@@ -187,6 +138,63 @@ Partial Class FormSeeProducts
         BDeleteProduct.Text = "Eliminar Moto"
         BDeleteProduct.TextAlign = ContentAlignment.MiddleLeft
         BDeleteProduct.UseVisualStyleBackColor = True
+        ' 
+        ' IdMoto
+        ' 
+        IdMoto.DataPropertyName = "id_moto"
+        IdMoto.HeaderText = "Id Moto"
+        IdMoto.Name = "IdMoto"
+        IdMoto.ReadOnly = True
+        ' 
+        ' Marca
+        ' 
+        Marca.DataPropertyName = "id_marca"
+        Marca.HeaderText = "Marca"
+        Marca.Name = "Marca"
+        Marca.ReadOnly = True
+        ' 
+        ' Modelo
+        ' 
+        Modelo.DataPropertyName = "modelo"
+        Modelo.HeaderText = "Modelo"
+        Modelo.Name = "Modelo"
+        Modelo.ReadOnly = True
+        ' 
+        ' Año
+        ' 
+        Año.DataPropertyName = "año"
+        Año.HeaderText = "Año"
+        Año.Name = "Año"
+        Año.ReadOnly = True
+        ' 
+        ' CC
+        ' 
+        CC.DataPropertyName = "id_cc"
+        CC.HeaderText = "Cilindrada"
+        CC.Name = "CC"
+        CC.ReadOnly = True
+        ' 
+        ' Stock
+        ' 
+        Stock.DataPropertyName = "stock"
+        Stock.HeaderText = "Stock"
+        Stock.Name = "Stock"
+        ' 
+        ' Precio
+        ' 
+        Precio.DataPropertyName = "precio"
+        Precio.HeaderText = "Precio"
+        Precio.Name = "Precio"
+        Precio.ReadOnly = True
+        ' 
+        ' Imagen
+        ' 
+        Imagen.DataPropertyName = "imagen_path"
+        Imagen.HeaderText = "Vista"
+        Imagen.Image = My.Resources.Resources.OnlyMotos_Logo
+        Imagen.ImageLayout = DataGridViewImageCellLayout.Zoom
+        Imagen.Name = "Imagen"
+        Imagen.ReadOnly = True
         ' 
         ' FormSeeProducts
         ' 

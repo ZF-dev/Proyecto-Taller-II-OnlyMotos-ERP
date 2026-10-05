@@ -23,6 +23,7 @@ Partial Class FormManageProducts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GBData = New GroupBox()
+        CBBrand = New ComboBox()
         BSelectImage = New Button()
         TBImagePath = New TextBox()
         PBMotoImage = New PictureBox()
@@ -39,11 +40,10 @@ Partial Class FormManageProducts
         BSave = New Button()
         NUDStock = New NumericUpDown()
         TBPrice = New TextBox()
-        TBCylinder = New TextBox()
         TBModel = New TextBox()
         NumericUpDown1 = New NumericUpDown()
         OpenFileDialog1 = New OpenFileDialog()
-        CBBrand = New ComboBox()
+        CBCylinder = New ComboBox()
         GBData.SuspendLayout()
         CType(PBMotoImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDStockMin, ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +54,7 @@ Partial Class FormManageProducts
         ' GBData
         ' 
         GBData.BackColor = Color.MidnightBlue
+        GBData.Controls.Add(CBCylinder)
         GBData.Controls.Add(CBBrand)
         GBData.Controls.Add(BSelectImage)
         GBData.Controls.Add(TBImagePath)
@@ -71,7 +72,6 @@ Partial Class FormManageProducts
         GBData.Controls.Add(BSave)
         GBData.Controls.Add(NUDStock)
         GBData.Controls.Add(TBPrice)
-        GBData.Controls.Add(TBCylinder)
         GBData.Controls.Add(TBModel)
         GBData.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         GBData.ForeColor = SystemColors.ControlLightLight
@@ -81,6 +81,14 @@ Partial Class FormManageProducts
         GBData.TabIndex = 0
         GBData.TabStop = False
         GBData.Text = "Datos de la Moto"
+        ' 
+        ' CBBrand
+        ' 
+        CBBrand.FormattingEnabled = True
+        CBBrand.Location = New Point(128, 37)
+        CBBrand.Name = "CBBrand"
+        CBBrand.Size = New Size(239, 23)
+        CBBrand.TabIndex = 19
         ' 
         ' BSelectImage
         ' 
@@ -230,13 +238,6 @@ Partial Class FormManageProducts
         TBPrice.Size = New Size(235, 23)
         TBPrice.TabIndex = 3
         ' 
-        ' TBCylinder
-        ' 
-        TBCylinder.Location = New Point(128, 127)
-        TBCylinder.Name = "TBCylinder"
-        TBCylinder.Size = New Size(239, 23)
-        TBCylinder.TabIndex = 2
-        ' 
         ' TBModel
         ' 
         TBModel.Location = New Point(128, 81)
@@ -259,13 +260,13 @@ Partial Class FormManageProducts
         OpenFileDialog1.FileName = "OpenFileDialog1"
         OpenFileDialog1.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png"
         ' 
-        ' CBBrand
+        ' CBCylinder
         ' 
-        CBBrand.FormattingEnabled = True
-        CBBrand.Location = New Point(128, 37)
-        CBBrand.Name = "CBBrand"
-        CBBrand.Size = New Size(239, 23)
-        CBBrand.TabIndex = 19
+        CBCylinder.FormattingEnabled = True
+        CBCylinder.Location = New Point(128, 124)
+        CBCylinder.Name = "CBCylinder"
+        CBCylinder.Size = New Size(239, 23)
+        CBCylinder.TabIndex = 20
         ' 
         ' FormManageProducts
         ' 
@@ -301,7 +302,6 @@ Partial Class FormManageProducts
     Friend WithEvents BSave As Button
     Friend WithEvents NUDStock As NumericUpDown
     Friend WithEvents TBPrice As TextBox
-    Friend WithEvents TBCylinder As TextBox
     Friend WithEvents TBModel As TextBox
     Friend WithEvents NUDStockMin As NumericUpDown
     Friend WithEvents LStockMin As Label
@@ -313,4 +313,5 @@ Partial Class FormManageProducts
     Friend WithEvents TBImagePath As TextBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents CBBrand As ComboBox
+    Friend WithEvents CBCylinder As ComboBox
 End Class
