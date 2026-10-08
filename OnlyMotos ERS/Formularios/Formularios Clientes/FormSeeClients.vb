@@ -100,41 +100,28 @@
 
     End Sub
 
-    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
-
-        If String.IsNullOrWhiteSpace(TBSearch.Text) Then
-
-            MessageBox.Show("Ingrese un número de DNI para filtrar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBSearch.Focus()
-            Exit Sub
-
-        End If
-
-        If Not ValidadorDNI.IsValidDNI(TBSearch.Text) Then
-
-            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBSearch.Focus()
-            TBSearch.SelectAll()
-            Exit Sub
-
-        End If
+    Private Sub TBSearch_TextChanged(sender As Object, e As EventArgs) Handles TBSearch.TextChanged
+        Dim dniBuscado As String = TBSearch.Text.Trim()
 
         Try
             Dim negocio As New ClienteNegocio()
 
-            DGVClients.DataSource = negocio.BuscarClientePorDni(TBSearch.Text.Trim())
-
-            If DirectCast(DGVClients.DataSource, DataTable).Rows.Count = 0 Then
-
-                MessageBox.Show("No se encontró ningún cliente con ese DNI.", "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If String.IsNullOrWhiteSpace(dniBuscado) Then
                 CargarClientesGrid()
-
+                Exit Sub
             End If
 
+            If dniBuscado.Length < 2 Then
+                Exit Sub
+            End If
+
+            Dim resultado As DataTable = negocio.BuscarClientePorDni(dniBuscado)
+
+            DGVClients.DataSource = resultado
+
+
         Catch ex As Exception
-
-            MessageBox.Show("Error al buscar el cliente: Error en la Base de Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
+            MessageBox.Show("Error al buscar el cliente: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub

@@ -23,14 +23,11 @@ Partial Class FormSeeProducts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Label1 = New Label()
-        BSearch = New Button()
         LSearch = New Label()
         GBFilters = New GroupBox()
         BClearFilters = New Button()
         TBSearch = New TextBox()
         DGVProducts = New DataGridView()
-        BClose = New Button()
-        BDeleteProduct = New Button()
         IdMoto = New DataGridViewTextBoxColumn()
         Marca = New DataGridViewTextBoxColumn()
         Modelo = New DataGridViewTextBoxColumn()
@@ -39,6 +36,8 @@ Partial Class FormSeeProducts
         Stock = New DataGridViewTextBoxColumn()
         Precio = New DataGridViewTextBoxColumn()
         Imagen = New DataGridViewImageColumn()
+        BClose = New Button()
+        BDeleteProduct = New Button()
         GBFilters.SuspendLayout()
         CType(DGVProducts, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -50,17 +49,6 @@ Partial Class FormSeeProducts
         Label1.Name = "Label1"
         Label1.Size = New Size(0, 15)
         Label1.TabIndex = 0
-        ' 
-        ' BSearch
-        ' 
-        BSearch.Font = New Font("Segoe UI", 9F)
-        BSearch.ForeColor = SystemColors.ControlText
-        BSearch.Location = New Point(230, 116)
-        BSearch.Name = "BSearch"
-        BSearch.Size = New Size(75, 23)
-        BSearch.TabIndex = 1
-        BSearch.Text = "Aplicar"
-        BSearch.UseVisualStyleBackColor = True
         ' 
         ' LSearch
         ' 
@@ -76,7 +64,6 @@ Partial Class FormSeeProducts
         GBFilters.Controls.Add(BClearFilters)
         GBFilters.Controls.Add(TBSearch)
         GBFilters.Controls.Add(LSearch)
-        GBFilters.Controls.Add(BSearch)
         GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
         GBFilters.Name = "GBFilters"
@@ -89,7 +76,7 @@ Partial Class FormSeeProducts
         ' 
         BClearFilters.Font = New Font("Segoe UI", 9F)
         BClearFilters.ForeColor = SystemColors.ControlText
-        BClearFilters.Location = New Point(43, 116)
+        BClearFilters.Location = New Point(132, 116)
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(75, 23)
         BClearFilters.TabIndex = 4
@@ -111,33 +98,9 @@ Partial Class FormSeeProducts
         DGVProducts.Columns.AddRange(New DataGridViewColumn() {IdMoto, Marca, Modelo, Año, CC, Stock, Precio, Imagen})
         DGVProducts.Location = New Point(12, 194)
         DGVProducts.Name = "DGVProducts"
+        DGVProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGVProducts.Size = New Size(837, 244)
         DGVProducts.TabIndex = 4
-        ' 
-        ' BClose
-        ' 
-        BClose.Font = New Font("Segoe UI", 9F)
-        BClose.ForeColor = SystemColors.ControlText
-        BClose.Location = New Point(538, 57)
-        BClose.Name = "BClose"
-        BClose.Size = New Size(101, 58)
-        BClose.TabIndex = 5
-        BClose.Text = "Cerrar"
-        BClose.UseVisualStyleBackColor = True
-        ' 
-        ' BDeleteProduct
-        ' 
-        BDeleteProduct.Font = New Font("Segoe UI", 9F)
-        BDeleteProduct.ForeColor = SystemColors.ControlText
-        BDeleteProduct.Image = My.Resources.Resources.Icono_Cancelar_Chiquito
-        BDeleteProduct.ImageAlign = ContentAlignment.MiddleRight
-        BDeleteProduct.Location = New Point(680, 57)
-        BDeleteProduct.Name = "BDeleteProduct"
-        BDeleteProduct.Size = New Size(112, 58)
-        BDeleteProduct.TabIndex = 6
-        BDeleteProduct.Text = "Eliminar Moto"
-        BDeleteProduct.TextAlign = ContentAlignment.MiddleLeft
-        BDeleteProduct.UseVisualStyleBackColor = True
         ' 
         ' IdMoto
         ' 
@@ -148,7 +111,7 @@ Partial Class FormSeeProducts
         ' 
         ' Marca
         ' 
-        Marca.DataPropertyName = "id_marca"
+        Marca.DataPropertyName = "marca"
         Marca.HeaderText = "Marca"
         Marca.Name = "Marca"
         Marca.ReadOnly = True
@@ -169,7 +132,7 @@ Partial Class FormSeeProducts
         ' 
         ' CC
         ' 
-        CC.DataPropertyName = "id_cc"
+        CC.DataPropertyName = "cc"
         CC.HeaderText = "Cilindrada"
         CC.Name = "CC"
         CC.ReadOnly = True
@@ -196,9 +159,33 @@ Partial Class FormSeeProducts
         Imagen.Name = "Imagen"
         Imagen.ReadOnly = True
         ' 
+        ' BClose
+        ' 
+        BClose.Font = New Font("Segoe UI", 9F)
+        BClose.ForeColor = SystemColors.ControlText
+        BClose.Location = New Point(538, 57)
+        BClose.Name = "BClose"
+        BClose.Size = New Size(101, 58)
+        BClose.TabIndex = 5
+        BClose.Text = "Cerrar"
+        BClose.UseVisualStyleBackColor = True
+        ' 
+        ' BDeleteProduct
+        ' 
+        BDeleteProduct.Font = New Font("Segoe UI", 9F)
+        BDeleteProduct.ForeColor = SystemColors.ControlText
+        BDeleteProduct.Image = My.Resources.Resources.Icono_Cancelar_Chiquito
+        BDeleteProduct.ImageAlign = ContentAlignment.MiddleRight
+        BDeleteProduct.Location = New Point(680, 57)
+        BDeleteProduct.Name = "BDeleteProduct"
+        BDeleteProduct.Size = New Size(112, 58)
+        BDeleteProduct.TabIndex = 6
+        BDeleteProduct.Text = "Eliminar Moto"
+        BDeleteProduct.TextAlign = ContentAlignment.MiddleLeft
+        BDeleteProduct.UseVisualStyleBackColor = True
+        ' 
         ' FormSeeProducts
         ' 
-        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
@@ -222,7 +209,6 @@ Partial Class FormSeeProducts
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents BSearch As Button
     Friend WithEvents LSearch As Label
     Friend WithEvents GBFilters As GroupBox
     Friend WithEvents TBSearch As TextBox

@@ -1,6 +1,7 @@
 ﻿Public Class FormManageProducts
     Private Sub FormManageProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ClearForm()
+        CargarComboBoxes()
     End Sub
 
     Private Sub ClearForm()
@@ -9,6 +10,26 @@
         TBYear.Clear()
         NUDStock.Value = 1
         NUDStockMin.Value = 1
+    End Sub
+
+    Private Sub CargarComboBoxes()
+        Try
+            Dim negocioMoto As New ProductoNegocio()
+
+            CBBrand.DataSource = negocioMoto.ObtenerMarcas()
+            CBBrand.DisplayMember = "nombre"
+            CBBrand.ValueMember = "id_marca"
+            CBBrand.SelectedIndex = -1
+
+
+            CBCylinder.DataSource = negocioMoto.ObtenerCc()
+            CBCylinder.DisplayMember = "tamaño"
+            CBCylinder.ValueMember = "id_cc"
+            CBCylinder.SelectedIndex = -1
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar las listas desplegables: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub BSelectImage_Click(sender As Object, e As EventArgs) Handles BSelectImage.Click
@@ -22,8 +43,8 @@
         Dim price As Decimal
         Dim year As Integer
 
-        If String.IsNullOrWhiteSpace(CBBrand.Text) OrElse String.IsNullOrWhiteSpace(TBModel.Text) Then
-            MessageBox.Show("Por favor complete la marca y el modelo.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If CBBrand.SelectedValue Is Nothing OrElse CBBrand.SelectedIndex = -1 OrElse String.IsNullOrWhiteSpace(CBBrand.Text) Then
+            MessageBox.Show("Por favor seleccione una marca válida de la lista.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             CBBrand.Focus()
             Exit Sub
         End If
@@ -34,7 +55,7 @@
             Exit Sub
         End If
 
-        If String.IsNullOrWhiteSpace(CBCylinder.Text) Then
+        If CBCylinder.SelectedValue Is Nothing OrElse CBCylinder.SelectedIndex = -1 OrElse String.IsNullOrWhiteSpace(CBCylinder.Text) Then
             MessageBox.Show("Ingrese una cilindrada válida mayor a cero.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             CBCylinder.Focus()
             Exit Sub
@@ -46,12 +67,27 @@
             Exit Sub
         End If
 
+        Try
+            Dim negocio As New ProductoNegocio()
 
 
-        ' Aquí irá la orden INSERT INTO Productos (marca, modelo, cilindrada, precio, stock)
-        MessageBox.Show("Moto registrada correctamente en el catálogo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        ClearForm()
+            Dim idMarca As Integer = Convert.ToInt32(CBBrand.SelectedValue)
+            Dim idCc As Integer = Convert.ToInt32(CBCylinder.SelectedValue)
+            Dim stock As Integer = Convert.ToInt32(NUDStock.Value)
+            Dim stockMin As Integer = Convert.ToInt32(NUDStockMin.Value)
+            Dim rutaOrigen As String = TBImagePath.Text.Trim()
+            Dim yearBD As String = TBYear.Text.Trim()
+
+            negocio.RegistrarMoto(idMarca, idCc, TBModel.Text, price, stock, stockMin, rutaOrigen, yearBD)
+
+            MessageBox.Show("Moto registrada correctamente en el catálogo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ClearForm()
+
+        Catch ex As Exception
+            MessageBox.Show("Error al registrar la moto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
 

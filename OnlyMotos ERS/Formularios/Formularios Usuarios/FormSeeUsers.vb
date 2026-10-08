@@ -120,46 +120,31 @@
 
     ' --- BÚSQUEDA Y FILTRADO ---
 
-    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
-        If String.IsNullOrWhiteSpace(TBSearch.Text) Then
-
-            MessageBox.Show("Ingrese un número de DNI para filtrar los usuarios.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBSearch.Focus()
-            Exit Sub
-
-        End If
-
-        If Not ValidadorDNI.IsValidDNI(TBSearch.Text) Then
-
-            MessageBox.Show("El DNI ingresado no es válido. Debe contener 7 u 8 dígitos.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBSearch.Focus()
-            TBSearch.SelectAll()
-            Exit Sub
-
-        End If
+    Private Sub TBSearch_TextChanged(sender As Object, e As EventArgs) Handles TBSearch.TextChanged
+        Dim dniBuscado As String = TBSearch.Text.Trim()
 
         Try
-
             Dim negocio As New UsuarioNegocio()
-            Dim resultado As DataTable = negocio.ObtenerUsuarioPorDni(TBSearch.Text.Trim())
 
-            ' Verificamos si la búsqueda arrojó resultados
+            If String.IsNullOrWhiteSpace(dniBuscado) Then
+                CargarUsuariosGrid()
+                Exit Sub
+            End If
+
+            If Not ValidadorDNI.IsValidDNI(dniBuscado) Then
+                Exit Sub
+            End If
+
+            Dim resultado As DataTable = negocio.ObtenerUsuarioPorDni(dniBuscado)
+
             If resultado.Rows.Count > 0 Then
 
                 DGVUsers.DataSource = resultado
 
-            Else
-
-                MessageBox.Show("DNI no registrado en el sistema.", "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                TBSearch.Focus()
-                TBSearch.SelectAll()
-
             End If
 
         Catch ex As Exception
-
             MessageBox.Show("Error al buscar el usuario: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
         End Try
 
     End Sub

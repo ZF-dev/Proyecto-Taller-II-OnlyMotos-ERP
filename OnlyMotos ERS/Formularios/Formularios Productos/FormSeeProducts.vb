@@ -18,33 +18,49 @@
         End Try
     End Sub
 
-    ' --- VALIDACIÓN Y ACTUALIZACIÓN EN TIEMPO REAL DEL STOCK EN LA GRILLA ---
 
-    Private Sub DGVProducts_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles DGVProducts.CellValidating
-        ' Verificar si la celda editada pertenece a la columna "stock"
-        If DGVProducts.Columns(e.ColumnIndex).Name = "Stock" Then
-            Dim newStock As Integer
 
-            ' Intenta convertir la entrada a un número entero. Si falla o es negativo, detiene el cambio
-            If Not Integer.TryParse(e.FormattedValue.ToString(), newStock) OrElse newStock < 0 Then
-                e.Cancel = True
-                MessageBox.Show("El stock debe ser un número entero mayor o igual a 0.", "Validación de Entrada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    Private Sub DGVProducts_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGVProducts.CellEndEdit
+
+        Dim estaValidandoStock As Boolean = False
+
+        If estaValidandoStock OrElse e.RowIndex < 0 Then Exit Sub
+
+        Dim columnName As String = DGVProducts.Columns(e.ColumnIndex).Name
+
+        If columnName = "Stock" Then
+
+            Dim row As DataGridViewRow = DGVProducts.Rows(e.RowIndex)
+            Dim idMoto As Integer = Convert.ToInt32(row.Cells("IdMoto").Value)
+            Dim valorCelda = row.Cells("Stock").Value
+            Dim nuevoStock As Integer
+
+            If valorCelda Is Nothing OrElse Not Integer.TryParse(valorCelda.ToString(), nuevoStock) OrElse nuevoStock < 0 Then
+
+                estaValidandoStock = True
+                MessageBox.Show("El stock debe ser un número entero válido mayor o igual a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                CargarMotosGrid()
+                Exit Sub
+
             End If
+
+            Try
+
+                Dim negocio As New ProductoNegocio()
+                negocio.ModificarStockMoto(idMoto, nuevoStock)
+
+            Catch ex As Exception
+
+                estaValidandoStock = True
+                MessageBox.Show("Error al actualizar el stock: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                CargarMotosGrid()
+
+            End Try
+
         End If
+
     End Sub
 
-    Private Sub DGVProducts_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGVProducts.CellValueChanged
-        ' Se activa cuando el usuario confirma el cambio en la celda
-        If e.RowIndex < 0 OrElse DGVProducts.Columns(e.ColumnIndex).Name <> "Stock" Then Exit Sub
-
-        Dim idMoto As Integer = Convert.ToInt32(DGVProducts.Rows(e.RowIndex).Cells("IdMoto").Value)
-        Dim nuevoStock As Integer = Convert.ToInt32(DGVProducts.Rows(e.RowIndex).Cells("Stock").Value)
-
-        ' MÁS ADELANTE: UPDATE Productos SET stock = @nuevoStock WHERE id_moto = @idMoto
-        Console.WriteLine($"Stock actualizado en BD para ID {idMoto}: {nuevoStock}")
-    End Sub
-
-    ' --- ELIMINACIÓN DE REGISTROS ---
 
     Private Sub BDeleteProduct_Click(sender As Object, e As EventArgs) Handles BDeleteProduct.Click
         If DGVProducts.SelectedCells.Count = 0 Then
@@ -58,19 +74,38 @@
         Dim result As DialogResult = MessageBox.Show($"¿Está seguro de eliminar la moto '{selectedModel}'?", "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If result = DialogResult.Yes Then
-            DGVProducts.Rows.RemoveAt(rowIndex)
-            MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Try
+
+                Dim row As DataGridViewRow = DGVProducts.SelectedRows(0)
+                Dim idMoto As Integer = Convert.ToInt32(row.Cells("IdMoto").Value)
+
+                Dim negocio As New ProductoNegocio()
+                negocio.DarDeBajaMoto(idMoto)
+
+                MessageBox.Show("Moto eliminada correctamente del catálogo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
+                CargarMotosGrid()
+
+            Catch ex As Exception
+                MessageBox.Show("Error al eliminar la moto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
     End Sub
 
-    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
-        If String.IsNullOrWhiteSpace(TBSearch.Text) Then
-            MessageBox.Show("Ingrese un Modelo valido para la búsqueda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            TBSearch.Focus()
-            Exit Sub
-        End If
+    Private Sub TBSearchModel_TextChanged(sender As Object, e As EventArgs) Handles TBSearch.TextChanged
 
-        MessageBox.Show("Filtro de búsqueda aplicado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            Dim negocio As New ProductoNegocio()
+            Dim filtro As String = TBSearch.Text.Trim()
+
+            DGVProducts.DataSource = negocio.ObtenerMotosPorModelo(filtro)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al filtrar las motos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click

@@ -41,7 +41,6 @@ Partial Class FormSeeUsers
         BClearFilters = New Button()
         TBSearch = New TextBox()
         LSearch = New Label()
-        BSearch = New Button()
         RBActive = New RadioButton()
         RBInactive = New RadioButton()
         GBActions.SuspendLayout()
@@ -188,7 +187,6 @@ Partial Class FormSeeUsers
         GBFilters.Controls.Add(BClearFilters)
         GBFilters.Controls.Add(TBSearch)
         GBFilters.Controls.Add(LSearch)
-        GBFilters.Controls.Add(BSearch)
         GBFilters.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         GBFilters.ForeColor = SystemColors.ControlLightLight
         GBFilters.Location = New Point(12, 12)
@@ -202,7 +200,7 @@ Partial Class FormSeeUsers
         ' 
         BClearFilters.Font = New Font("Segoe UI", 9F)
         BClearFilters.ForeColor = SystemColors.ControlText
-        BClearFilters.Location = New Point(43, 116)
+        BClearFilters.Location = New Point(139, 117)
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(75, 23)
         BClearFilters.TabIndex = 4
@@ -224,17 +222,6 @@ Partial Class FormSeeUsers
         LSearch.Size = New Size(32, 15)
         LSearch.TabIndex = 2
         LSearch.Text = "DNI:"
-        ' 
-        ' BSearch
-        ' 
-        BSearch.Font = New Font("Segoe UI", 9F)
-        BSearch.ForeColor = SystemColors.ControlText
-        BSearch.Location = New Point(230, 116)
-        BSearch.Name = "BSearch"
-        BSearch.Size = New Size(75, 23)
-        BSearch.TabIndex = 1
-        BSearch.Text = "Buscar"
-        BSearch.UseVisualStyleBackColor = True
         ' 
         ' RBActive
         ' 
@@ -262,7 +249,6 @@ Partial Class FormSeeUsers
         ' 
         ' FormSeeUsers
         ' 
-        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
@@ -293,7 +279,6 @@ Partial Class FormSeeUsers
     Friend WithEvents BClearFilters As Button
     Friend WithEvents TBSearch As TextBox
     Friend WithEvents LSearch As Label
-    Friend WithEvents BSearch As Button
     Friend WithEvents IdUsuario As DataGridViewTextBoxColumn
     Friend WithEvents Nombre As DataGridViewTextBoxColumn
     Friend WithEvents Apellido As DataGridViewTextBoxColumn

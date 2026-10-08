@@ -23,6 +23,7 @@ Partial Class FormManageProducts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GBData = New GroupBox()
+        CBCylinder = New ComboBox()
         CBBrand = New ComboBox()
         BSelectImage = New Button()
         TBImagePath = New TextBox()
@@ -43,7 +44,6 @@ Partial Class FormManageProducts
         TBModel = New TextBox()
         NumericUpDown1 = New NumericUpDown()
         OpenFileDialog1 = New OpenFileDialog()
-        CBCylinder = New ComboBox()
         GBData.SuspendLayout()
         CType(PBMotoImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(NUDStockMin, ComponentModel.ISupportInitialize).BeginInit()
@@ -82,10 +82,23 @@ Partial Class FormManageProducts
         GBData.TabStop = False
         GBData.Text = "Datos de la Moto"
         ' 
+        ' CBCylinder
+        ' 
+        CBCylinder.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        CBCylinder.AutoCompleteSource = AutoCompleteSource.ListItems
+        CBCylinder.FormattingEnabled = True
+        CBCylinder.Location = New Point(128, 124)
+        CBCylinder.Name = "CBCylinder"
+        CBCylinder.Size = New Size(239, 23)
+        CBCylinder.TabIndex = 20
+        ' 
         ' CBBrand
         ' 
+        CBBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        CBBrand.AutoCompleteSource = AutoCompleteSource.ListItems
         CBBrand.FormattingEnabled = True
         CBBrand.Location = New Point(128, 37)
+        CBBrand.MaxDropDownItems = 100
         CBBrand.Name = "CBBrand"
         CBBrand.Size = New Size(239, 23)
         CBBrand.TabIndex = 19
@@ -259,14 +272,6 @@ Partial Class FormManageProducts
         ' 
         OpenFileDialog1.FileName = "OpenFileDialog1"
         OpenFileDialog1.Filter = "Archivos de Imagen|*.jpg;*.jpeg;*.png"
-        ' 
-        ' CBCylinder
-        ' 
-        CBCylinder.FormattingEnabled = True
-        CBCylinder.Location = New Point(128, 124)
-        CBCylinder.Name = "CBCylinder"
-        CBCylinder.Size = New Size(239, 23)
-        CBCylinder.TabIndex = 20
         ' 
         ' FormManageProducts
         ' 
