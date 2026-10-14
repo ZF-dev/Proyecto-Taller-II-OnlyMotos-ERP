@@ -16,6 +16,7 @@
 
             rolUsuario = dt.Rows(0)("nombre_tipo").ToString()
             nombreCompleto = dt.Rows(0)("nombre").ToString() & " " & dt.Rows(0)("apellido").ToString()
+            CurrentUserId = Convert.ToInt32(dt.Rows(0)("id_usuario"))
             Return True
 
         End If

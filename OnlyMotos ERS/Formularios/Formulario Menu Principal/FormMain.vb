@@ -35,6 +35,7 @@
         Me.Text = "OnlyMotos ERP - Usuario: " & nombreUsuarioActual & " [" & rolActual & "]"
 
         CurrentUserRole = rolActual
+        CurrentUserName = nombreUsuarioActual
 
         If rolActual = "Vendedor" Then
 

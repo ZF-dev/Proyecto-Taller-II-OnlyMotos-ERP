@@ -135,6 +135,7 @@ Partial Class FormSellMoto
         DTPDate.Name = "DTPDate"
         DTPDate.Size = New Size(107, 23)
         DTPDate.TabIndex = 0
+        DTPDate.Value = New Date(2026, 10, 10, 19, 52, 40, 0)
         ' 
         ' GBClient
         ' 
@@ -226,7 +227,7 @@ Partial Class FormSellMoto
         ' NUDStock
         ' 
         NUDStock.Location = New Point(176, 83)
-        NUDStock.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        NUDStock.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         NUDStock.Name = "NUDStock"
         NUDStock.ReadOnly = True
         NUDStock.Size = New Size(38, 23)
@@ -310,10 +311,13 @@ Partial Class FormSellMoto
         ' 
         ' DGVDetails
         ' 
+        DGVDetails.AllowUserToAddRows = False
+        DGVDetails.AllowUserToDeleteRows = False
         DGVDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DGVDetails.Columns.AddRange(New DataGridViewColumn() {IdMoto, Model, Price, Quantity, SubTotal})
         DGVDetails.Location = New Point(376, 160)
         DGVDetails.Name = "DGVDetails"
+        DGVDetails.ReadOnly = True
         DGVDetails.Size = New Size(446, 123)
         DGVDetails.TabIndex = 8
         ' 
@@ -321,27 +325,32 @@ Partial Class FormSellMoto
         ' 
         IdMoto.HeaderText = "Id Moto"
         IdMoto.Name = "IdMoto"
+        IdMoto.ReadOnly = True
         IdMoto.Visible = False
         ' 
         ' Model
         ' 
         Model.HeaderText = "Modelo"
         Model.Name = "Model"
+        Model.ReadOnly = True
         ' 
         ' Price
         ' 
         Price.HeaderText = "Precio Unitario"
         Price.Name = "Price"
+        Price.ReadOnly = True
         ' 
         ' Quantity
         ' 
         Quantity.HeaderText = "Cantidad"
         Quantity.Name = "Quantity"
+        Quantity.ReadOnly = True
         ' 
         ' SubTotal
         ' 
         SubTotal.HeaderText = "SubTotal"
         SubTotal.Name = "SubTotal"
+        SubTotal.ReadOnly = True
         ' 
         ' GroupBox2
         ' 
@@ -418,6 +427,7 @@ Partial Class FormSellMoto
         BackColor = Color.MidnightBlue
         CancelButton = BCancel
         ClientSize = New Size(834, 561)
+        ControlBox = False
         Controls.Add(GroupBox2)
         Controls.Add(DGVDetails)
         Controls.Add(GroupBox1)

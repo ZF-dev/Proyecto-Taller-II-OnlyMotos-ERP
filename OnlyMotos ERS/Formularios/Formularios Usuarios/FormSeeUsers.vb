@@ -118,7 +118,7 @@
 
     End Sub
 
-    ' --- BÚSQUEDA Y FILTRADO ---
+
 
     Private Sub TBSearch_TextChanged(sender As Object, e As EventArgs) Handles TBSearch.TextChanged
         Dim dniBuscado As String = TBSearch.Text.Trim()

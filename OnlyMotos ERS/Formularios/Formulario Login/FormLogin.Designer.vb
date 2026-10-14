@@ -108,6 +108,7 @@ Partial Class FormLogin
         BackColor = Color.MidnightBlue
         CancelButton = BCancel
         ClientSize = New Size(434, 311)
+        ControlBox = False
         Controls.Add(PBLogo)
         Controls.Add(BCancel)
         Controls.Add(BLogin)
