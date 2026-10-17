@@ -190,4 +190,108 @@ Public Class VentaDatos
 
     End Function
 
+    Public Function ObtenerUltimoIdVenta() As Integer
+        Dim ultimoId As Integer = 0
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_ObtenerUltimoIdVenta", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+
+                Try
+                    conexion.Open()
+                    Dim resultado = comando.ExecuteScalar()
+
+                    If resultado IsNot Nothing AndAlso Not DBNull.Value.Equals(resultado) Then
+
+                        ultimoId = Convert.ToInt32(resultado)
+
+                    End If
+
+                Catch ex As Exception
+                    Throw New Exception("Error en base de datos al obtener el último ID: " & ex.Message)
+                End Try
+
+            End Using
+
+        End Using
+
+        Return ultimoId
+
+    End Function
+
+    Public Function ListarVentas(fechaDesde As Date?, fechaHasta As Date?, dniCliente As String) As DataTable
+
+        Dim dt As New DataTable()
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_ListarVentas", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+
+
+                comando.Parameters.AddWithValue("@FechaDesde", If(fechaDesde.HasValue, CObj(fechaDesde.Value), DBNull.Value))
+                comando.Parameters.AddWithValue("@FechaHasta", If(fechaHasta.HasValue, CObj(fechaHasta.Value), DBNull.Value))
+                comando.Parameters.AddWithValue("@DniCliente", If(String.IsNullOrEmpty(dniCliente), DBNull.Value, CObj(dniCliente)))
+
+                Using adaptador As New SqlDataAdapter(comando)
+
+                    adaptador.Fill(dt)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
+    Public Function ListarDetalleVenta(idVenta As Integer) As DataTable
+        Dim dt As New DataTable()
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_ListarDetalleVentaPorId", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+                comando.Parameters.AddWithValue("@IdVenta", idVenta)
+
+                Using adaptador As New SqlDataAdapter(comando)
+
+                    adaptador.Fill(dt)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
+    Public Sub AnularVenta(idVenta As Integer)
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_AnularVenta", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+                comando.Parameters.AddWithValue("@IdVenta", idVenta)
+
+
+                conexion.Open()
+                comando.ExecuteNonQuery()
+
+
+            End Using
+
+        End Using
+
+    End Sub
+
 End Class

@@ -28,26 +28,15 @@ Partial Class FormSellHistory
         LSearchClient = New Label()
         LFromDate = New Label()
         BClearFilters = New Button()
-        BSearch = New Button()
         TBSearchClient = New TextBox()
         DTPToDate = New DateTimePicker()
         DTPFromDate = New DateTimePicker()
         DGVSellHeaders = New DataGridView()
-        IdVenta = New DataGridViewTextBoxColumn()
-        Usuario = New DataGridViewTextBoxColumn()
-        Fecha = New DataGridViewTextBoxColumn()
-        Cliente = New DataGridViewTextBoxColumn()
-        TipoComprobante = New DataGridViewTextBoxColumn()
-        Total = New DataGridViewTextBoxColumn()
         GBHeaderSells = New GroupBox()
         BAnnullSell = New Button()
         GBDetailSells = New GroupBox()
+        BReFactura = New Button()
         DGVSellDetails = New DataGridView()
-        IdMoto = New DataGridViewTextBoxColumn()
-        Modelo = New DataGridViewTextBoxColumn()
-        PrecioUnitario = New DataGridViewTextBoxColumn()
-        Cantidad = New DataGridViewTextBoxColumn()
-        Subtotal = New DataGridViewTextBoxColumn()
         GBFilters.SuspendLayout()
         CType(DGVSellHeaders, ComponentModel.ISupportInitialize).BeginInit()
         GBHeaderSells.SuspendLayout()
@@ -62,7 +51,6 @@ Partial Class FormSellHistory
         GBFilters.Controls.Add(LSearchClient)
         GBFilters.Controls.Add(LFromDate)
         GBFilters.Controls.Add(BClearFilters)
-        GBFilters.Controls.Add(BSearch)
         GBFilters.Controls.Add(TBSearchClient)
         GBFilters.Controls.Add(DTPToDate)
         GBFilters.Controls.Add(DTPFromDate)
@@ -118,23 +106,12 @@ Partial Class FormSellHistory
         ' 
         BClearFilters.Font = New Font("Segoe UI", 9F)
         BClearFilters.ForeColor = SystemColors.ControlText
-        BClearFilters.Location = New Point(749, 24)
+        BClearFilters.Location = New Point(750, 60)
         BClearFilters.Name = "BClearFilters"
         BClearFilters.Size = New Size(103, 55)
         BClearFilters.TabIndex = 4
         BClearFilters.Text = "Limpiar Filtros"
         BClearFilters.UseVisualStyleBackColor = True
-        ' 
-        ' BSearch
-        ' 
-        BSearch.Font = New Font("Segoe UI", 9F)
-        BSearch.ForeColor = SystemColors.ControlText
-        BSearch.Location = New Point(749, 99)
-        BSearch.Name = "BSearch"
-        BSearch.Size = New Size(103, 48)
-        BSearch.TabIndex = 3
-        BSearch.Text = "Buscar/Filtrar"
-        BSearch.UseVisualStyleBackColor = True
         ' 
         ' TBSearchClient
         ' 
@@ -162,49 +139,14 @@ Partial Class FormSellHistory
         ' DGVSellHeaders
         ' 
         DGVSellHeaders.AllowUserToAddRows = False
+        DGVSellHeaders.AllowUserToDeleteRows = False
         DGVSellHeaders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DGVSellHeaders.Columns.AddRange(New DataGridViewColumn() {IdVenta, Usuario, Fecha, Cliente, TipoComprobante, Total})
         DGVSellHeaders.Location = New Point(127, 22)
+        DGVSellHeaders.MultiSelect = False
         DGVSellHeaders.Name = "DGVSellHeaders"
         DGVSellHeaders.ReadOnly = True
         DGVSellHeaders.Size = New Size(644, 150)
         DGVSellHeaders.TabIndex = 1
-        ' 
-        ' IdVenta
-        ' 
-        IdVenta.HeaderText = "Id Venta"
-        IdVenta.Name = "IdVenta"
-        IdVenta.ReadOnly = True
-        ' 
-        ' Usuario
-        ' 
-        Usuario.HeaderText = "Usuario"
-        Usuario.Name = "Usuario"
-        Usuario.ReadOnly = True
-        ' 
-        ' Fecha
-        ' 
-        Fecha.HeaderText = "Fecha"
-        Fecha.Name = "Fecha"
-        Fecha.ReadOnly = True
-        ' 
-        ' Cliente
-        ' 
-        Cliente.HeaderText = "Cliente"
-        Cliente.Name = "Cliente"
-        Cliente.ReadOnly = True
-        ' 
-        ' TipoComprobante
-        ' 
-        TipoComprobante.HeaderText = "Tipo de Comprobante"
-        TipoComprobante.Name = "TipoComprobante"
-        TipoComprobante.ReadOnly = True
-        ' 
-        ' Total
-        ' 
-        Total.HeaderText = "Total"
-        Total.Name = "Total"
-        Total.ReadOnly = True
         ' 
         ' GBHeaderSells
         ' 
@@ -232,6 +174,7 @@ Partial Class FormSellHistory
         ' 
         ' GBDetailSells
         ' 
+        GBDetailSells.Controls.Add(BReFactura)
         GBDetailSells.Controls.Add(DGVSellDetails)
         GBDetailSells.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         GBDetailSells.ForeColor = SystemColors.ControlText
@@ -242,51 +185,30 @@ Partial Class FormSellHistory
         GBDetailSells.TabStop = False
         GBDetailSells.Text = "Detalle de Venta Seleccionada"
         ' 
+        ' BReFactura
+        ' 
+        BReFactura.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BReFactura.ForeColor = SystemColors.ControlText
+        BReFactura.Location = New Point(784, 77)
+        BReFactura.Name = "BReFactura"
+        BReFactura.Size = New Size(103, 48)
+        BReFactura.TabIndex = 9
+        BReFactura.Text = "Reimprimir Factura"
+        BReFactura.UseVisualStyleBackColor = True
+        ' 
         ' DGVSellDetails
         ' 
         DGVSellDetails.AllowUserToAddRows = False
+        DGVSellDetails.AllowUserToDeleteRows = False
         DGVSellDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DGVSellDetails.Columns.AddRange(New DataGridViewColumn() {IdMoto, Modelo, PrecioUnitario, Cantidad, Subtotal})
         DGVSellDetails.Location = New Point(239, 22)
         DGVSellDetails.Name = "DGVSellDetails"
         DGVSellDetails.ReadOnly = True
         DGVSellDetails.Size = New Size(443, 150)
         DGVSellDetails.TabIndex = 1
         ' 
-        ' IdMoto
-        ' 
-        IdMoto.HeaderText = "Id Moto"
-        IdMoto.Name = "IdMoto"
-        IdMoto.ReadOnly = True
-        IdMoto.Visible = False
-        ' 
-        ' Modelo
-        ' 
-        Modelo.HeaderText = "Modelo"
-        Modelo.Name = "Modelo"
-        Modelo.ReadOnly = True
-        ' 
-        ' PrecioUnitario
-        ' 
-        PrecioUnitario.HeaderText = "Precio Unitario"
-        PrecioUnitario.Name = "PrecioUnitario"
-        PrecioUnitario.ReadOnly = True
-        ' 
-        ' Cantidad
-        ' 
-        Cantidad.HeaderText = "Cantidad"
-        Cantidad.Name = "Cantidad"
-        Cantidad.ReadOnly = True
-        ' 
-        ' Subtotal
-        ' 
-        Subtotal.HeaderText = "Subtotal"
-        Subtotal.Name = "Subtotal"
-        Subtotal.ReadOnly = True
-        ' 
         ' FormSellHistory
         ' 
-        AcceptButton = BSearch
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.MidnightBlue
@@ -311,27 +233,16 @@ Partial Class FormSellHistory
     Friend WithEvents GBFilters As GroupBox
     Friend WithEvents LFromDate As Label
     Friend WithEvents BClearFilters As Button
-    Friend WithEvents BSearch As Button
     Friend WithEvents TBSearchClient As TextBox
     Friend WithEvents DTPToDate As DateTimePicker
     Friend WithEvents DTPFromDate As DateTimePicker
     Friend WithEvents LToDate As Label
     Friend WithEvents LSearchClient As Label
     Friend WithEvents DGVSellHeaders As DataGridView
-    Friend WithEvents IdVenta As DataGridViewTextBoxColumn
-    Friend WithEvents Usuario As DataGridViewTextBoxColumn
-    Friend WithEvents Fecha As DataGridViewTextBoxColumn
-    Friend WithEvents Cliente As DataGridViewTextBoxColumn
-    Friend WithEvents TipoComprobante As DataGridViewTextBoxColumn
-    Friend WithEvents Total As DataGridViewTextBoxColumn
     Friend WithEvents GBHeaderSells As GroupBox
     Friend WithEvents GBDetailSells As GroupBox
     Friend WithEvents DGVSellDetails As DataGridView
-    Friend WithEvents IdMoto As DataGridViewTextBoxColumn
-    Friend WithEvents Modelo As DataGridViewTextBoxColumn
-    Friend WithEvents PrecioUnitario As DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As DataGridViewTextBoxColumn
-    Friend WithEvents Subtotal As DataGridViewTextBoxColumn
     Friend WithEvents BAnnullSell As Button
     Friend WithEvents BClose As Button
+    Friend WithEvents BReFactura As Button
 End Class

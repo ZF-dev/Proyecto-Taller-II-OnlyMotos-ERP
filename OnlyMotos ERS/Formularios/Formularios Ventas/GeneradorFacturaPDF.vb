@@ -8,7 +8,7 @@ Public Class GeneradorFacturaPDF
 
     Private Shared fuenteRegistrada As Boolean = False
 
-    Public Shared Sub GenerarComprobante(tipoFactura As String, nombreCliente As String, nombreUsuario As String, fechaVenta As DateTime, dtDetalle As DataTable, totalVenta As Decimal)
+    Public Shared Sub GenerarComprobante(tipoFactura As String, nombreCliente As String, nombreUsuario As String, fechaVenta As DateTime, dtDetalle As DataTable, totalVenta As Decimal, numVenta As Integer)
         Try
             ' Registrar el FontResolver de manera segura y única
             If Not fuenteRegistrada Then
@@ -42,6 +42,8 @@ Public Class GeneradorFacturaPDF
             yPos += 20
 
             ' --- DATOS DE LA VENTA Y CLIENTE ---
+            gfx.DrawString($"Numero de Venta: {numVenta}", fuenteTexto, XBrushes.Black, xMargen, yPos)
+            yPos += 20
             gfx.DrawString($"Tipo de Factura: {tipoFactura.ToUpper()}", fuenteTexto, XBrushes.Black, xMargen, yPos)
             gfx.DrawString($"Fecha: {fechaVenta:dd/MM/yyyy HH:mm}", fuenteTexto, XBrushes.Black, xMargen + 250, yPos)
             yPos += 20

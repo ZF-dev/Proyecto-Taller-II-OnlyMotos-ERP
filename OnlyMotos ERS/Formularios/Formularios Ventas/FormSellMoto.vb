@@ -261,7 +261,8 @@
                     Dim tipoFacturaStr As String = CBTicketType.Text
                     Dim clienteStr As String = CBClient.Text
 
-                    GeneradorFacturaPDF.GenerarComprobante(tipoFacturaStr, clienteStr, TBUser.Text, fechaVenta, dtDetalleVenta, totalVenta)
+
+                    GeneradorFacturaPDF.GenerarComprobante(tipoFacturaStr, clienteStr, TBUser.Text, fechaVenta, dtDetalleVenta, totalVenta, negocio.ObtenerUltimoIdVenta())
 
                 Catch pdfEx As Exception
 

@@ -49,5 +49,48 @@
 
     End Function
 
+    Public Function ObtenerUltimoIdVenta() As Integer
+
+        Dim datos As New VentaDatos()
+        Return datos.ObtenerUltimoIdVenta()
+
+    End Function
+
+    Public Function ObtenerVentas(fechaDesde As Date?, fechaHasta As Date?, dniCliente As String) As DataTable
+
+        Dim datos As New VentaDatos()
+
+        Try
+            Return datos.ListarVentas(fechaDesde, fechaHasta, dniCliente)
+        Catch ex As Exception
+            Throw New Exception("Error al obtener el listado de ventas: " & ex.Message)
+        End Try
+
+    End Function
+
+    Public Function ObtenerDetalleVenta(idVenta As Integer) As DataTable
+
+        Dim datos As New VentaDatos()
+
+        Try
+            Return datos.ListarDetalleVenta(idVenta)
+        Catch ex As Exception
+            Throw New Exception("Error al obtener el detalle de la venta: " & ex.Message)
+        End Try
+
+    End Function
+
+    Public Sub AnularVenta(idVenta As Integer)
+
+        Dim datos As New VentaDatos()
+
+        Try
+
+            datos.AnularVenta(idVenta)
+
+        Catch ex As Exception
+            Throw New Exception("Error al procesar la anulación de la venta: " & ex.Message)
+        End Try
+    End Sub
 
 End Class
