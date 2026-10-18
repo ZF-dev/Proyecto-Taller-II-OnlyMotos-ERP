@@ -48,7 +48,6 @@ Partial Class FormBackUp
         TBBackupPath.ReadOnly = True
         TBBackupPath.Size = New Size(206, 23)
         TBBackupPath.TabIndex = 1
-        TBBackupPath.Text = """C:\OnlyMotosERP\Datos\Backups\"""
         ' 
         ' LBackUpPath
         ' 
