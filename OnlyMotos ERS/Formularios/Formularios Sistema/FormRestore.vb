@@ -1,4 +1,5 @@
-﻿Public Class FormRestore
+﻿Imports System.IO
+Public Class FormRestore
     Private Sub BSelectFile_Click(sender As Object, e As EventArgs) Handles BSelectFile.Click
 
         Using OFD As New OpenFileDialog()
@@ -41,20 +42,36 @@
 
         End If
 
-        Dim confirmResult As DialogResult = MessageBox.Show(
-            "ATENCIÓN: Restaurar la base de datos reemplazará toda la información actual del sistema con los datos de este archivo." & Environment.NewLine & Environment.NewLine & "¿Desea continuar con la restauración?",
-            "Confirmación de Seguridad",
+        Dim confirmacion As DialogResult = MessageBox.Show(
+            "¿Está completamente seguro de ejecutar la restauración? Se perderá cualquier operación registrada después de la fecha y hora de este respaldo.",
+            "Confirmación Crítica",
             MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning
-        )
+            MessageBoxIcon.Warning)
 
-        If confirmResult = DialogResult.Yes Then
+        If confirmacion = DialogResult.Yes Then
 
-            ' SIMULACIÓN: Más adelante aquí se invocará a la Capa de Negocio y Datos
-            ' NegocioRestore.RestaurarSistema(backupFilePath)
+            Dim passwordIngresada As String = Microsoft.VisualBasic.Interaction.InputBox(
+            "La restauración sobrescribirá todos los datos actuales del sistema." & vbCrLf & "Ingrese la contraseña de seguridad para autorizar la operación:",
+            "Autenticación Requerida - OnlyMotos ERP",
+            "")
 
-            MessageBox.Show("La base de datos ha sido restaurada exitosamente.", "Restauración Completa", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Me.Close()
+            If String.IsNullOrEmpty(passwordIngresada) Then
+                Exit Sub
+            End If
+
+            Try
+
+                Dim negocioRestore As New RestoreNegocio()
+                negocioRestore.EjecutarRestore(backupFilePath, passwordIngresada)
+
+                MessageBox.Show("La base de datos ha sido restaurada exitosamente.", "Restauración Completa", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.Close()
+
+            Catch ex As Exception
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            End Try
 
         End If
 

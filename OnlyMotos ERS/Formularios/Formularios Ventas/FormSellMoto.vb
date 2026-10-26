@@ -328,6 +328,58 @@
 
     End Sub
 
+    Private Sub FormSellMoto_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Select Case e.CloseReason
+
+            Case CloseReason.ApplicationExitCall
+                Dim negocio As New VentaNegocio()
+
+
+                For Each row As DataRow In dtDetalleVenta.Rows
+
+                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
+                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
+
+
+                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
+
+                Next
+
+            Case CloseReason.WindowsShutDown
+
+                Dim negocio As New VentaNegocio()
+
+
+                For Each row As DataRow In dtDetalleVenta.Rows
+
+                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
+                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
+
+
+                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
+
+                Next
+
+
+            Case CloseReason.MdiFormClosing
+
+                Dim negocio As New VentaNegocio()
+
+
+                For Each row As DataRow In dtDetalleVenta.Rows
+
+                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
+                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
+
+
+                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
+
+                Next
+
+        End Select
+
+    End Sub
+
     Private Sub BAddClient_Click(sender As Object, e As EventArgs) Handles BAddClient.Click
         Dim manageClientForm As New FormManageClients()
         If manageClientForm.ShowDialog() = DialogResult.OK Then

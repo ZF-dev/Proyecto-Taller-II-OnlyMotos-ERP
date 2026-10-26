@@ -27,10 +27,42 @@ Public Class GeneradorFacturaPDF
             Dim fuenteSubtitulo As New XFont("Verdana", 10)
             Dim fuenteTexto As New XFont("Verdana", 9)
             Dim fuenteTotal As New XFont("Verdana", 12)
+            Dim fuenteLetraTipo As New XFont("Verdana", 22)
 
             Dim yPos As Double = 40
             Dim xMargen As Double = 40
             Dim anchoPagina As Double = pagina.Width.Point
+            Dim altoPagina As Double = pagina.Height.Point
+            Dim anchoUtil As Double = anchoPagina - (xMargen * 2)
+
+            ' --- 1. LOGO CENTRADO (MARCA DE AGUA DE FONDO) ---
+            Dim directorioActual As New DirectoryInfo(Application.StartupPath)
+            Dim carpetaRecursos As String
+
+            If directorioActual.FullName.Contains("bin") Then
+
+                Dim raizProyecto = directorioActual.Parent?.Parent?.Parent?.FullName 'los parent son para subir niveles (subir en carpetas) en el path
+                If raizProyecto IsNot Nothing Then
+                    carpetaRecursos = Path.Combine(raizProyecto, "Resources", "Icono-Logo_OnlyMotos Factura.jpg")
+
+                    Using imagenLogo As XImage = XImage.FromFile(carpetaRecursos)
+                        Dim anchoLogo As Double = 250
+                        Dim altoLogo As Double = 120
+                        Dim posX As Double = (anchoPagina - anchoLogo) / 2
+                        Dim posY As Double = (altoPagina - altoLogo) / 2
+                        gfx.DrawImage(imagenLogo, posX, posY, anchoLogo, altoLogo)
+                    End Using
+
+                End If
+
+            End If
+
+
+            ' --- 2. TIPO DE FACTURA (ESQUINA SUPERIOR DERECHA) ---
+            Dim rectCajaLetra As New XRect(anchoPagina - xMargen - 45, yPos, 45, 45)
+            gfx.DrawRectangle(XPens.Black, XBrushes.White, rectCajaLetra)
+            Dim letraFactura As String = If(Not String.IsNullOrEmpty(tipoFactura), tipoFactura.Substring(0, 1).ToUpper(), "A")
+            gfx.DrawString(letraFactura, fuenteLetraTipo, XBrushes.Black, rectCajaLetra, XStringFormats.Center)
 
             ' --- ENCABEZADO ---
             gfx.DrawString("ONLYMOTOS S.A.", fuenteTitulo, XBrushes.DarkBlue, xMargen, yPos)
@@ -44,7 +76,6 @@ Public Class GeneradorFacturaPDF
             ' --- DATOS DE LA VENTA Y CLIENTE ---
             gfx.DrawString($"Numero de Venta: {numVenta}", fuenteTexto, XBrushes.Black, xMargen, yPos)
             yPos += 20
-            gfx.DrawString($"Tipo de Factura: {tipoFactura.ToUpper()}", fuenteTexto, XBrushes.Black, xMargen, yPos)
             gfx.DrawString($"Fecha: {fechaVenta:dd/MM/yyyy HH:mm}", fuenteTexto, XBrushes.Black, xMargen + 250, yPos)
             yPos += 20
 
@@ -59,7 +90,7 @@ Public Class GeneradorFacturaPDF
             gfx.DrawString("Cant.", fuenteTexto, XBrushes.White, xMargen + 260, yPos + 14)
             gfx.DrawString("P. Unitario", fuenteTexto, XBrushes.White, xMargen + 320, yPos + 14)
             gfx.DrawString("SubTotal", fuenteTexto, XBrushes.White, xMargen + 420, yPos + 14)
-            yPos += 25
+            yPos += 30
 
             ' --- ITEMS DEL DETALLE ---
             For Each row As DataRow In dtDetalle.Rows
