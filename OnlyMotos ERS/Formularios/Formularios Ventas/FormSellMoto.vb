@@ -376,6 +376,21 @@
 
                 Next
 
+            Case CloseReason.None
+
+                Dim negocio As New VentaNegocio()
+
+
+                For Each row As DataRow In dtDetalleVenta.Rows
+
+                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
+                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
+
+
+                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
+
+                Next
+
         End Select
 
     End Sub

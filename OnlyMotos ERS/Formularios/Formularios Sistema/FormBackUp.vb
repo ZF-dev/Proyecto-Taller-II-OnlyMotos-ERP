@@ -26,6 +26,31 @@ Public Class FormBackUp
     Private Sub BExecuteBackup_Click(sender As Object, e As EventArgs) Handles BExecuteBackup.Click
 
         Try
+
+            Dim negocio As New IngresoUsuario()
+
+            Dim userIngresado As String = Microsoft.VisualBasic.Interaction.InputBox(
+            "Por motivos de seguridad necesitamos validar su informacion." & vbCrLf & "Ingrese su Usuario para continuar:",
+            "Autenticación Requerida - OnlyMotos ERP",
+            "")
+
+            Dim passwordIngresada As String = Microsoft.VisualBasic.Interaction.InputBox(
+            "Por motivos de seguridad necesitamos validar su informacion." & vbCrLf & "Ahora ingrese su contraseña para autorizar la operación:",
+            "Autenticación Requerida - OnlyMotos ERP",
+            "")
+
+            ' Variables locales que recibirá el Negocio por ByRef (al diseñar el login las use y ahora las tengo solo para poder llamar al metodo)
+            Dim rolTemp As String = ""
+            Dim nombreTemp As String = ""
+
+            Dim esValido As Boolean = negocio.ValidarLogin(userIngresado, passwordIngresada, rolTemp, nombreTemp)
+
+            If Not esValido Then
+                MessageBox.Show("Usuario o contraseña incorrectos. No se puede generar el respaldo.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+
             Dim targetPath As String = TBBackupPath.Text.Trim()
 
             If Not Directory.Exists(targetPath) Then

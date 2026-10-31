@@ -42,6 +42,33 @@ Public Class FormRestore
 
         End If
 
+        'PRIMERA CONFIRMACION
+        Dim negocio As New IngresoUsuario()
+
+        Dim userIngresado As String = Microsoft.VisualBasic.Interaction.InputBox(
+            "Por motivos de seguridad necesitamos validar su informacion." & vbCrLf & "Ingrese su Usuario para continuar:",
+            "Autenticación Requerida - OnlyMotos ERP",
+            "")
+
+        Dim passIngresada As String = Microsoft.VisualBasic.Interaction.InputBox(
+            "Por motivos de seguridad necesitamos validar su informacion." & vbCrLf & "Ahora ingrese su contraseña para autorizar la operación:",
+            "Autenticación Requerida - OnlyMotos ERP",
+            "")
+
+        ' Variables locales que recibirá el Negocio por ByRef (al diseñar el login las use y ahora las tengo solo para poder llamar al metodo)
+        Dim rolTemp As String = ""
+        Dim nombreTemp As String = ""
+
+        Dim esValido As Boolean = negocio.ValidarLogin(userIngresado, passIngresada, rolTemp, nombreTemp)
+
+        If Not esValido Then
+            MessageBox.Show("Usuario o contraseña incorrectos. No se puede generar el respaldo.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+
+
+        'SEGUNDA CONFIRMACION
         Dim confirmacion As DialogResult = MessageBox.Show(
             "¿Está completamente seguro de ejecutar la restauración? Se perderá cualquier operación registrada después de la fecha y hora de este respaldo.",
             "Confirmación Crítica",
@@ -50,6 +77,8 @@ Public Class FormRestore
 
         If confirmacion = DialogResult.Yes Then
 
+
+            'TERCERA CONFIRMACION
             Dim passwordIngresada As String = Microsoft.VisualBasic.Interaction.InputBox(
             "La restauración sobrescribirá todos los datos actuales del sistema." & vbCrLf & "Ingrese la contraseña de seguridad para autorizar la operación:",
             "Autenticación Requerida - OnlyMotos ERP",

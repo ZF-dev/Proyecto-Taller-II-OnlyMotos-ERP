@@ -39,7 +39,7 @@ Partial Class FormReports
         ' 
         BReportSales.Font = New Font("Segoe UI", 9F)
         BReportSales.ForeColor = SystemColors.ControlText
-        BReportSales.Location = New Point(20, 115)
+        BReportSales.Location = New Point(124, 176)
         BReportSales.Name = "BReportSales"
         BReportSales.Size = New Size(112, 43)
         BReportSales.TabIndex = 0
@@ -126,7 +126,7 @@ Partial Class FormReports
         ' 
         BReportFinancial.Font = New Font("Segoe UI", 9F)
         BReportFinancial.ForeColor = SystemColors.ControlText
-        BReportFinancial.Location = New Point(20, 115)
+        BReportFinancial.Location = New Point(50, 115)
         BReportFinancial.Name = "BReportFinancial"
         BReportFinancial.Size = New Size(112, 43)
         BReportFinancial.TabIndex = 2

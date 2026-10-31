@@ -64,4 +64,32 @@
 
     ' --- EVENTOS DE LOS REPORTES ---
 
+    Private Sub BReportSalesUsers_Click(sender As Object, e As EventArgs) Handles BReportSalesUser.Click
+
+        Try
+            Cursor = Cursors.WaitCursor
+
+            Dim ReportsNegocio As New ReportsNegocio()
+
+            Dim dt As DataTable = ReportsNegocio.ListarVentasPorUsuario()
+
+            If dt.Rows.Count = 0 Then
+                MessageBox.Show("No se encontraron registros de ventas para procesar el reporte.", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            GeneradorReportePDF.GenerarReporteVentasUsuario(dt)
+
+        Catch ex As Exception
+
+            MessageBox.Show("Ocurrió un error al generar el reporte: " & ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+
+            Cursor = Cursors.Default
+
+        End Try
+
+    End Sub
+
 End Class
