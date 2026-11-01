@@ -3,6 +3,16 @@
 
         CargarMotosGrid()
 
+        If CurrentUserRole = "Vendedor" Then
+
+            DGVProducts.ReadOnly = True
+
+        Else
+
+            DGVProducts.ReadOnly = False
+
+        End If
+
     End Sub
 
     Private Sub CargarMotosGrid()
@@ -106,6 +116,44 @@
             MessageBox.Show("Error al filtrar las motos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+    End Sub
+
+    Private Sub DGVProducts_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVProducts.CellDoubleClick
+
+        If CurrentUserRole = "Vendedor" Then
+
+            Exit Sub
+
+        End If
+
+        If e.RowIndex >= 0 Then
+
+            Dim nombreColumna As String = DGVProducts.Columns(e.ColumnIndex).Name
+
+            If nombreColumna.ToLower() = "stock" Then
+
+                Return
+
+            End If
+
+            Dim fila As DataGridViewRow = DGVProducts.Rows(e.RowIndex)
+
+            Dim frmUpdate As New FormUpdateProduct()
+
+            frmUpdate.idMotoSeleccionada = Convert.ToInt32(fila.Cells("IdMoto").Value)
+            frmUpdate.marcaSeleccionada = fila.Cells("Marca").Value.ToString()
+            frmUpdate.modeloActual = fila.Cells("Modelo").Value.ToString()
+            frmUpdate.cilindradaSeleccionada = fila.Cells("CC").Value.ToString()
+            frmUpdate.precioActual = Convert.ToDecimal(fila.Cells("Precio").Value)
+            frmUpdate.anioActual = Convert.ToInt32(fila.Cells("Año").Value)
+            frmUpdate.imagenActual = fila.Cells("Imagen").Value.ToString()
+
+            If frmUpdate.ShowDialog() = DialogResult.OK Then
+
+                CargarMotosGrid()
+
+            End If
+        End If
     End Sub
 
     Private Sub BClearFilters_Click(sender As Object, e As EventArgs) Handles BClearFilters.Click

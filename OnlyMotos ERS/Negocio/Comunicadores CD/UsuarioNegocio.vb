@@ -4,14 +4,12 @@
 
     Public Function ObtenerListaUsuarios() As DataTable
 
-        ' Aquí podrías agregar reglas de negocio en el futuro si hiciera falta
         Return datosUsuario.ListarUsuarios()
 
     End Function
 
     Public Function ObtenerListaUsuariosInactivos() As DataTable
 
-        ' Aquí podrías agregar reglas de negocio en el futuro si hiciera falta
         Return datosUsuario.ListarUsuariosInactivos()
 
     End Function

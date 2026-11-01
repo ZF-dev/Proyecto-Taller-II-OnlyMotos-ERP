@@ -118,7 +118,7 @@ Partial Class FormManageProducts
         ' 
         TBImagePath.Location = New Point(128, 259)
         TBImagePath.Name = "TBImagePath"
-        TBImagePath.Size = New Size(235, 23)
+        TBImagePath.Size = New Size(239, 23)
         TBImagePath.TabIndex = 17
         ' 
         ' PBMotoImage
@@ -248,7 +248,7 @@ Partial Class FormManageProducts
         ' 
         TBPrice.Location = New Point(128, 172)
         TBPrice.Name = "TBPrice"
-        TBPrice.Size = New Size(235, 23)
+        TBPrice.Size = New Size(239, 23)
         TBPrice.TabIndex = 3
         ' 
         ' TBModel

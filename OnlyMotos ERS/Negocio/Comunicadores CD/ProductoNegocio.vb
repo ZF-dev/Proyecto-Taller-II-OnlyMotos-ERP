@@ -71,4 +71,18 @@ Public Class ProductoNegocio
 
     End Sub
 
+    Public Sub ModificarMoto(idMoto As Integer, idMarca As Integer, modelo As String, idCc As Integer, precio As Decimal, anio As Integer, imagen As String)
+
+        Dim datos As New ProductoDatos()
+        datos.ActualizarMoto(idMoto, idMarca, modelo, idCc, precio, anio, imagen)
+
+    End Sub
+
+    Public Function ListarMotosStockCritico() As DataTable
+
+        Dim datos As New ProductoDatos()
+        Return datos.ObtenerMotosStockCritico()
+
+    End Function
+
 End Class

@@ -329,67 +329,28 @@
     End Sub
 
     Private Sub FormSellMoto_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
         Select Case e.CloseReason
-
-            Case CloseReason.ApplicationExitCall
-                Dim negocio As New VentaNegocio()
-
-
-                For Each row As DataRow In dtDetalleVenta.Rows
-
-                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
-                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
-
-
-                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
-
-                Next
-
-            Case CloseReason.WindowsShutDown
+            Case CloseReason.UserClosing, 'asi se puede hacer que en cualquiera de los casos se hace, en vez de muchos case y repetir codigo
+                 CloseReason.ApplicationExitCall,
+                 CloseReason.WindowsShutDown,
+                 CloseReason.MdiFormClosing,
+                 CloseReason.None
 
                 Dim negocio As New VentaNegocio()
 
+                If dtDetalleVenta IsNot Nothing AndAlso dtDetalleVenta.Rows.Count > 0 Then
 
-                For Each row As DataRow In dtDetalleVenta.Rows
+                    For Each row As DataRow In dtDetalleVenta.Rows
 
-                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
-                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
+                        Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
+                        Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
 
+                        negocio.ReintegrarStock(idMoto, cantidadDevolver)
 
-                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
+                    Next
 
-                Next
-
-
-            Case CloseReason.MdiFormClosing
-
-                Dim negocio As New VentaNegocio()
-
-
-                For Each row As DataRow In dtDetalleVenta.Rows
-
-                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
-                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
-
-
-                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
-
-                Next
-
-            Case CloseReason.None
-
-                Dim negocio As New VentaNegocio()
-
-
-                For Each row As DataRow In dtDetalleVenta.Rows
-
-                    Dim idMoto As Integer = Convert.ToInt32(row("id_moto"))
-                    Dim cantidadDevolver As Integer = Convert.ToInt32(row("Cantidad"))
-
-
-                    negocio.ReintegrarStock(idMoto, cantidadDevolver)
-
-                Next
+                End If
 
         End Select
 

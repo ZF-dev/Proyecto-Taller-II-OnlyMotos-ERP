@@ -122,14 +122,60 @@ Public Class GeneradorReportePDF
                         yPos += altoImg + 20
                     End Using
 
+                    gfx.DrawLine(XPens.LightGray, xMargen, yPos, pagina.Width.Point - xMargen, yPos)
+                    yPos += 15
+
+                    ' ==========================================
+                    ' NUEVO: DIBUJAR TABLA DE DATOS DEL DATATABLE
+                    ' ==========================================
+                    gfx.DrawString("DETALLE DE VENTAS:", fuenteDestacado, XBrushes.DarkBlue, New XPoint(xMargen, yPos))
+                    yPos += 20
+
+                    ' Definir anchos de columnas (asegúrate de que sumen aprox el ancho útil de la página)
+                    Dim anchoCol1 As Double = 220
+                    Dim anchoCol2 As Double = 100
+                    Dim anchoCol3 As Double = 100
+                    Dim totalTabla As Double = anchoCol1 + anchoCol2 + anchoCol3
+
+                    ' Cabecera de la tabla (Fondo gris claro o línea de encabezado)
+                    gfx.DrawRectangle(XBrushes.WhiteSmoke, xMargen, yPos, totalTabla, 18)
+                    gfx.DrawString("Usuario", fuenteDestacado, XBrushes.Black, New XPoint(xMargen + 5, yPos + 13))
+                    gfx.DrawString("Cant. Ventas", fuenteDestacado, XBrushes.Black, New XPoint(xMargen + anchoCol1 + 5, yPos + 13))
+                    gfx.DrawString("Total Vendido", fuenteDestacado, XBrushes.Black, New XPoint(xMargen + anchoCol1 + anchoCol2 + 5, yPos + 13))
+                    yPos += 18
+
+                    ' Línea de cabecera
+                    gfx.DrawLine(XPens.Gray, xMargen, yPos, xMargen + totalTabla, yPos)
+                    yPos += 5
+
+                    ' Recorrer el DataTable para pintar cada fila de la tabla
+                    For Each row As DataRow In dt.Rows
+                        Dim nombreUsr As String = row("Usuario").ToString()
+                        Dim cantVentas As String = row("CantidadVentas").ToString()
+                        Dim totalVendido As String = Convert.ToDecimal(row("TotalVendido")).ToString("C2") ' Formato moneda
+
+                        gfx.DrawString(nombreUsr, fuenteTexto, XBrushes.Black, New XPoint(xMargen + 5, yPos + 12))
+                        gfx.DrawString(cantVentas, fuenteTexto, XBrushes.Black, New XPoint(xMargen + anchoCol1 + 5, yPos + 12))
+                        gfx.DrawString(totalVendido, fuenteTexto, XBrushes.Black, New XPoint(xMargen + anchoCol1 + anchoCol2 + 5, yPos + 12))
+
+                        yPos += 16
+                        ' Línea divisoria muy tenue entre filas
+                        gfx.DrawLine(XPens.LightGray, xMargen, yPos, xMargen + totalTabla, yPos)
+                        yPos += 4
+                    Next
+
+                    yPos += 10
+
                     ' Línea separadora inferior
                     gfx.DrawLine(XPens.LightGray, xMargen, yPos, pagina.Width.Point - xMargen, yPos)
                     yPos += 20
 
                     ' Resaltar abajo los datos clave del mejor usuario
-                    gfx.DrawString("RESUMEN DE RENDIMIENTO (DESTACADO):", fuenteDestacado, XBrushes.Black, New XPoint(xMargen, yPos))
+                    gfx.DrawString("RESUMEN DE RENDIMIENTO (DESTACADO):", fuenteDestacado, XBrushes.DarkBlue, New XPoint(xMargen, yPos))
                     yPos += 22
                     gfx.DrawString($"• Usuario con Mayor Venta: {usuarioTop}", fuenteTexto, XBrushes.Black, New XPoint(xMargen, yPos))
+                    yPos += 18
+                    gfx.DrawString($"• Monto Total en Ventas realizadas: {maxVentas}", fuenteTexto, XBrushes.Black, New XPoint(xMargen, yPos))
                     yPos += 18
                     gfx.DrawString($"• Cantidad de Ventas Realizadas: {cantidadTop}", fuenteTexto, XBrushes.Black, New XPoint(xMargen, yPos))
                     yPos += 18

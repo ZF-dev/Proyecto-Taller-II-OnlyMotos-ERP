@@ -152,4 +152,52 @@ Public Class ProductoDatos
 
     End Sub
 
+    Public Sub ActualizarMoto(idMoto As Integer, idMarca As Integer, modelo As String, idCc As Integer, precio As Decimal, anio As Integer, imagen As String)
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_ActualizarMoto", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+
+                comando.Parameters.AddWithValue("@id_moto", idMoto)
+                comando.Parameters.AddWithValue("@id_marca", idMarca)
+                comando.Parameters.AddWithValue("@modelo", modelo)
+                comando.Parameters.AddWithValue("@id_cc", idCc)
+                comando.Parameters.AddWithValue("@precio", precio)
+                comando.Parameters.AddWithValue("@anio", anio)
+                comando.Parameters.AddWithValue("@imagen", If(String.IsNullOrEmpty(imagen), CType(DBNull.Value, Object), imagen))
+
+                conexion.Open()
+                comando.ExecuteNonQuery()
+
+            End Using
+
+        End Using
+
+    End Sub
+
+    Public Function ObtenerMotosStockCritico() As DataTable
+
+        Dim dt As New DataTable()
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_MotosStockCritico", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+
+                Using adaptador As New SqlDataAdapter(comando)
+
+                    adaptador.Fill(dt)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
 End Class

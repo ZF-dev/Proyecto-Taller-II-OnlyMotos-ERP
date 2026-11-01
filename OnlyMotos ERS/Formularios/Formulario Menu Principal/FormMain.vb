@@ -21,6 +21,13 @@
             rolActual = loginForm.RolObtenido
             nombreUsuarioActual = loginForm.NombreObtenido
             ConfigurarPermisosPorRol()
+
+            If CurrentUserRole = "Supervisor" Then
+
+                MensajeStockCritico()
+
+            End If
+
             Me.Show()
 
         Else
@@ -90,7 +97,41 @@
             UsuariosToolStripMenuItem.Visible = True
 
         End If
-        ' Si es Administrador, tiene acceso total, no hace falta tocar nada.
+    End Sub
+
+    Private Sub MensajeStockCritico()
+        Try
+
+            Dim negocioMotos As New ProductoNegocio
+            Dim dt As DataTable = negocioMotos.ListarMotosStockCritico()
+
+            ' 2. Validar si hay registros críticos
+            If dt.Rows.Count = 0 Then
+                MessageBox.Show("¡Excelente! No hay motos con stock crítico o bajo en este momento.", "Control de Stock", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            ' 3. Construir el mensaje en forma de lista limpia usando StringBuilder (Si lo hizo la IA al Mensaje para que quede mas lindo)
+            Dim mensaje As New System.Text.StringBuilder()
+            mensaje.AppendLine("⚠️ ATENCIÓN: Las siguientes motos están por debajo del stock mínimo:")
+            mensaje.AppendLine("--------------------------------------------------")
+
+            For Each row As DataRow In dt.Rows
+                Dim modelo As String = row("modelo").ToString()
+                Dim stockActual As Integer = Convert.ToInt32(row("stock"))
+                Dim stockMinimo As Integer = Convert.ToInt32(row("stock_min"))
+
+                ' Añadir cada ítem con formato de lista/viñeta
+                mensaje.AppendLine($"• {modelo} ➔ Stock Actual: {stockActual} (Mínimo requerido: {stockMinimo})")
+            Next
+
+            ' 4. Mostrar el mensaje emergente de advertencia
+            MessageBox.Show(mensaje.ToString(), "Alerta de Stock Crítico", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al verificar el stock: " & ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub OpenChildForm(Of T As {Form, New})()

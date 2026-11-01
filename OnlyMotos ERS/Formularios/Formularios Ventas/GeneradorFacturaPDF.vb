@@ -67,6 +67,8 @@ Public Class GeneradorFacturaPDF
             ' --- ENCABEZADO ---
             gfx.DrawString("ONLYMOTOS S.A.", fuenteTitulo, XBrushes.DarkBlue, xMargen, yPos)
             yPos += 20
+            gfx.DrawString($"Nro de factura: 0000{numVenta}", fuenteTitulo, XBrushes.DarkBlue, xMargen, yPos)
+            yPos += 20
             gfx.DrawString("Sistema de Gestión de Ventas", fuenteSubtitulo, XBrushes.Gray, xMargen, yPos)
             yPos += 30
 
@@ -74,8 +76,6 @@ Public Class GeneradorFacturaPDF
             yPos += 20
 
             ' --- DATOS DE LA VENTA Y CLIENTE ---
-            gfx.DrawString($"Numero de Venta: {numVenta}", fuenteTexto, XBrushes.Black, xMargen, yPos)
-            yPos += 20
             gfx.DrawString($"Fecha: {fechaVenta:dd/MM/yyyy HH:mm}", fuenteTexto, XBrushes.Black, xMargen + 250, yPos)
             yPos += 20
 
