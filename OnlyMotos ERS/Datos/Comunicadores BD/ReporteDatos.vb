@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.Data.SqlClient
 Public Class ReporteDatos
 
-    Public Function ObtenerVentasPorUsuario() As DataTable
+    Public Function ObtenerVentasPorUsuario(fechaInicio As DateTime, fechaFin As DateTime) As DataTable
 
         Dim dt As New DataTable()
 
@@ -10,6 +10,9 @@ Public Class ReporteDatos
             Using comando As New SqlCommand("sp_Reporte_VentasPorUsuario", conexion)
 
                 comando.CommandType = CommandType.StoredProcedure
+
+                comando.Parameters.AddWithValue("@FechaInicio", fechaInicio.Date)
+                comando.Parameters.AddWithValue("@FechaFin", fechaFin.Date)
 
                 Using adaptador As New SqlDataAdapter(comando)
 

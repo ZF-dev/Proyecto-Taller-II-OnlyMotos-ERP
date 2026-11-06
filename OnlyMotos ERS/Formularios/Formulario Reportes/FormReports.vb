@@ -10,15 +10,12 @@
         Select Case CurrentUserRole
             Case "Administrador"
                 ' El administrador tiene acceso total a todos los reportes
-                BReportUsers.Visible = True
+                BReportRestors.Visible = True
                 BReportSales.Visible = False
                 BReportSalesUser.Visible = False
                 BReportFinancial.Visible = False
                 BReportSalesRange.Visible = False
-                LStart.Visible = False
-                LEnd.Visible = False
-                DTPStart.Visible = False
-                DTPEnd.Visible = False
+
 
             Case "Supervisor"
                 ' El supervisor ve ventas, stock y actividad, pero no reportes financieros avanzados
@@ -26,17 +23,14 @@
                 BReportSalesUser.Visible = True
                 BReportFinancial.Visible = True
                 BReportSalesRange.Visible = False
-                BReportUsers.Visible = False
-                LStart.Visible = False
-                LEnd.Visible = False
-                DTPStart.Visible = False
-                DTPEnd.Visible = False
+                BReportRestors.Visible = False
+
 
             Case "Vendedor"
                 ' El vendedor solo ve sus reportes básicos de ventas y stock
                 BReportSales.Visible = True
                 BReportSalesRange.Visible = True
-                BReportUsers.Visible = False
+                BReportRestors.Visible = False
                 BReportFinancial.Visible = False
                 BReportSalesUser.Visible = False
 
@@ -45,7 +39,7 @@
                 BReportSales.Visible = False
                 BReportSalesUser.Visible = False
                 BReportFinancial.Visible = False
-                BReportUsers.Visible = False
+                BReportRestors.Visible = False
                 BReportSalesRange.Visible = False
                 LStart.Visible = False
                 LEnd.Visible = False
@@ -56,7 +50,7 @@
 
     End Sub
 
-    Private Sub BReportUsers_Click(sender As Object, e As EventArgs) Handles BReportUsers.Click
+    Private Sub BReportUsers_Click(sender As Object, e As EventArgs) Handles BReportRestors.Click
         ' Qué muestra: Un listado consolidado de todos los usuarios del sistema,
         ' diferenciando entre activos e inactivos (los que sufrieron baja lógica)
         ' y agrupados por su tipo de perfil (Administrador, Supervisor, Vendedor).
@@ -71,14 +65,22 @@
 
             Dim ReportsNegocio As New ReportsNegocio()
 
-            Dim dt As DataTable = ReportsNegocio.ListarVentasPorUsuario()
+            Dim dt As DataTable = ReportsNegocio.ListarVentasPorUsuario(DTPStart.Value, DTPEnd.Value.Date.AddDays(1).AddSeconds(-1)) 'eso le suma un dia y le resta un segundo haciendo que se haga el dia anterior pero a las 23:59 asi habarca lo del dia 
+
+            If DTPStart.Value > DTPEnd.Value Then
+
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error de Fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+
+            End If
+
 
             If dt.Rows.Count = 0 Then
                 MessageBox.Show("No se encontraron registros de ventas para procesar el reporte.", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
-            GeneradorReportePDF.GenerarReporteVentasUsuario(dt)
+            GeneradorReportes.GenerarReporteVentasUsuario(dt, Chart1, DGVDetalle, LNameDNI, LTotal, LQuantity, LPorc)
 
         Catch ex As Exception
 
@@ -91,5 +93,6 @@
         End Try
 
     End Sub
+
 
 End Class

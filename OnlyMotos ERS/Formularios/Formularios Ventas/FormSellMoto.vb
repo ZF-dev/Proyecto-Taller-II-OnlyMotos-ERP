@@ -10,6 +10,7 @@
         Try
 
             TBUser.Text = CurrentUserName
+            DTPDate.Value = DateTime.Now
 
             CargarComboTipoFactura()
 
