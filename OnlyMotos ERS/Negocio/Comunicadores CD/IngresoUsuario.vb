@@ -31,6 +31,8 @@
 
         End Try
 
+        Return False
+
     End Function
 
 End Class

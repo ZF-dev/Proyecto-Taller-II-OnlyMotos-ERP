@@ -63,10 +63,10 @@
             dgvTabla.DataSource = dt
 
 
-            If lblUsuarioTop IsNot Nothing Then lblUsuarioTop.Text = $"• Usuario con Mayor Venta: {usuarioTop}"
-            If lblMontoTop IsNot Nothing Then lblMontoTop.Text = $"• Monto Total en Ventas realizadas: {maxVentas:C2}"
-            If lblCantTop IsNot Nothing Then lblCantTop.Text = $"• Cantidad de Ventas Realizadas: {cantidadTop}"
-            If lblPorcentajeTop IsNot Nothing Then lblPorcentajeTop.Text = $"• Participación sobre el Total: {porcentajeTop:N2}%"
+            lblUsuarioTop.Text = $"• Usuario con Mayor Venta: {usuarioTop}"
+            lblMontoTop.Text = $"• Monto Total en Ventas realizadas: {maxVentas:C2}"
+            lblCantTop.Text = $"• Cantidad de Ventas Realizadas: {cantidadTop}"
+            lblPorcentajeTop.Text = $"• Participación sobre el Total: {porcentajeTop:N2}%"
 
         Catch ex As Exception
 
@@ -74,6 +74,90 @@
 
         End Try
 
+    End Sub
+
+    Public Shared Sub GenerarReporteGanancias(dtVentas As DataTable, dtCompras As DataTable, dgvTabla As DataGridView, chartVisual As System.Windows.Forms.DataVisualization.Charting.Chart, lblGananciaNeta As Label, lblInversion As Label, lblVentas As Label)
+
+        Try
+
+            chartVisual.ChartAreas.Clear()
+            chartVisual.Series.Clear()
+
+            Dim area As New System.Windows.Forms.DataVisualization.Charting.ChartArea("AreaGanancias")
+            area.AxisY.LabelStyle.Format = "C0"
+            area.AxisY.IsLabelAutoFit = True
+            chartVisual.ChartAreas.Add(area)
+
+            Dim serie As New System.Windows.Forms.DataVisualization.Charting.Series("GananciasVsInversion")
+            serie.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+            serie.IsValueShownAsLabel = True
+
+            Dim totalVentas As Decimal = 0
+            For Each row As DataRow In dtVentas.Rows
+
+                totalVentas += Convert.ToDecimal(row("total"))
+
+            Next
+
+            Dim totalInversion As Decimal = 0
+            For Each row As DataRow In dtCompras.Rows
+
+                Dim precioVentaMoto As Decimal = Convert.ToDecimal(row("precio"))
+                Dim costoEstimado As Decimal = (precioVentaMoto / 1.15D) * Convert.ToInt16(row("stock"))
+                totalInversion += costoEstimado
+
+            Next
+
+            ' Configurar las dos torres en el gráfico (se hacen de a dos, pq si lo hago en una misma serie las agrupa y se superponen)
+            ' 3. Crear SERIE 1: Inversión 
+            Dim serieInversion As New System.Windows.Forms.DataVisualization.Charting.Series("Inversión")
+            serieInversion.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+            serieInversion.IsValueShownAsLabel = True
+            serieInversion.LabelFormat = "C0"
+            serieInversion.Points.AddXY("Inversión (Costo)", totalInversion)
+            serieInversion.Points(0).Color = Color.IndianRed
+            chartVisual.Series.Add(serieInversion)
+
+            ' 4. Crear SERIE 2: Ventas
+            Dim serieVentas As New System.Windows.Forms.DataVisualization.Charting.Series("Ventas")
+            serieVentas.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+            serieVentas.IsValueShownAsLabel = True
+            serieVentas.LabelFormat = "C0"
+            serieVentas.Points.AddXY("Ventas (Ingresos)", totalVentas)
+            serieVentas.Points(0).Color = Color.SeaGreen
+            chartVisual.Series.Add(serieVentas)
+
+
+            chartVisual.Titles.Clear()
+            chartVisual.Titles.Add("BALANCE DE GANANCIAS E INVERSIÓN")
+
+            'cargo el dtg con los datos de las ventas
+            dgvTabla.DataSource = dtVentas
+
+            ' Calcular ganancia neta y actualizar etiquetas
+            Dim gananciaNeta As Decimal = totalVentas - totalInversion
+
+            lblInversion.Font = New Font(lblInversion.Font, FontStyle.Bold)
+            lblInversion.Text = $"• Inversión Total Estimada: {totalInversion:C2}"
+
+
+
+            lblVentas.Font = New Font(lblVentas.Font, FontStyle.Bold)
+            lblVentas.Text = $"• Ingresos Totales por Ventas: {totalVentas:C2}"
+
+
+
+            lblGananciaNeta.Font = New Font(lblGananciaNeta.Font, FontStyle.Bold)
+            Dim textoGanancia As String = If(gananciaNeta >= 0, $"¡Ganancia Neta: {gananciaNeta:C2}!", $"Pérdida Neta: {gananciaNeta:C2}")
+            lblGananciaNeta.Text = $"• {textoGanancia}"
+            lblGananciaNeta.ForeColor = If(gananciaNeta >= 0, Color.DarkGreen, Color.DarkRed)
+
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al procesar el reporte de ganancias: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
     End Sub
 
 End Class
