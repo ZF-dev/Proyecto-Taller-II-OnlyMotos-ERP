@@ -119,7 +119,7 @@ Partial Class FormReports
         ' 
         BReportSalesRange.Font = New Font("Segoe UI", 9F)
         BReportSalesRange.ForeColor = SystemColors.ControlText
-        BReportSalesRange.Location = New Point(6, 83)
+        BReportSalesRange.Location = New Point(7, 83)
         BReportSalesRange.Name = "BReportSalesRange"
         BReportSalesRange.Size = New Size(112, 43)
         BReportSalesRange.TabIndex = 4
@@ -130,11 +130,11 @@ Partial Class FormReports
         ' 
         BReportRestors.Font = New Font("Segoe UI", 9F)
         BReportRestors.ForeColor = SystemColors.ControlText
-        BReportRestors.Location = New Point(6, 83)
+        BReportRestors.Location = New Point(7, 132)
         BReportRestors.Name = "BReportRestors"
-        BReportRestors.Size = New Size(112, 43)
+        BReportRestors.Size = New Size(112, 60)
         BReportRestors.TabIndex = 3
-        BReportRestors.Text = "Auditoria de Restores"
+        BReportRestors.Text = "Auditoria de Restauraciones de la Base de Datos"
         BReportRestors.UseVisualStyleBackColor = True
         ' 
         ' BReportFinancial

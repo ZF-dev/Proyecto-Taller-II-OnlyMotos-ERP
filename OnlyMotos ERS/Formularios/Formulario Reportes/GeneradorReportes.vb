@@ -160,4 +160,148 @@
         End Try
     End Sub
 
+    Public Shared Sub GenerarReporteVentas(dtVentas As DataTable, dgvTabla As DataGridView, chartVisual As System.Windows.Forms.DataVisualization.Charting.Chart, LTotalVentas As Label, LCantidadVentas As Label, LVentaDestacada As Label, Titulo As String)
+
+        Try
+            chartVisual.ChartAreas.Clear()
+            chartVisual.Series.Clear()
+
+            Dim area As New System.Windows.Forms.DataVisualization.Charting.ChartArea("AreaTiempo")
+
+            ' Configuramos el eje X para que interprete fechas correctamente si es necesario
+            area.AxisX.LabelStyle.Format = "dd/MM/yyyy"
+            area.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount
+            chartVisual.ChartAreas.Add(area)
+
+            ' Creamos la serie de tipo Línea
+            Dim serieLinea As New System.Windows.Forms.DataVisualization.Charting.Series("Evolución de Ventas")
+            serieLinea.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+
+            ' Habilitamos los marcadores (los "puntos rojos/visibles" sobre la línea como en tu imagen)
+            serieLinea.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle
+            serieLinea.MarkerSize = 8
+            serieLinea.MarkerColor = Color.Red
+
+            ' Color de la línea y grosor
+            serieLinea.Color = Color.OrangeRed
+            serieLinea.BorderWidth = 3
+
+            ' Mostrar los valores numéricos de cantidad arriba de cada marcador
+            serieLinea.IsValueShownAsLabel = True
+
+            ' Variables acumuladoras para los labels
+            Dim sumaCantidadTotal As Integer = 0
+            Dim sumaDineroTotal As Decimal = 0
+
+            ' Variables para detectar el día destacado
+            Dim maxDinero As Decimal = -1
+            Dim fechaDestacada As String = ""
+
+            ' Recorremos el DataTable y poblamos el gráfico
+            For Each row As DataRow In dtVentas.Rows
+
+                Dim fecha As DateTime = Convert.ToDateTime(row("FechaVenta"))
+                Dim cantidad As Integer = Convert.ToInt32(row("CantidadVentas"))
+                Dim dineroDia As Decimal = Convert.ToDecimal(row("TotalDinero"))
+
+                ' Añadimos el punto al gráfico
+                serieLinea.Points.AddXY(fecha, cantidad)
+
+                ' Acumulamos valores para los resúmenes
+                sumaCantidadTotal += cantidad
+                sumaDineroTotal += dineroDia
+
+                ' Lógica para hallar el día que generó más dinero
+                If dineroDia > maxDinero Then
+                    maxDinero = dineroDia
+                    fechaDestacada = fecha.ToString("dd/MM/yyyy")
+                End If
+
+            Next
+
+            chartVisual.Series.Add(serieLinea)
+
+            chartVisual.Titles.Clear()
+            chartVisual.Titles.Add($"{Titulo}")
+
+            'cargo el dtg con los datos de las ventas
+            dgvTabla.DataSource = dtVentas
+
+
+            'Labels
+            LCantidadVentas.Font = New Font(LCantidadVentas.Font, FontStyle.Bold)
+            LCantidadVentas.Text = $"• Cantidad Total de Ventas: {sumaCantidadTotal}"
+
+            LTotalVentas.Font = New Font(LTotalVentas.Font, FontStyle.Bold)
+            LTotalVentas.Text = $"• Ingresos Totales: {sumaDineroTotal:C2}"
+
+
+            LVentaDestacada.Font = New Font(LVentaDestacada.Font, FontStyle.Bold)
+            LVentaDestacada.Text = $"• Día Destacado: {fechaDestacada} ({maxDinero:C2})"
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar el gráfico de línea: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+
+    Public Shared Sub GenerarReporteRestauraciones(dtRestauraciones As DataTable, dgvTabla As DataGridView, chartVisual As System.Windows.Forms.DataVisualization.Charting.Chart, LDiaMaxRestauraciones As Label)
+        Try
+            chartVisual.ChartAreas.Clear()
+            chartVisual.Series.Clear()
+
+            Dim area As New System.Windows.Forms.DataVisualization.Charting.ChartArea("AreaRestauraciones")
+            area.AxisX.LabelStyle.Format = "dd/MM/yyyy"
+            area.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount
+            chartVisual.ChartAreas.Add(area)
+
+            Dim serieLinea As New System.Windows.Forms.DataVisualization.Charting.Series("Restauraciones")
+            serieLinea.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+            serieLinea.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle
+            serieLinea.MarkerSize = 8
+            serieLinea.MarkerColor = Color.DarkBlue
+            serieLinea.Color = Color.RoyalBlue
+            serieLinea.BorderWidth = 3
+            serieLinea.IsValueShownAsLabel = True
+
+            ' Variables para detectar el día con mayor cantidad de restauraciones
+            Dim maxCantidad As Integer = -1
+            Dim fechaMaxRestauracion As String = ""
+
+            ' Recorremos el DataTable y poblamos el gráfico
+            For Each row As DataRow In dtRestauraciones.Rows
+                Dim fecha As DateTime = Convert.ToDateTime(row("FechaRestauracion"))
+                Dim cantidad As Integer = Convert.ToInt32(row("CantidadRestauraciones"))
+
+                ' Añadimos el punto al gráfico
+                serieLinea.Points.AddXY(fecha, cantidad)
+
+                ' Lógica para hallar el día récord de restauraciones
+                If cantidad > maxCantidad Then
+                    maxCantidad = cantidad
+                    fechaMaxRestauracion = fecha.ToString("dd/MM/yyyy")
+                End If
+            Next
+
+            chartVisual.Series.Add(serieLinea)
+            chartVisual.Titles.Clear()
+            chartVisual.Titles.Add("AUDITORÍA DE RESTAURACIONES EN EL TIEMPO")
+
+            ' Cargamos la grilla
+            dgvTabla.DataSource = dtRestauraciones
+
+            ' Asignación del Label Destacado (solo la fecha y la mayor cantidad)
+            LDiaMaxRestauraciones.Font = New Font(LDiaMaxRestauraciones.Font, FontStyle.Bold)
+
+            LDiaMaxRestauraciones.Text = $"• Día con más restauraciones: {fechaMaxRestauracion} ({maxCantidad} respaldos)"
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error al cargar el reporte de restauraciones: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+    End Sub
+
 End Class

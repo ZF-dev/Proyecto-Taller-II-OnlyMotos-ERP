@@ -55,13 +55,9 @@ Public Class FormRestore
             "Autenticación Requerida - OnlyMotos ERP",
             "")
 
-        ' Variables locales que recibirá el Negocio por ByRef (al diseñar el login las use y ahora las tengo solo para poder llamar al metodo)
-        Dim rolTemp As String = ""
-        Dim nombreTemp As String = ""
+        Dim esAdmin As Boolean = negocio.ValidarAdmin(userIngresado, passIngresada)
 
-        Dim esValido As Boolean = negocio.ValidarLogin(userIngresado, passIngresada, rolTemp, nombreTemp)
-
-        If Not esValido Then
+        If Not esAdmin Then
             MessageBox.Show("Usuario o contraseña incorrectos. No se puede generar el respaldo.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If

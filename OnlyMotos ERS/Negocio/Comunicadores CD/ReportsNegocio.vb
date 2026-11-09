@@ -22,4 +22,25 @@ Public Class ReportsNegocio
 
     End Function
 
+    Public Function ListarVentasPorTiempo(fechaInicio As DateTime, fechaFin As DateTime) As DataTable
+
+        Dim reporteDatos As New ReporteDatos()
+        Return reporteDatos.ObtenerVentasPorTiempo(fechaInicio, fechaFin)
+
+    End Function
+
+    Public Function ListarVentasPorElUsuarioYTiempo(fechaInicio As DateTime, fechaFin As DateTime, idUsuario As Integer) As DataTable
+
+        Dim reporteDatos As New ReporteDatos()
+        Return reporteDatos.ObtenerVentasPorUsuarioYTiempo(fechaInicio, fechaFin, idUsuario)
+
+    End Function
+
+    Public Function ListarRestauracionesEnElTiempo(fechaInicio As DateTime, fechaFin As DateTime) As DataTable
+
+        Dim reporteDatos As New ReporteDatos()
+        Return reporteDatos.ObtenerRestauracionesEnElTiempo(fechaInicio, fechaFin)
+
+    End Function
+
 End Class

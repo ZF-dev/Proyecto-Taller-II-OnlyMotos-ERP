@@ -21,4 +21,21 @@ Public Class RestoreDatos
 
     End Sub
 
+    Public Sub registrarRestore(id_usuario As Integer)
+
+        Using conexion As SqlConnection = ConexionBD.ObtenerConexion()
+
+            Using comando As New SqlCommand("sp_RegistrarRestore", conexion)
+
+                comando.CommandType = CommandType.StoredProcedure
+                comando.Parameters.AddWithValue("@Usuario", id_usuario)
+                conexion.Open()
+                comando.ExecuteNonQuery()
+
+            End Using
+
+        End Using
+
+    End Sub
+
 End Class

@@ -12,7 +12,9 @@
         Try
 
             Dim restoreDatos As New RestoreDatos()
+
             restoreDatos.EjecutarRestore(rutaCompleta)
+            restoreDatos.registrarRestore(ModuleSession.CurrentUserId)
 
         Catch ex As Exception
             Throw New Exception("Error en la base de datos al Realizar el restore: (" & ex.Message & ")")

@@ -9,7 +9,7 @@
 
         Select Case CurrentUserRole
             Case "Administrador"
-                ' El administrador tiene acceso total a todos los reportes
+                ' El administrador tiene acceso a reportes basados al uso y funcionamiento del sistema
                 BReportRestors.Visible = True
                 BReportSales.Visible = False
                 BReportSalesUser.Visible = False
@@ -18,7 +18,7 @@
 
 
             Case "Supervisor"
-                ' El supervisor ve ventas, stock y actividad, pero no reportes financieros avanzados
+                ' El supervisor ve ventas, actividad, y reportes financieros avanzados
                 BReportSales.Visible = True
                 BReportSalesUser.Visible = True
                 BReportFinancial.Visible = True
@@ -27,8 +27,8 @@
 
 
             Case "Vendedor"
-                ' El vendedor solo ve sus reportes básicos de ventas y stock
-                BReportSales.Visible = True
+                ' El vendedor solo ve sus reportes básicos de ventas 
+                BReportSales.Visible = False
                 BReportSalesRange.Visible = True
                 BReportRestors.Visible = False
                 BReportFinancial.Visible = False
@@ -52,9 +52,40 @@
 
     Private Sub BReportRestors_Click(sender As Object, e As EventArgs) Handles BReportRestors.Click
 
-    End Sub
+        Try
+            Cursor = Cursors.WaitCursor
 
-    ' --- EVENTOS DE LOS REPORTES ---
+            If DTPStart.Value > DTPEnd.Value Then
+
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error de Fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+
+            End If
+
+            Dim negocio As New ReportsNegocio()
+            Dim dtRestauraciones As DataTable = negocio.ListarRestauracionesEnElTiempo(DTPStart.Value, DTPEnd.Value.Date.AddDays(1).AddSeconds(-1))
+            LTotal.Visible = False
+            LQuantity.Visible = False
+            LPorc.Visible = False
+
+            If dtRestauraciones.Rows.Count = 0 Then
+
+                MessageBox.Show("No se encontraron restauraciones de la base de datos para procesar el reporte.", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+
+            End If
+
+            GeneradorReportes.GenerarReporteRestauraciones(dtRestauraciones, DGVDetalle, Chart1, LNameDNI)
+
+        Catch ex As Exception
+
+            MessageBox.Show("Ocurrió un error al generar el reporte: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+        Cursor = Cursors.Default
+
+    End Sub
 
     Private Sub BReportSalesUsers_Click(sender As Object, e As EventArgs) Handles BReportSalesUser.Click
 
@@ -121,7 +152,7 @@
 
         Catch ex As Exception
 
-            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Ocurrió un error al generar el reporte: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
 
@@ -129,6 +160,73 @@
 
     End Sub
 
+    Private Sub BReportSales_Click(sender As Object, e As EventArgs) Handles BReportSales.Click
 
+        Try
+
+            Cursor = Cursors.WaitCursor
+
+            If DTPStart.Value > DTPEnd.Value Then
+
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error de Fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+
+            End If
+
+            Dim negocio As New ReportsNegocio()
+            Dim dtVentas As DataTable = negocio.ListarVentasPorTiempo(DTPStart.Value, DTPEnd.Value.Date.AddDays(1).AddSeconds(-1))
+            LPorc.Visible = False
+
+            If dtVentas.Rows.Count = 0 Then
+
+                MessageBox.Show("No se encontraron registros de ventas para procesar el reporte.", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+
+            End If
+
+
+            GeneradorReportes.GenerarReporteVentas(dtVentas, DGVDetalle, Chart1, LNameDNI, LTotal, LQuantity, "EVOLUCIÓN DE VENTAS EN EL TIEMPO (CANTIDAD)")
+
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error al generar el reporte: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub BReportSalesRange_Click(sender As Object, e As EventArgs) Handles BReportSalesRange.Click
+        Try
+            Cursor = Cursors.WaitCursor
+
+            If DTPStart.Value > DTPEnd.Value Then
+
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error de Fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+
+            End If
+
+            Dim negocio As New ReportsNegocio()
+            Dim dtVentas As DataTable = negocio.ListarVentasPorElUsuarioYTiempo(DTPStart.Value, DTPEnd.Value.Date.AddDays(1).AddSeconds(-1), ModuleSession.CurrentUserId)
+            LPorc.Visible = False
+
+            If dtVentas.Rows.Count = 0 Then
+
+                MessageBox.Show("No se encontraron registros de ventas para procesar el reporte.", "Sin Datos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+
+            End If
+
+            GeneradorReportes.GenerarReporteVentas(dtVentas, DGVDetalle, Chart1, LNameDNI, LTotal, LQuantity, $"EVOLUCIÓN DE VENTAS DEL VENDEDOR: {ModuleSession.CurrentUserName}")
+
+        Catch ex As Exception
+
+            MessageBox.Show("Ocurrió un error al generar el reporte: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+        Cursor = Cursors.Default
+
+    End Sub
 
 End Class
