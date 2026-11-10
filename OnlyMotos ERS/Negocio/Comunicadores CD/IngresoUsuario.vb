@@ -48,9 +48,13 @@
 
             Dim dt As DataTable = datosUsuario.ObtenerDatosUsuario(user, pass)
 
-            If dt.Rows.Count > 0 And dt.Rows(0)("nombre_tipo") = "admin" Then
+            If dt.Rows.Count > 0 Then
 
-                Return True
+                Dim tipoUsuario As String = dt.Rows(0)("nombre_tipo").ToString().Trim()
+
+                If tipoUsuario.Equals("Administrador", StringComparison.OrdinalIgnoreCase) Then
+                    Return True
+                End If
 
             End If
 
